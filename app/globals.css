@@ -2,9 +2,77 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* Degular font family */
+@font-face {
+  font-family: "Degular";
+  src: url("/fonts/Degular-Thin.woff2") format("woff2");
+  font-weight: 100;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Degular";
+  src: url("/fonts/Degular-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Degular";
+  src: url("/fonts/Degular-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Degular";
+  src: url("/fonts/Degular-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Degular";
+  src: url("/fonts/Degular-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Degular";
+  src: url("/fonts/Degular-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Degular";
+  src: url("/fonts/Degular-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-display: swap;
+}
+
+/* DegularDisplay for display headings */
+@font-face {
+  font-family: "Degular Display";
+  src: url("/fonts/DegularDisplay-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Degular Display";
+  src: url("/fonts/DegularDisplay-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --font-sans: "Degular Display", system-ui, sans-serif;
+  --font-serif: "Lato", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --background: oklch(1 0 0);
   --foreground: oklch(0.148 0.004 228.8);
   --card: oklch(1 0 0);
@@ -144,7 +212,8 @@
 
 @theme inline {
   --font-sans: var(--font-sans);
-  --font-heading: var(--font-heading);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -183,6 +252,104 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-sans);
+  }
+
+  .font-body {
+    font-family: var(--font-serif);
+  }
+
+  .font-code {
+    font-family: var(--font-mono);
+  }
+
+  .font-display {
+    font-family: "Degular Display", system-ui, sans-serif;
+  }
+
+  .type-heading-1 {
+    font-family: var(--font-sans);
+    font-size: 3rem;
+    line-height: 3rem;
+    letter-spacing: -0.09375rem;
+    font-weight: 600;
+  }
+
+  .type-heading-2 {
+    font-family: var(--font-sans);
+    font-size: 1.875rem;
+    line-height: 1.875rem;
+    letter-spacing: -0.0625rem;
+    font-weight: 600;
+  }
+
+  .type-heading-3 {
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+    letter-spacing: -0.0625rem;
+    font-weight: 600;
+  }
+
+  .type-heading-4 {
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    letter-spacing: 0;
+    font-weight: 600;
+  }
+
+  .type-paragraph-large {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    line-height: 1.6875rem;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  .type-paragraph-regular {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  .type-paragraph-small {
+    font-family: var(--font-serif);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  .type-paragraph-mini {
+    font-family: var(--font-serif);
+    font-size: 0.75rem;
+    line-height: 1rem;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  .type-monospaced {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  .type-caption {
+    font-family: var(--font-serif);
+    font-size: 0.875rem;
+    line-height: 1.3125rem;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
 }
 
 @layer base {
