@@ -1,6 +1,7 @@
 import { JetBrains_Mono, Lato } from "next/font/google"
 
 import "./globals.css"
+import { Navbar } from "@/components/layout/navbar"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 
@@ -27,8 +28,11 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("antialiased", lato.variable, fontMono.variable)}
     >
-      <body className="font-serif">
-        <ThemeProvider>{children}</ThemeProvider>
+      <body className="bg-pink-300 font-serif">
+        <ThemeProvider>
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
