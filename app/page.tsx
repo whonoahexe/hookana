@@ -11,6 +11,134 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowUpRight, DollarSign, Globe } from "lucide-react"
 
+type WhatWeDoTab = {
+  value: string
+  label: string
+  title: string
+  description: string
+  deliverables: string[]
+  stats: { label: string; text: string }[]
+}
+
+const WHAT_WE_DO_TABS: WhatWeDoTab[] = [
+  {
+    value: "core-service",
+    label: "Core Service",
+    title: "Ad Creative Production",
+    description:
+      "Static ads, video ads, carousels, motion graphics. Optimized for Meta, TikTok, Snapchat, and YouTube.",
+    deliverables: [
+      "Hook variations and A/B test sets",
+      "Static ad designs (feed, story, square, landscape)",
+      "Short-form video cuts for Meta, TikTok, Snapchat",
+      "Carousel ad sequences",
+      "Motion graphics and animated assets",
+      "Platform-specific resizes and adaptations",
+    ],
+    stats: [
+      {
+        label: "TURNAROUND",
+        text: "Standard: 48 hours. Rush (same-day) available on Growth and Enterprise plans.",
+      },
+      {
+        label: "REVISIONS",
+        text: "Unlimited. First-draft approval rate above 85%.",
+      },
+      {
+        label: "BEST FOR",
+        text: "Performance marketers running paid acquisition who need consistent creative volume.",
+      },
+    ],
+  },
+  {
+    value: "video-production",
+    label: "Video Production",
+    title: "Video-First Creative Systems",
+    description:
+      "Performance-led short-form and paid social video built to test hooks, pacing, and offers quickly.",
+    deliverables: [
+      "UGC-style edits and creator content assembly",
+      "Thumb-stop hooks and first-3-second variants",
+      "Platform-native subtitles and motion captions",
+      "Multi-ratio exports (9:16, 1:1, 16:9)",
+      "Performance cutdowns for retargeting stages",
+      "Weekly refresh batches to avoid fatigue",
+    ],
+    stats: [
+      {
+        label: "TURNAROUND",
+        text: "First round in 48 hours. Priority queues available.",
+      },
+      {
+        label: "REVISIONS",
+        text: "Unlimited iteration cycles during active testing windows.",
+      },
+      {
+        label: "BEST FOR",
+        text: "Teams scaling spend on Meta and TikTok with heavy video dependence.",
+      },
+    ],
+  },
+  {
+    value: "strategy-layer",
+    label: "Strategy Layer",
+    title: "Creative Strategy Layer",
+    description:
+      "We turn performance inputs into clear creative direction so your team ships the right tests faster.",
+    deliverables: [
+      "Offer and angle mapping by funnel stage",
+      "Message hierarchy and hook framework planning",
+      "Competitor and category creative signal scans",
+      "Testing roadmaps by objective and budget",
+      "Creative brief templates for rapid deployment",
+      "Weekly insight summaries from live results",
+    ],
+    stats: [
+      {
+        label: "TURNAROUND",
+        text: "Strategic plans delivered in 2-3 business days.",
+      },
+      {
+        label: "REVISIONS",
+        text: "Rolling updates as new platform data comes in.",
+      },
+      {
+        label: "BEST FOR",
+        text: "Brands needing stronger creative direction before scaling production.",
+      },
+    ],
+  },
+  {
+    value: "ai-augmented",
+    label: "AI-Augmented",
+    title: "AI-Augmented Workflow",
+    description:
+      "Automation accelerates variant generation and iteration while human creatives keep quality and brand fit high.",
+    deliverables: [
+      "Rapid concept expansion from winning themes",
+      "Script and hook ideation at high volume",
+      "Batch variation prompts for copy and visuals",
+      "Asset tagging and retrieval for fast reuse",
+      "Performance signal clustering for next tests",
+      "Human QA checkpoints before launch",
+    ],
+    stats: [
+      {
+        label: "TURNAROUND",
+        text: "Concept-to-ready cycles compressed to same-day for many requests.",
+      },
+      {
+        label: "REVISIONS",
+        text: "Near-real-time refinements powered by guided automation.",
+      },
+      {
+        label: "BEST FOR",
+        text: "Teams that need speed and breadth without sacrificing creative quality.",
+      },
+    ],
+  },
+]
+
 export default function Page() {
   return (
     <div>
@@ -88,121 +216,211 @@ export default function Page() {
       </div>
 
       {/* Diagnostic form */}
-      <div className="flex w-full justify-center bg-blue-950">
-        <section className="relative my-20 max-w-180 bg-neutral-100 px-8 py-18 md:px-19 lg:px-30">
-          {/* Corner fold decoration (top-right) */}
-          <div className="absolute top-0 -right-px h-15 w-16 overflow-hidden bg-[#0e0e31]">
-            <div
-              className="absolute inset-0 bg-pink-300"
-              style={{ clipPath: "polygon(0 0, 0 100%, 100% 100%)" }}
-            />
-          </div>
+      <div className="w-full bg-blue-950">
+        <div className="flex w-full justify-center">
+          <section className="relative my-20 max-w-180 bg-neutral-100 px-8 py-18 md:px-19 lg:px-30">
+            {/* Corner fold decoration (top-right) */}
+            <div className="absolute top-0 -right-px h-15 w-16 overflow-hidden bg-[#0e0e31]">
+              <div
+                className="absolute inset-0 bg-pink-300"
+                style={{ clipPath: "polygon(0 0, 0 100%, 100% 100%)" }}
+              />
+            </div>
 
-          <div className="mx-auto max-w-138">
-            <div className="flex items-start justify-between gap-6">
-              <h2 className="w-63.75 font-sans text-[64px] leading-12 font-semibold tracking-[-1.5px] text-card-foreground uppercase">
-                <span className="block">Before</span>
-                <span className="block">We</span>
-                <span className="block">Begin</span>
-              </h2>
-              <p className="type-heading-3 max-w-79.5 text-foreground">
-                Tell us about your brand so we can calibrate the diagnostic.
+            <div className="mx-auto max-w-138">
+              <div className="flex items-start justify-between gap-6">
+                <h2 className="w-63.75 font-sans text-[64px] leading-12 font-semibold tracking-[-1.5px] text-card-foreground uppercase">
+                  <span className="block">Before</span>
+                  <span className="block">We</span>
+                  <span className="block">Begin</span>
+                </h2>
+                <p className="type-heading-3 max-w-79.5 text-foreground">
+                  Tell us about your brand so we can calibrate the diagnostic.
+                </p>
+              </div>
+
+              <div className="mt-20 border-t border-dotted border-neutral-500" />
+
+              <form className="mt-24 flex flex-col gap-13">
+                <FormField
+                  label="Brand name *"
+                  help="We use this to personalize your results. Your score means more when it's named."
+                >
+                  <div className="flex h-9 w-80 items-center gap-2 rounded-lg border border-neutral-950 bg-popover px-3 shadow-xs">
+                    <Globe className="size-4 shrink-0 text-primary-foreground/70" />
+                    <Input
+                      className="h-auto flex-1 rounded-none border-none bg-transparent px-0 py-0 text-sm text-primary-foreground shadow-none placeholder:text-primary-foreground/60 focus-visible:border-none focus-visible:ring-0"
+                      placeholder="e.g Glowup Skincare"
+                    />
+                  </div>
+                </FormField>
+
+                <FormField
+                  label="Industry *"
+                  help="Creative benchmarks differ by vertical. A skincare brand and a fitness brand have very different hook standards."
+                >
+                  <Select>
+                    <SelectTrigger className="h-9 w-80 rounded-lg border-neutral-950 bg-popover text-primary-foreground shadow-xs data-placeholder:text-primary-foreground/60 [&_svg]:text-primary-foreground!">
+                      <SelectValue placeholder="Select..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="beauty">
+                          Beauty &amp; Skincare
+                        </SelectItem>
+                        <SelectItem value="fitness">
+                          Fitness &amp; Health
+                        </SelectItem>
+                        <SelectItem value="fashion">
+                          Fashion &amp; Apparel
+                        </SelectItem>
+                        <SelectItem value="food">
+                          Food &amp; Beverage
+                        </SelectItem>
+                        <SelectItem value="tech">Technology</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </FormField>
+
+                <FormField
+                  label="Monthly ad spend *"
+                  help={`Helps us calibrate expectations. What counts as "low volume" at $5K looks very different at $500K.`}
+                >
+                  <Select>
+                    <SelectTrigger className="h-9 w-80 rounded-lg border-neutral-950 bg-popover text-primary-foreground shadow-xs data-placeholder:text-primary-foreground/60 [&_svg]:text-primary-foreground!">
+                      <DollarSign className="size-4 shrink-0" />
+                      <SelectValue placeholder="Select..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="under5k">Under $5K/mo</SelectItem>
+                        <SelectItem value="5k-25k">$5K - $25K/mo</SelectItem>
+                        <SelectItem value="25k-100k">
+                          $25K - $100K/mo
+                        </SelectItem>
+                        <SelectItem value="100k-500k">
+                          $100K - $500K/mo
+                        </SelectItem>
+                        <SelectItem value="over500k">$500K+/mo</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </FormField>
+              </form>
+
+              <div className="mt-20 border-t border-dotted border-neutral-500" />
+
+              <p className="mt-5 max-w-137.75 font-mono text-xs leading-3.5 text-blue-500">
+                Built from patterns across 10,000+ ad creatives. Identifies
+                structural gaps that cause creative fatigue, low CTR, and wasted
+                ad spend.
               </p>
             </div>
 
-            <div className="mt-20 border-t border-dotted border-neutral-500" />
-
-            <form className="mt-24 flex flex-col gap-13">
-              <FormField
-                label="Brand name *"
-                help="We use this to personalize your results. Your score means more when it's named."
+            {/* Bottom zigzag decoration */}
+            <div className="absolute right-0 -bottom-7 left-0 h-7">
+              <svg
+                width="100%"
+                height="28"
+                viewBox="0 0 696 28"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <div className="flex h-9 w-80 items-center gap-2 rounded-lg border border-neutral-950 bg-popover px-3 shadow-xs">
-                  <Globe className="size-4 shrink-0 text-primary-foreground/70" />
-                  <Input
-                    className="h-auto flex-1 rounded-none border-none bg-transparent px-0 py-0 text-sm text-primary-foreground shadow-none placeholder:text-primary-foreground/60 focus-visible:border-none focus-visible:ring-0"
-                    placeholder="e.g Glowup Skincare"
-                  />
-                </div>
-              </FormField>
+                <path
+                  d="M0,0 L25,28 L50,0 L75,28 L100,0 L125,28 L150,0 L175,28 L200,0 L225,28 L250,0 L275,28 L300,0 L325,28 L350,0 L375,28 L400,0 L425,28 L450,0 L475,28 L500,0 L525,28 L550,0 L575,28 L600,0 L625,28 L650,0 L675,28 L696,0 Z"
+                  fill="#f5f5f5"
+                />
+              </svg>
+            </div>
+          </section>
+        </div>
 
-              <FormField
-                label="Industry *"
-                help="Creative benchmarks differ by vertical. A skincare brand and a fitness brand have very different hook standards."
-              >
-                <Select>
-                  <SelectTrigger className="h-9 w-80 rounded-lg border-neutral-950 bg-popover text-primary-foreground shadow-xs data-placeholder:text-primary-foreground/60 [&_svg]:text-primary-foreground!">
-                    <SelectValue placeholder="Select..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectItem value="beauty">
-                        Beauty &amp; Skincare
-                      </SelectItem>
-                      <SelectItem value="fitness">
-                        Fitness &amp; Health
-                      </SelectItem>
-                      <SelectItem value="fashion">
-                        Fashion &amp; Apparel
-                      </SelectItem>
-                      <SelectItem value="food">Food &amp; Beverage</SelectItem>
-                      <SelectItem value="tech">Technology</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </FormField>
-
-              <FormField
-                label="Monthly ad spend *"
-                help={`Helps us calibrate expectations. What counts as "low volume" at $5K looks very different at $500K.`}
-              >
-                <Select>
-                  <SelectTrigger className="h-9 w-80 rounded-lg border-neutral-950 bg-popover text-primary-foreground shadow-xs data-placeholder:text-primary-foreground/60 [&_svg]:text-primary-foreground!">
-                    <DollarSign className="size-4 shrink-0" />
-                    <SelectValue placeholder="Select..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectItem value="under5k">Under $5K/mo</SelectItem>
-                      <SelectItem value="5k-25k">$5K - $25K/mo</SelectItem>
-                      <SelectItem value="25k-100k">$25K - $100K/mo</SelectItem>
-                      <SelectItem value="100k-500k">
-                        $100K - $500K/mo
-                      </SelectItem>
-                      <SelectItem value="over500k">$500K+/mo</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </FormField>
-            </form>
-
-            <div className="mt-20 border-t border-dotted border-neutral-500" />
-
-            <p className="mt-5 max-w-137.75 font-mono text-xs leading-3.5 text-blue-500">
-              Built from patterns across 10,000+ ad creatives. Identifies
-              structural gaps that cause creative fatigue, low CTR, and wasted
-              ad spend.
+        {/* The Hookana Way */}
+        <section className="px-5 pb-20 md:pb-28">
+          <div className="mx-auto flex max-w-237.5 flex-col items-center gap-6 text-center">
+            <p className="rounded-lg bg-pink-500 px-3 py-3 font-mono text-base leading-6 text-primary-foreground">
+              The Hookana Way
             </p>
+
+            <h2 className="font-sans text-[42px] leading-9 font-semibold tracking-[-1.5px] text-primary-foreground md:text-[64px] md:leading-12">
+              Closer than an agency.
+              <br />
+              Faster than a team.
+            </h2>
+
+            <Button
+              size="lg"
+              variant="outline"
+              className="h-10 min-w-50 rounded-lg border-neutral-200 bg-transparent px-6 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary-foreground/10 hover:text-primary-foreground"
+            >
+              Get 2 Free Concepts
+              <ArrowUpRight className="size-4" />
+            </Button>
           </div>
 
-          {/* Bottom zigzag decoration */}
-          <div className="absolute right-0 -bottom-7 left-0 h-7">
-            <svg
-              width="100%"
-              height="28"
-              viewBox="0 0 696 28"
-              preserveAspectRatio="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0,0 L25,28 L50,0 L75,28 L100,0 L125,28 L150,0 L175,28 L200,0 L225,28 L250,0 L275,28 L300,0 L325,28 L350,0 L375,28 L400,0 L425,28 L450,0 L475,28 L500,0 L525,28 L550,0 L575,28 L600,0 L625,28 L650,0 L675,28 L696,0 Z"
-                fill="#f5f5f5"
-              />
-            </svg>
+          <div className="mx-auto mt-24 grid max-w-237.5 gap-4 md:grid-cols-3">
+            <HookanaStepCard
+              className="md:-rotate-2"
+              title="BRIEF IT."
+              body="Drop your brief via Slack, Notion, email. We adapt to your tools."
+              caption="Day 0"
+            />
+            <HookanaStepCard
+              className="md:rotate-1"
+              title="WE BUILD IT."
+              body="Our creative team produces ad-ready assets in 48 hours or less."
+              caption="24 - 48 hours"
+            />
+            <HookanaStepCard
+              className="md:-rotate-2"
+              title="YOU TEST IT."
+              body="Launch, measure, iterate. We keep the creative pipeline flowing."
+              caption="Ongoing"
+            />
           </div>
         </section>
       </div>
+
+      <section className="bg-neutral-100 px-6 py-20 md:py-24">
+        <div className="mx-auto w-full max-w-468">
+          <div className="flex flex-col gap-5 px-30">
+            <p className="inline-flex w-fit items-center justify-center rounded-lg bg-pink-500 px-3 py-3 font-mono text-base leading-6 text-primary-foreground">
+              What We Do?
+            </p>
+            <h2 className="font-sans text-[42px] leading-9 font-semibold tracking-[-1.5px] text-foreground md:text-[64px] md:leading-12">
+              Full-stack creative production.
+            </h2>
+          </div>
+
+          <Tabs defaultValue="core-service" className="mt-10">
+            <div className="flex justify-end pr-17">
+              <TabsList className="h-auto flex-wrap justify-end gap-0 rounded-none bg-transparent p-0">
+                {WHAT_WE_DO_TABS.map((tab) => (
+                  <TabsTrigger
+                    key={tab.value}
+                    value={tab.value}
+                    className="type-heading-4 h-15 rounded-t-lg rounded-b-none border border-neutral-200 bg-neutral-100 px-8 text-left data-[state=active]:border-lime-200 data-[state=active]:bg-lime-200 data-[state=active]:text-accent-foreground"
+                  >
+                    {tab.label}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </div>
+
+            {WHAT_WE_DO_TABS.map((tab) => (
+              <TabsContent
+                key={tab.value}
+                value={tab.value}
+                className="mt-0 h-200 rounded-lg rounded-tr-none bg-lime-200 px-30 py-30"
+              >
+                <WhatWeDoPanel tab={tab} />
+              </TabsContent>
+            ))}
+          </Tabs>
+        </div>
+      </section>
     </div>
   )
 }
@@ -221,6 +439,71 @@ function FormField({
       <p className="type-monospaced text-foreground uppercase">{label}</p>
       {children}
       <p className="font-mono text-xs leading-3.5 text-foreground">{help}</p>
+    </div>
+  )
+}
+
+function HookanaStepCard({
+  title,
+  body,
+  caption,
+  className,
+}: {
+  title: string
+  body: string
+  caption: string
+  className?: string
+}) {
+  return (
+    <article
+      className={`rounded-lg border border-pink-500 px-6 py-6 text-center ${className ?? ""}`}
+    >
+      <p className="type-heading-3 text-pink-500">{title}</p>
+      <p className="type-paragraph-regular mt-3 font-semibold text-primary-foreground">
+        {body}
+      </p>
+      <p className="type-monospaced mt-3 text-primary-foreground/95">
+        {caption}
+      </p>
+    </article>
+  )
+}
+
+function WhatWeDoPanel({ tab }: { tab: WhatWeDoTab }) {
+  return (
+    <div className="grid h-full gap-12 lg:grid-cols-[860px_448px] lg:gap-55.75">
+      <div>
+        <h3 className="type-heading-1 text-lime-950">{tab.title}</h3>
+        <p className="type-heading-4 mt-3 max-w-170 text-accent-foreground">
+          {tab.description}
+        </p>
+
+        <ul className="mt-14 overflow-hidden rounded-lg">
+          {tab.deliverables.map((item, index) => (
+            <li
+              key={item}
+              className={`min-h-15 px-5 py-4 ${
+                index % 2 === 0
+                  ? "bg-linear-to-r from-background to-lime-400"
+                  : "bg-linear-to-r from-lime-400 to-background"
+              }`}
+            >
+              <p className="type-monospaced text-foreground">• {item}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="flex flex-col gap-9">
+        {tab.stats.map((stat) => (
+          <div key={stat.label} className="flex flex-col gap-3">
+            <p className="font-mono text-sm leading-3 text-pink-500 uppercase">
+              {stat.label}
+            </p>
+            <p className="type-heading-3 text-accent-foreground">{stat.text}</p>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
