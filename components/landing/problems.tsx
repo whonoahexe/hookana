@@ -38,7 +38,7 @@ const tabs = [
 export function Problems() {
   return (
     <div className="px-5">
-      <Tabs defaultValue="bottleneck" className="my-30 gap-0">
+      <Tabs defaultValue="bottleneck" className="mt-30 gap-0">
         <TabsList className="ml-8 h-auto gap-0 rounded-none bg-transparent p-0">
           {tabs.map((tab) => (
             <TabsTrigger

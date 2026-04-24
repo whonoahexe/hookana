@@ -18,7 +18,7 @@ export default function Page() {
       <Hero />
       <Problems />
 
-      <div className="w-full bg-blue-950">
+      <div className="mt-50 w-full bg-blue-950">
         <Diagnostic />
         <HookanaWay />
       </div>

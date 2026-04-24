@@ -20,14 +20,16 @@ function HookanaStepCard({
       <p className="type-paragraph-regular mt-3 font-semibold text-primary-foreground">
         {body}
       </p>
-      <p className="type-monospaced mt-3 text-primary-foreground/95">{caption}</p>
+      <p className="type-monospaced mt-3 text-primary-foreground/95">
+        {caption}
+      </p>
     </article>
   )
 }
 
 export function HookanaWay() {
   return (
-    <section className="px-5 pb-20 md:pb-28">
+    <section className="mt-40 px-5 pb-20 md:pb-28">
       <div className="mx-auto flex max-w-237.5 flex-col items-center gap-6 text-center">
         <p className="rounded-lg bg-pink-500 px-3 py-3 font-mono text-base leading-6 text-primary-foreground">
           The Hookana Way
