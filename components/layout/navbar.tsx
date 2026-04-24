@@ -58,7 +58,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        <Button size="lg" className="rounded-md" variant="destructive">
+        <Button size="lg" className="rounded-md px-6" variant="destructive">
           GET 2 FREE CONCEPTS
           <ArrowUpRight className="size-4" />
         </Button>
