@@ -14,9 +14,9 @@ function HookanaStepCard({
 }) {
   return (
     <article
-      className={`rounded-lg border border-pink-500 px-6 py-6 text-center ${className ?? ""}`}
+      className={`rounded-md border border-pink-500 p-6 text-center ${className ?? ""}`}
     >
-      <p className="type-heading-3 text-pink-500">{title}</p>
+      <p className="type-heading-3 font-black! text-primary">{title}</p>
       <p className="type-paragraph-regular mt-3 font-semibold text-primary-foreground">
         {body}
       </p>
@@ -30,8 +30,8 @@ function HookanaStepCard({
 export function HookanaWay() {
   return (
     <section className="mt-40 px-5 pb-20 md:pb-28">
-      <div className="mx-auto flex max-w-237.5 flex-col items-center gap-6 text-center">
-        <p className="rounded-lg bg-pink-500 px-3 py-3 font-mono text-base leading-6 text-primary-foreground">
+      <div className="mx-auto flex flex-col items-center gap-6 text-center">
+        <p className="rounded-md bg-primary p-3 font-mono text-base leading-6 text-primary-foreground">
           The Hookana Way
         </p>
 
@@ -44,14 +44,14 @@ export function HookanaWay() {
         <Button
           size="lg"
           variant="outline"
-          className="h-10 min-w-50 rounded-lg border-neutral-200 bg-transparent px-6 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary-foreground/10 hover:text-primary-foreground"
+          className="rounded-md px-6 text-primary-foreground"
         >
           Get 2 Free Concepts
           <ArrowUpRight className="size-4" />
         </Button>
       </div>
 
-      <div className="mx-auto mt-24 grid max-w-237.5 gap-4 md:grid-cols-3">
+      <div className="mx-auto mt-24 grid max-w-237.5 gap-2 md:grid-cols-3">
         <HookanaStepCard
           className="md:-rotate-2"
           title="BRIEF IT."

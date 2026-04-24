@@ -1,6 +1,6 @@
 import { Cta } from "@/components/landing/cta"
 import { CtaForm } from "@/components/landing/cta-form"
-import { Diagnostic } from "@/components/landing/diagnostic"
+import { DiagnosticSection } from "@/components/landing/diagnostic-section"
 import { Faq } from "@/components/landing/faq"
 import { Footer } from "@/components/landing/footer"
 import { Hero } from "@/components/landing/hero"
@@ -19,7 +19,7 @@ export default function Page() {
       <Problems />
 
       <div className="mt-50 w-full bg-blue-950">
-        <Diagnostic />
+        <DiagnosticSection />
         <HookanaWay />
       </div>
 
