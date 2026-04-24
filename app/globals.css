@@ -52,25 +52,10 @@
   font-display: swap;
 }
 
-/* DegularDisplay for display headings */
-@font-face {
-  font-family: "Degular Display";
-  src: url("/fonts/DegularDisplay-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Degular Display";
-  src: url("/fonts/DegularDisplay-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-display: swap;
-}
-
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-sans: "Degular Display", system-ui, sans-serif;
+  --font-sans: "Degular", system-ui, sans-serif;
   --font-serif: "Lato", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --background: oklch(1 0 0);
@@ -272,7 +257,7 @@
   }
 
   .font-display {
-    font-family: "Degular Display", system-ui, sans-serif;
+    font-family: "Degular", system-ui, sans-serif;
   }
 
   .type-heading-1 {
