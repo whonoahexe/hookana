@@ -3,13 +3,6 @@
 import Link from "next/link"
 import { ArrowUpRight, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
 
 const navGroups = [
   [
@@ -58,9 +51,16 @@ export function Navbar() {
           ))}
         </nav>
 
-        <Button size="lg" className="rounded-md px-6" variant="destructive">
-          GET 2 FREE CONCEPTS
-          <ArrowUpRight className="size-4" />
+        <Button
+          size="lg"
+          className="rounded-md px-6"
+          variant="destructive"
+          asChild
+        >
+          <Link href="#contact">
+            GET 2 FREE CONCEPTS
+            <ArrowUpRight className="size-4" />
+          </Link>
         </Button>
       </div>
     </header>

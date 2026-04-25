@@ -22,15 +22,23 @@ export default function Page() {
       <Problems />
 
       <div className="mt-50 w-full bg-blue-950">
-        <DiagnosticSection />
-        <HookanaWay />
+        <div id="free-check" className="scroll-mt-44">
+          <DiagnosticSection />
+        </div>
+        <div id="how-it-works" className="scroll-mt-24">
+          <HookanaWay />
+        </div>
       </div>
 
       <StatsMarquee />
 
       <section className="w-full overflow-hidden bg-blue-50 pt-30 pb-15">
-        <WhatWeDo />
-        <Roles />
+        <div id="services" className="scroll-mt-24">
+          <WhatWeDo />
+        </div>
+        <div id="who-its-for" className="scroll-mt-24">
+          <Roles />
+        </div>
         <div className="px-6">
           <Stats />
           <Testimonial />
@@ -38,7 +46,9 @@ export default function Page() {
       </section>
 
       <section className="bg-blue-950">
-        <Pricing />
+        <div id="pricing" className="scroll-mt-24">
+          <Pricing />
+        </div>
         <Faq />
       </section>
 
@@ -60,7 +70,7 @@ export default function Page() {
             aria-hidden="true"
             className="pointer-events-none absolute top-1/2 left-1/2 z-0 hidden w-108 max-w-none translate-x-78 -translate-y-44 md:block"
           />
-          <div className="relative z-10">
+          <div id="contact" className="relative z-10 scroll-mt-24">
             <CtaForm />
           </div>
         </div>

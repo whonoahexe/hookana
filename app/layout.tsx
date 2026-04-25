@@ -1,7 +1,7 @@
 import { JetBrains_Mono, Lato } from "next/font/google"
 
 import "./globals.css"
-import { Navbar } from "@/components/layout/navbar"
+import { Navbar } from "@/components/layout/Navbar"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 
