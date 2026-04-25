@@ -181,7 +181,7 @@ export function WhatWeDo() {
     <div className="mx-auto w-full px-6">
       {/* Title */}
       <div className="flex flex-col gap-4 px-30">
-        <p className="inline-flex w-fit items-center justify-center rounded-lg bg-pink-500 p-3 font-mono text-base leading-6 text-primary-foreground">
+        <p className="inline-flex w-fit items-center justify-center rounded-md bg-pink-500 p-3 font-mono text-base leading-6 text-primary-foreground">
           What We Do?
         </p>
         <h2 className="font-sans text-[42px] leading-9 font-semibold tracking-[-1.5px] text-foreground md:text-[64px] md:leading-12">

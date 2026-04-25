@@ -40,7 +40,7 @@ export function Diagnostic() {
               label="Brand name *"
               help="We use this to personalize your results. Your score means more when it's named."
             >
-              <div className="flex h-9 w-80 items-center gap-2 rounded-lg border border-neutral-950 bg-popover px-3 shadow-xs">
+              <div className="flex h-9 w-80 items-center gap-2 rounded-md border border-neutral-950 bg-popover px-3 shadow-xs">
                 <Globe className="size-4 shrink-0 text-primary-foreground/70" />
                 <Input
                   className="h-auto flex-1 rounded-none border-none bg-transparent px-0 py-0 text-sm text-primary-foreground shadow-none placeholder:text-primary-foreground/60 focus-visible:border-none focus-visible:ring-0"
@@ -54,7 +54,7 @@ export function Diagnostic() {
               help="Creative benchmarks differ by vertical. A skincare brand and a fitness brand have very different hook standards."
             >
               <Select>
-                <SelectTrigger className="h-9 w-80 rounded-lg border-neutral-950 bg-popover text-primary-foreground shadow-xs data-placeholder:text-primary-foreground/60 [&_svg]:text-primary-foreground!">
+                <SelectTrigger className="h-9 w-80 rounded-md border-neutral-950 bg-popover text-primary-foreground shadow-xs data-placeholder:text-primary-foreground/60 [&_svg]:text-primary-foreground!">
                   <SelectValue placeholder="Select..." />
                 </SelectTrigger>
                 <SelectContent>
@@ -81,7 +81,7 @@ export function Diagnostic() {
               help={`Helps us calibrate expectations. What counts as "low volume" at $5K looks very different at $500K.`}
             >
               <Select>
-                <SelectTrigger className="h-9 w-80 rounded-lg border-neutral-950 bg-popover text-primary-foreground shadow-xs data-placeholder:text-primary-foreground/60 [&_svg]:text-primary-foreground!">
+                <SelectTrigger className="h-9 w-80 rounded-md border-neutral-950 bg-popover text-primary-foreground shadow-xs data-placeholder:text-primary-foreground/60 [&_svg]:text-primary-foreground!">
                   <DollarSign className="size-4 shrink-0" />
                   <SelectValue placeholder="Select..." />
                 </SelectTrigger>

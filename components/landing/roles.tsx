@@ -165,7 +165,7 @@ export function Roles() {
                     {activeRoleContent.solutionTags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-lg bg-linear-to-r from-[#BFDEFF] to-blue-300 px-3 py-0 font-mono text-[16px] leading-6 text-foreground"
+                        className="rounded-md bg-linear-to-r from-[#BFDEFF] to-blue-300 px-3 py-0 font-mono text-[16px] leading-6 text-foreground"
                       >
                         {tag}
                       </span>
