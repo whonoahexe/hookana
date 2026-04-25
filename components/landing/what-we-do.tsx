@@ -130,33 +130,40 @@ const WHAT_WE_DO_TABS: WhatWeDoTab[] = [
 
 function WhatWeDoPanel({ tab }: { tab: WhatWeDoTab }) {
   return (
-    <div className="grid h-full gap-12 lg:grid-cols-[860px_448px] lg:gap-55.75">
-      <div>
-        <h3 className="type-heading-1 text-lime-950">{tab.title}</h3>
-        <p className="type-heading-4 mt-3 max-w-170 text-accent-foreground">
-          {tab.description}
-        </p>
+    <div className="flex h-full w-full items-end justify-between">
+      <div className="flex h-full w-full flex-col justify-between">
+        <div>
+          <h3 className="type-heading-1 text-lime-950">{tab.title}</h3>
+          <p className="type-heading-4 mt-3 max-w-170 text-accent-foreground">
+            {tab.description}
+          </p>
+        </div>
 
-        <ul className="mt-14 overflow-hidden rounded-lg">
+        <ul className="max-w-215 overflow-hidden rounded-md">
           {tab.deliverables.map((item, index) => (
             <li
               key={item}
-              className={`min-h-15 px-5 py-4 ${
+              className={`min-h-15 px-11 py-4 ${
                 index % 2 === 0
-                  ? "bg-linear-to-r from-background to-lime-400"
-                  : "bg-linear-to-r from-lime-400 to-background"
+                  ? "bg-linear-to-r from-background to-lime-500"
+                  : "bg-linear-to-r from-lime-500 to-background"
               }`}
             >
-              <p className="type-monospaced text-foreground">• {item}</p>
+              <p className="type-monospaced text-right text-accent-foreground">
+                • {item}
+              </p>
             </li>
           ))}
         </ul>
       </div>
 
-      <div className="flex flex-col gap-9">
+      <div className="flex min-w-178 flex-col gap-6">
         {tab.stats.map((stat) => (
-          <div key={stat.label} className="flex flex-col gap-3">
-            <p className="font-mono text-sm leading-3 text-pink-500 uppercase">
+          <div
+            key={stat.label}
+            className="flex flex-col gap-3 border-l-20 border-pink-500 bg-background px-8 py-7"
+          >
+            <p className="font-mono text-sm leading-3 text-primary uppercase">
               {stat.label}
             </p>
             <p className="type-heading-3 text-accent-foreground">{stat.text}</p>
@@ -169,9 +176,9 @@ function WhatWeDoPanel({ tab }: { tab: WhatWeDoTab }) {
 
 export function WhatWeDo() {
   return (
-    <div className="mx-auto w-full max-w-468">
-      <div className="flex flex-col gap-5 px-30">
-        <p className="inline-flex w-fit items-center justify-center rounded-lg bg-pink-500 px-3 py-3 font-mono text-base leading-6 text-primary-foreground">
+    <div className="mx-auto w-full">
+      <div className="flex flex-col gap-4 px-30">
+        <p className="inline-flex w-fit items-center justify-center rounded-lg bg-pink-500 p-3 font-mono text-base leading-6 text-primary-foreground">
           What We Do?
         </p>
         <h2 className="font-sans text-[42px] leading-9 font-semibold tracking-[-1.5px] text-foreground md:text-[64px] md:leading-12">
@@ -179,14 +186,14 @@ export function WhatWeDo() {
         </h2>
       </div>
 
-      <Tabs defaultValue="core-service" className="mt-10">
+      <Tabs defaultValue="core-service" className="mt-2">
         <div className="flex justify-end pr-17">
-          <TabsList className="h-auto flex-wrap justify-end gap-0 rounded-none bg-transparent p-0">
+          <TabsList className="ml-8 h-auto gap-0 rounded-none bg-transparent p-0">
             {WHAT_WE_DO_TABS.map((tab) => (
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="type-heading-4 h-15 rounded-t-lg rounded-b-none border border-neutral-200 bg-neutral-100 px-8 text-left data-[state=active]:border-lime-200 data-[state=active]:bg-lime-200 data-[state=active]:text-accent-foreground"
+                className="type-heading-4 relative z-0 h-15 w-60! rounded-none rounded-t-md border-none bg-lime-50 text-accent-foreground [clip-path:polygon(0_0,calc(100%-2.5rem)_0,100%_100%,0_100%)] not-first:-ml-8 data-[state=active]:z-20 data-[state=active]:-translate-y-0.5 data-[state=active]:bg-lime-200"
               >
                 {tab.label}
               </TabsTrigger>
@@ -198,7 +205,7 @@ export function WhatWeDo() {
           <TabsContent
             key={tab.value}
             value={tab.value}
-            className="mt-0 h-200 rounded-lg rounded-tr-none bg-lime-200 px-30 py-30"
+            className="z-40 h-200 w-full flex-none rounded-md rounded-b-2xl bg-lime-200 pt-30 pr-20 pb-20 pl-30"
           >
             <WhatWeDoPanel tab={tab} />
           </TabsContent>

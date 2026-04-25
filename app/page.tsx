@@ -23,7 +23,7 @@ export default function Page() {
         <HookanaWay />
       </div>
 
-      <section className="bg-neutral-100 px-6 py-20 md:py-24">
+      <section className="bg-blue-50 px-6 py-20 md:py-30">
         <WhatWeDo />
         <Roles />
         <Stats />
