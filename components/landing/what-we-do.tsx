@@ -139,6 +139,7 @@ function WhatWeDoPanel({ tab }: { tab: WhatWeDoTab }) {
           </p>
         </div>
 
+        {/* Answers */}
         <ul className="max-w-215 overflow-hidden rounded-md">
           {tab.deliverables.map((item, index) => (
             <li
@@ -157,11 +158,12 @@ function WhatWeDoPanel({ tab }: { tab: WhatWeDoTab }) {
         </ul>
       </div>
 
+      {/* Perks */}
       <div className="flex min-w-178 flex-col gap-6">
         {tab.stats.map((stat) => (
           <div
             key={stat.label}
-            className="flex flex-col gap-3 border-l-20 border-pink-500 bg-background px-8 py-7"
+            className="flex flex-col gap-3 border-l-20 border-pink-500 bg-background px-8 py-7 [clip-path:polygon(0_0,calc(100%-1.5rem)_0,100%_12%,calc(100%-1.5rem)_30%,100%_48%,calc(100%-1.5rem)_66%,100%_84%,calc(100%-1.5rem)_100%,0_100%)]"
           >
             <p className="font-mono text-sm leading-3 text-primary uppercase">
               {stat.label}
@@ -176,7 +178,8 @@ function WhatWeDoPanel({ tab }: { tab: WhatWeDoTab }) {
 
 export function WhatWeDo() {
   return (
-    <div className="mx-auto w-full">
+    <div className="mx-auto w-full px-6">
+      {/* Title */}
       <div className="flex flex-col gap-4 px-30">
         <p className="inline-flex w-fit items-center justify-center rounded-lg bg-pink-500 p-3 font-mono text-base leading-6 text-primary-foreground">
           What We Do?
