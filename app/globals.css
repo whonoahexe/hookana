@@ -243,6 +243,39 @@
   --color-yellow-950: oklch(0.438 0.078 104.383);
 }
 
+/* Scrollbar */
+html,
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+/* Utilities */
 @layer utilities {
   .font-heading {
     font-family: var(--font-sans);

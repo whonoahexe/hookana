@@ -42,7 +42,23 @@ export default function Page() {
       </section>
 
       <section className="bg-secondary">
-        <CtaForm />
+        <div className="relative">
+          <img
+            src="/svg/guy.svg"
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute top-1/2 left-1/2 z-0 hidden w-160 max-w-none -translate-x-200 -translate-y-40 md:block"
+          />
+          <img
+            src="/svg/girl.svg"
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute top-1/2 left-1/2 z-0 hidden w-108 max-w-none translate-x-78 -translate-y-44 md:block"
+          />
+          <div className="relative z-10">
+            <CtaForm />
+          </div>
+        </div>
         <Footer />
       </section>
     </div>
