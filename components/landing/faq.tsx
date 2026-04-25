@@ -46,21 +46,23 @@ const FAQ_ITEMS: FaqItem[] = [
 
 export function Faq() {
   return (
-    <section className="mx-auto mt-16.25 w-full max-w-408 pb-30">
-      <div className="flex flex-col gap-16 lg:grid lg:grid-cols-[477px_800px] lg:justify-between lg:gap-0">
-        <div className="flex max-w-119.25 flex-col gap-15">
-          <h2 className="font-sans text-[64px] leading-12 font-semibold tracking-[-1.5px] text-pink-500 md:text-[96px] md:leading-18">
+    <section className="mx-auto w-full px-5 py-52 md:px-36">
+      <div className="flex flex-col gap-16 lg:grid lg:grid-cols-[500px_800px] lg:justify-between lg:gap-0">
+        <div className="flex flex-col gap-15">
+          <h2 className="font-sans text-[64px] leading-12 font-semibold tracking-[-1.5px] text-primary md:text-[96px] md:leading-18">
             Got
             <br />
             questions?
           </h2>
-          <p className="type-heading-1 text-primary-foreground">Good.</p>
+          <p className="font-sans text-[64px] leading-12 font-semibold tracking-[-1.5px] text-secondary-foreground md:text-[96px] md:leading-18">
+            Good.
+          </p>
         </div>
 
         <Accordion
           type="single"
           collapsible
-          className="w-full rounded-none border-0 bg-transparent lg:w-200"
+          className="w-full rounded-none border-0 bg-transparent"
         >
           {FAQ_ITEMS.map((item) => (
             <div key={item.value} className="w-full">
@@ -72,12 +74,12 @@ export function Faq() {
                   {item.question}
                 </AccordionTrigger>
                 <AccordionContent className="px-0 pt-1 pb-0 text-pink-50/90">
-                  <p className="type-paragraph-regular">{item.answer}</p>
+                  <p className="type-monospaced">{item.answer}</p>
                 </AccordionContent>
               </AccordionItem>
 
               <div
-                className="mt-5 mb-5 h-px w-full text-pink-500"
+                className="mt-5 mb-5 h-px w-full text-primary"
                 style={{
                   backgroundImage:
                     "repeating-linear-gradient(to right, currentColor 0, currentColor 2px, transparent 2px, transparent 4px)",
