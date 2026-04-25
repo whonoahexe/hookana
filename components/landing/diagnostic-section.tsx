@@ -1,4 +1,5 @@
 import { Diagnostic } from "@/components/landing/diagnostic"
+import { LiveCounter } from "./live-counter"
 
 type DiagnosticStat = {
   value: string
@@ -57,6 +58,8 @@ export function DiagnosticSection() {
         <p className="font-code text-sm text-white">
           Your answers reveal the exact bottlenecks killing your ad performance.
         </p>
+
+        <LiveCounter />
       </div>
     </div>
   )
