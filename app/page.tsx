@@ -9,6 +9,7 @@ import { HookanaWay } from "@/components/landing/hookana-way"
 import { Pricing } from "@/components/landing/pricing"
 import { Problems } from "@/components/landing/problems"
 import { Roles } from "@/components/landing/roles"
+import { StatsMarquee } from "@/components/landing/stats-marquee"
 import { Stats } from "@/components/landing/stats"
 import { Testimonial } from "@/components/landing/testimonial"
 import { WhatWeDo } from "@/components/landing/what-we-do"
@@ -24,6 +25,8 @@ export default function Page() {
         <DiagnosticSection />
         <HookanaWay />
       </div>
+
+      <StatsMarquee />
 
       <section className="w-full overflow-hidden bg-blue-50 pt-30 pb-15">
         <WhatWeDo />
