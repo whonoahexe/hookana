@@ -4,6 +4,7 @@ import { DiagnosticSection } from "@/components/landing/diagnostic-section"
 import { Faq } from "@/components/landing/faq"
 import { Footer } from "@/components/landing/footer"
 import { Hero } from "@/components/landing/hero"
+import { HeroCarousel } from "@/components/landing/hero-carousel"
 import { HookanaWay } from "@/components/landing/hookana-way"
 import { Pricing } from "@/components/landing/pricing"
 import { Problems } from "@/components/landing/problems"
@@ -16,6 +17,7 @@ export default function Page() {
   return (
     <div>
       <Hero />
+      <HeroCarousel />
       <Problems />
 
       <div className="mt-50 w-full bg-blue-950">

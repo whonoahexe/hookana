@@ -372,6 +372,16 @@ body::-webkit-scrollbar,
     letter-spacing: 0;
     font-weight: 400;
   }
+
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+  }
+
+  @keyframes scroll {
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 @layer base {
