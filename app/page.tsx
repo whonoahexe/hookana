@@ -18,10 +18,10 @@ export default function Page() {
   return (
     <div>
       <Hero />
-      <HeroCarousel />
+      {/* <HeroCarousel /> */}
       {/* <Problems /> */}
 
-      <div className="mt-50 w-full bg-blue-950">
+      {/* <div className="mt-50 w-full bg-blue-950">
         <div id="free-check" className="scroll-mt-44">
           <DiagnosticSection />
         </div>
@@ -75,7 +75,7 @@ export default function Page() {
           </div>
         </div>
         <Footer />
-      </section>
+      </section> */}
     </div>
   )
 }

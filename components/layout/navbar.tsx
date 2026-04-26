@@ -44,11 +44,11 @@ export function Navbar() {
   return (
     <>
       {/* Full static navbar — desktop only */}
-      <header className="mt-12 hidden w-full px-6 lg:block">
-        <div className="flex w-full justify-between">
+      <header className="mt-12 hidden w-full px-6 lg:block 2xl:px-10">
+        <div className="flex w-full items-start justify-between">
           <Link
             href="/"
-            className="font-sans text-[64px] leading-12 font-black tracking-[-1.5px] text-black"
+            className="font-sans text-[42px] leading-8 font-black tracking-tight text-black xl:text-[60px] xl:leading-10 2xl:text-[64px] 2xl:leading-12 2xl:tracking-[-1.5px]"
             onClick={(e) => {
               e.preventDefault()
               window.scrollTo({ top: 0, behavior: "smooth" })
@@ -57,14 +57,14 @@ export function Navbar() {
             HOOKANA
           </Link>
 
-          <nav className="hidden w-full max-w-210 justify-between lg:flex">
+          <nav className="hidden w-full max-w-108 justify-between lg:flex xl:max-w-160 2xl:max-w-210">
             {navGroups.map((group, i) => (
-              <div key={i} className="flex flex-col gap-2">
+              <div key={i} className="flex flex-col gap-1 2xl:gap-2">
                 {group.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="type-heading-4 whitespace-nowrap text-primary-foreground transition-opacity hover:opacity-70"
+                    className="2xl:type-heading-4 text-sm font-semibold whitespace-nowrap text-primary-foreground transition-opacity hover:opacity-70 xl:text-lg"
                   >
                     {link.label}
                   </Link>
@@ -75,7 +75,7 @@ export function Navbar() {
 
           <Button
             size="lg"
-            className="rounded-md px-6"
+            className="h-10 rounded-md px-4 text-xs xl:h-11 xl:px-5 xl:text-sm 2xl:px-6 2xl:text-base"
             variant="default"
             asChild
           >

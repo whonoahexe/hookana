@@ -10,21 +10,24 @@ const VIDEO_CARDS = [
   {
     id: 1,
     label: "Brand Films",
-    offset: "mt-0",
+    mobileClasses: "z-30 scale-100 translate-y-0",
+    desktopClasses: "lg:z-10 lg:scale-100 lg:translate-y-0 lg:mt-0",
     bg: "bg-neutral-400",
     labelColor: "text-white/60",
   },
   {
     id: 2,
     label: "Ad Creatives",
-    offset: "mt-10",
+    mobileClasses: "z-20 scale-[0.95] translate-y-4 opacity-90",
+    desktopClasses: "lg:z-20 lg:scale-100 lg:translate-y-0 lg:mt-10 lg:opacity-100",
     bg: "bg-neutral-500",
     labelColor: "text-neutral-950/60",
   },
   {
     id: 3,
     label: "Social Content",
-    offset: "mt-20",
+    mobileClasses: "z-10 scale-[0.90] translate-y-8 opacity-80",
+    desktopClasses: "lg:z-30 lg:scale-100 lg:translate-y-0 lg:mt-20 lg:opacity-100",
     bg: "bg-neutral-600",
     labelColor: "text-white/60",
   },
@@ -35,31 +38,31 @@ export function Hero() {
 
   return (
     <>
-      <div className="px-5">
-        <div className="mt-20 flex h-220 w-full flex-col overflow-hidden rounded-md bg-pink-50 px-20 pt-30">
+      <div className="px-2 lg:px-5">
+        <div className="mt-5 flex min-h-[600px] w-full flex-col overflow-hidden rounded-t-[1.5rem] rounded-b-[2.5rem] bg-pink-50 px-5 pt-20 pb-24 md:mt-10 md:rounded-t-md md:rounded-b-[3rem] md:px-10 md:pt-24 lg:mt-20 lg:h-220 lg:min-h-0 lg:rounded-md lg:px-12 lg:pt-24 lg:pb-0 xl:px-20 xl:pt-30">
           {/* Hero Content */}
-          <div className="flex w-full justify-center gap-34">
-            <div className="flex max-w-120 flex-col gap-3">
-              <p className="font-sans text-[64px] leading-16 font-black tracking-tight text-neutral-950 uppercase">
+          <div className="flex w-full flex-col items-center gap-10 text-center lg:flex-row lg:items-start lg:justify-center lg:gap-16 lg:text-left xl:gap-34">
+            <div className="flex max-w-120 flex-col gap-2 md:gap-3 lg:max-w-96 xl:max-w-120">
+              <p className="font-sans text-5xl font-black leading-[0.9] tracking-tighter text-neutral-950 uppercase sm:text-6xl lg:text-[52px] lg:leading-[1.05] lg:tracking-tight xl:text-[64px] xl:leading-16">
                 Creativity at Volume.
               </p>
-              <p className="type-heading-2 text-pink-500 uppercase">
+              <p className="type-heading-3 text-pink-500 uppercase lg:text-2xl xl:type-heading-2">
                 Without the compromise.
               </p>
             </div>
 
-            <div className="flex max-w-160 flex-col gap-6">
-              <p className="type-paragraph-large text-accent-foreground">
+            <div className="flex max-w-160 flex-col gap-8 lg:max-w-120 lg:gap-6 xl:max-w-160">
+              <p className="type-paragraph-regular md:type-paragraph-large text-accent-foreground px-2 lg:px-0">
                 D2C brands and performance teams need fresh creatives, fast,
                 on-brand, and at scale. Hookana is the creative production
                 engine that keeps your pipeline full without blowing your budget
                 or burning out your team.
               </p>
 
-              <div className="flex gap-5">
+              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 lg:gap-5 w-full">
                 <Button
                   size="lg"
-                  className="mt-4 rounded-md"
+                  className="rounded-md w-full sm:w-auto"
                   variant="default"
                   asChild
                 >
@@ -78,7 +81,7 @@ export function Hero() {
                 </Button>
                 <Button
                   size="lg"
-                  className="mt-4 rounded-md border-destructive"
+                  className="rounded-md border-destructive w-full sm:w-auto"
                   variant="outline"
                   onClick={() => setActiveVideo(0)}
                 >
@@ -90,16 +93,18 @@ export function Hero() {
           </div>
 
           {/* Stacked video cards */}
-          <div className="relative mt-20">
+          <div className="relative mt-12 w-full max-w-[500px] mx-auto lg:mt-20 lg:max-w-none">
             {VIDEO_CARDS.map((card, i) => (
               <div
                 key={card.id}
                 className={cn(
-                  "group absolute aspect-video w-full cursor-pointer rounded-md transition-all duration-300 hover:-translate-y-4 hover:shadow-2xl",
+                  "group aspect-video w-full cursor-pointer rounded-md transition-all duration-300 hover:shadow-2xl",
+                  i === 0 ? "relative" : "absolute inset-x-0 top-0",
+                  "lg:absolute lg:hover:-translate-y-4",
                   card.bg,
-                  card.offset
+                  card.mobileClasses,
+                  card.desktopClasses
                 )}
-                style={{ zIndex: i + 1 }}
                 onClick={() => setActiveVideo(card.id)}
               >
                 {/* Play button overlay */}
@@ -129,7 +134,7 @@ export function Hero() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="relative">
+        <div className="relative hidden lg:block">
           <div className="absolute bottom-8 left-8 z-20">
             <ArrowDown className="size-6 text-accent-foreground" />
           </div>
