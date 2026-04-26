@@ -127,7 +127,7 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-full border-none bg-secondary p-0 sm:w-180!"
+              className="w-full max-w-full border-none bg-secondary p-0 sm:w-180! sm:max-w-[720px]"
               showCloseButton={false}
             >
               <VisuallyHidden>
