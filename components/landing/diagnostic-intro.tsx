@@ -99,7 +99,8 @@ export function DiagnosticIntro({
       <div className="mt-auto flex w-80 flex-col gap-3">
         <Button
           type="submit"
-          variant="destructive"
+          variant="default"
+          size="lg"
           className="rounded-md px-6"
         >
           Start Creative Health Check
