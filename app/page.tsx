@@ -19,7 +19,7 @@ export default function Page() {
     <div>
       <Hero />
       <HeroCarousel />
-      <Problems />
+      {/* <Problems /> */}
 
       <div className="mt-50 w-full bg-blue-950">
         <div id="free-check" className="scroll-mt-44">

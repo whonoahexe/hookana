@@ -43,8 +43,8 @@ export function Navbar() {
 
   return (
     <>
-      {/* Full static navbar */}
-      <header className="mt-12 w-full px-6">
+      {/* Full static navbar — desktop only */}
+      <header className="mt-12 hidden w-full px-6 lg:block">
         <div className="flex w-full justify-between">
           <Link
             href="/"
@@ -101,7 +101,7 @@ export function Navbar() {
           "fixed top-5 left-1/2 z-50 -translate-x-1/2 transition-all duration-300",
           scrolled
             ? "pointer-events-auto translate-y-0 opacity-100"
-            : "pointer-events-none -translate-y-3 opacity-0"
+            : "pointer-events-auto translate-y-0 opacity-100 lg:pointer-events-none lg:-translate-y-3 lg:opacity-0"
         )}
       >
         <div className="flex items-center gap-4 rounded-full bg-secondary py-3 pr-3 pl-6 shadow-xl">
@@ -127,7 +127,7 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-180! border-none bg-secondary p-0"
+              className="w-full border-none bg-secondary p-0 sm:w-180!"
               showCloseButton={false}
             >
               <VisuallyHidden>
@@ -135,7 +135,7 @@ export function Navbar() {
               </VisuallyHidden>
               <div className="flex h-full flex-col">
                 {/* Drawer header */}
-                <div className="flex items-start justify-between px-14 pt-14 pb-12">
+                <div className="flex items-start justify-between px-6 pt-8 pb-6 sm:px-14 sm:pt-14 sm:pb-12">
                   <Link
                     href="/"
                     className="font-sans text-[56px] leading-none font-black tracking-[-2px] text-white"
@@ -153,7 +153,7 @@ export function Navbar() {
                 </div>
 
                 {/* Nav links */}
-                <nav className="flex flex-1 flex-col border-t border-white/10 px-14 pt-2">
+                <nav className="flex flex-1 flex-col border-t border-white/10 px-6 pt-2 sm:px-14">
                   {allLinks.map((link) => (
                     <SheetClose asChild key={link.href}>
                       <Link
@@ -180,7 +180,7 @@ export function Navbar() {
                 </nav>
 
                 {/* CTA */}
-                <div className="px-14 py-12">
+                <div className="px-6 py-8 sm:px-14 sm:py-12">
                   <SheetClose asChild>
                     <Button
                       size="lg"
