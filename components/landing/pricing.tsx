@@ -37,7 +37,7 @@ const PLAN_TIERS: PlanTier[] = [
   {
     id: "enterprise",
     name: "Enterprise",
-    description: "For agencies and large D2C brands with high-volume needs.",
+    description: "For agencies & large D2C with high-volume needs.",
     features: [
       { label: "Creatives / month", value: "Unlimited" },
       { label: "Turnaround time", value: "Same-day rush" },
@@ -76,35 +76,37 @@ function PlanTierCard({ tier }: { tier: PlanTier }) {
         : "bg-pink-500 text-primary-foreground"
 
   return (
-    <article className="relative overflow-visible">
+    <article className="relative w-full overflow-visible">
       <div className="overflow-hidden rounded-t-md bg-card">
         <div
-          className={`relative flex items-center justify-between py-5 pl-15 ${headerClasses}`}
+          className={`relative flex items-center justify-between py-4 pl-10 2xl:py-5 2xl:pl-15 ${headerClasses}`}
         >
           <div
             className="absolute top-0 left-0 h-6 w-6 bg-blue-950"
             style={{ clipPath: "polygon(0 0, 0 100%, 100% 0)" }}
           />
-          <p className="type-heading-1 relative">{tier.name}</p>
+          <p className="relative font-sans text-2xl font-semibold tracking-tight sm:text-3xl 2xl:text-[56px] 2xl:leading-12 2xl:tracking-[-2px]">
+            {tier.name}
+          </p>
           <DollarSign
-            className="relative mr-4 size-10 shrink-0"
+            className="relative mr-4 size-6 shrink-0 sm:size-8 2xl:size-10"
             strokeWidth={1.75}
           />
         </div>
 
-        <div className="px-12 pt-15 pb-40">
+        <div className="px-6 pt-10 pb-20 2xl:px-12 2xl:pt-15 2xl:pb-40">
           <p className="type-heading-2 text-foreground">{tier.description}</p>
 
-          <div className="mt-11">
+          <div className="mt-8 2xl:mt-11">
             {tier.features.map((feature) => (
               <div
                 key={feature.label}
-                className="border-t border-dotted border-neutral-950 py-11"
+                className="flex flex-col justify-between border-t border-dotted border-neutral-950 py-5 2xl:block 2xl:py-11"
               >
-                <p className="type-heading-2 text-foreground">
+                <p className="font-sans text-sm font-semibold tracking-tight text-foreground sm:text-base 2xl:text-[36px] 2xl:leading-[36px] 2xl:tracking-[-1px]">
                   {feature.label}
                 </p>
-                <p className="type-heading-1 mt-2 text-foreground">
+                <p className="mt-1 font-sans text-xl font-semibold tracking-tight text-foreground sm:text-2xl 2xl:mt-2 2xl:text-[56px] 2xl:leading-[48px] 2xl:tracking-[-2px]">
                   {feature.value}
                 </p>
               </div>
@@ -115,7 +117,7 @@ function PlanTierCard({ tier }: { tier: PlanTier }) {
             <Button
               size="lg"
               variant="default"
-              className="rounded-md px-6 py-6"
+              className="mt-4 w-full rounded-md px-6 py-6 2xl:mt-0 2xl:w-auto"
             >
               GET 2 FREE CONCEPTS
               <ArrowUpRight className="size-4" />
@@ -130,9 +132,9 @@ function PlanTierCard({ tier }: { tier: PlanTier }) {
 
 export function Pricing() {
   return (
-    <div className="px-5 py-20 md:px-36 md:py-40">
-      <div className="mx-auto flex flex-col items-center gap-20">
-        <div className="flex max-w-142 flex-col items-center gap-6 text-center">
+    <div className="overflow-hidden py-20 md:py-40">
+      <div className="mx-auto flex flex-col items-center gap-12 2xl:gap-20">
+        <div className="flex max-w-142 flex-col items-center gap-6 px-5 text-center md:px-36">
           <p className="type-monospaced rounded-md bg-[#BFDEFF] p-3 text-foreground">
             Simple Pricing
           </p>
@@ -143,9 +145,14 @@ export function Pricing() {
           </h2>
         </div>
 
-        <div className="grid w-full gap-6 xl:grid-cols-3 xl:gap-6">
+        <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto px-5 pb-8 [-ms-overflow-style:none] [scrollbar-width:none] md:px-36 2xl:grid 2xl:grid-cols-3 2xl:gap-6 2xl:overflow-visible 2xl:px-36 2xl:pb-0 [&::-webkit-scrollbar]:hidden">
           {PLAN_TIERS.map((tier) => (
-            <PlanTierCard key={tier.id} tier={tier} />
+            <div
+              key={tier.id}
+              className="w-[85vw] max-w-[400px] shrink-0 snap-center 2xl:w-auto 2xl:max-w-none"
+            >
+              <PlanTierCard tier={tier} />
+            </div>
           ))}
         </div>
       </div>

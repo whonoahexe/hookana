@@ -45,14 +45,14 @@ export default function Page() {
         </div>
       </section>
 
-      {/* <section className="bg-blue-950">
+      <section className="bg-blue-950">
         <div id="pricing" className="scroll-mt-24">
           <Pricing />
         </div>
         <Faq />
       </section>
 
-      <section className="bg-blue-50">
+      {/* <section className="bg-blue-50">
         <Cta />
       </section>
 
