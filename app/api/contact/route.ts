@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(req: NextRequest) {
   const { name, email, website } = await req.json()
 
@@ -10,9 +8,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Name and email are required" }, { status: 400 })
   }
 
+  if (!process.env.RESEND_API_KEY || !process.env.CONTACT_EMAIL) {
+    return NextResponse.json({ error: "Server not configured" }, { status: 503 })
+  }
+
+  const resend = new Resend(process.env.RESEND_API_KEY)
+
   const { error } = await resend.emails.send({
     from: "Hookana Contact <onboarding@resend.dev>",
-    to: process.env.CONTACT_EMAIL!,
+    to: process.env.CONTACT_EMAIL,
     replyTo: email,
     subject: `New concept request from ${name}`,
     text: [
