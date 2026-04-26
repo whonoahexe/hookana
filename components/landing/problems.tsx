@@ -38,7 +38,7 @@ const tabs = [
     headlineLine2: "Assets land next Thursday.",
     subheading: "By then the trend is gone.",
     ask: "Sound familiar?",
-    body: "Every extra day between concept and live ad is CPM you can't recover. Winning hooks have a shelf life, and your pipeline is measured in weeks.",
+    body: "Traditional agencies take weeks. By the time creatives arrive, the testing window has closed.",
     receipt: {
       num: "#00567",
       problem: "LAG",
@@ -60,7 +60,7 @@ const tabs = [
     headlineLine2: "trimming TikToks at 11pm.",
     subheading: "Again.",
     ask: "Sound familiar?",
-    body: "Growth teams weren't built to be creative factories. When every launch depends on heroics, the people who care most are the first to leave.",
+    body: "In-house designers are stretched thin across revisions, resizes, and last-minute requests.",
     receipt: {
       num: "#00689",
       problem: "BURNOUT",
@@ -82,7 +82,7 @@ const tabs = [
     headlineLine2: "three winners on rotation.",
     subheading: "Until they aren't.",
     ask: "Sound familiar?",
-    body: "When two creatives carry 80% of spend, a single fatigue curve tanks the quarter. Testing volume isn't a nice-to-have — it's the only insurance policy that works.",
+    body: "Freelancers and offshore teams deliver unpredictable quality. You spend more time fixing than launching.",
     receipt: {
       num: "#00741",
       problem: "RISK",

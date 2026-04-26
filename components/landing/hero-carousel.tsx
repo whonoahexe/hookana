@@ -24,7 +24,7 @@ export function HeroCarousel() {
         }
       `}</style>
       <div className="pointer-events-none relative -z-30 h-0 w-full">
-        <div className="pointer-events-auto absolute -top-6 right-5 h-66 w-234">
+        <div className="pointer-events-auto absolute -top-7 right-5 h-66 w-234">
           <img
             src="/svg/the-roll.svg"
             alt=""
