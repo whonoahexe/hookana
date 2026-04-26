@@ -49,7 +49,10 @@ export function Navbar() {
           <Link
             href="/"
             className="font-sans text-[64px] leading-12 font-black tracking-[-1.5px] text-black"
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }) }}
+            onClick={(e) => {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: "smooth" })
+            }}
           >
             HOOKANA
           </Link>
@@ -73,14 +76,16 @@ export function Navbar() {
           <Button
             size="lg"
             className="rounded-md px-6"
-            variant="destructive"
+            variant="default"
             asChild
           >
             <Link
               href="#contact"
               onClick={(e) => {
                 e.preventDefault()
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" })
               }}
             >
               GET 2 FREE CONCEPTS
@@ -103,7 +108,10 @@ export function Navbar() {
           <Link
             href="/"
             className="font-sans text-lg leading-none font-black tracking-[-1px] whitespace-nowrap text-white"
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }) }}
+            onClick={(e) => {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: "smooth" })
+            }}
           >
             HOOKANA
           </Link>
@@ -184,7 +192,9 @@ export function Navbar() {
                         href="#contact"
                         onClick={(e) => {
                           e.preventDefault()
-                          document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                          document
+                            .getElementById("contact")
+                            ?.scrollIntoView({ behavior: "smooth" })
                         }}
                       >
                         GET 2 FREE CONCEPTS

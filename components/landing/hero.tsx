@@ -43,7 +43,7 @@ export function Hero() {
               <p className="font-sans text-[64px] leading-16 font-black tracking-tight text-neutral-950 uppercase">
                 Creativity at Volume.
               </p>
-              <p className="type-heading-2 text-primary uppercase">
+              <p className="type-heading-2 text-pink-500 uppercase">
                 Without the compromise.
               </p>
             </div>
@@ -60,14 +60,16 @@ export function Hero() {
                 <Button
                   size="lg"
                   className="mt-4 rounded-md"
-                  variant="destructive"
+                  variant="default"
                   asChild
                 >
                   <Link
                     href="#contact"
                     onClick={(e) => {
                       e.preventDefault()
-                      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                      document
+                        .getElementById("contact")
+                        ?.scrollIntoView({ behavior: "smooth" })
                     }}
                   >
                     GET 2 FREE CONCEPTS
