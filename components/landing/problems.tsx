@@ -250,7 +250,7 @@ export function Problems() {
             <TabsContent
               key={tab.value}
               value={tab.value}
-              className="z-40 w-full flex-none rounded-md bg-lime-200 py-18 pr-8 pl-20"
+              className="z-40 w-full min-h-[800px] flex-none rounded-md bg-lime-200 py-18 pr-8 pl-20"
             >
               <div className="grid h-full grid-cols-1 gap-12 lg:grid-cols-2">
                 {/* Left: copy */}
