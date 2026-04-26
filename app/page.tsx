@@ -32,20 +32,20 @@ export default function Page() {
 
       <StatsMarquee />
 
-      {/* <section className="w-full overflow-hidden bg-blue-50 pt-30 pb-15">
+      <section className="w-full bg-blue-50 pt-30 pb-15">
         <div id="services" className="scroll-mt-24">
           <WhatWeDo />
         </div>
-        <div id="who-its-for" className="scroll-mt-24">
+        {/* <div id="who-its-for" className="scroll-mt-24">
           <Roles />
         </div>
         <div className="px-6">
           <Stats />
           <Testimonial />
-        </div>
+        </div> */}
       </section>
 
-      <section className="bg-blue-950">
+      {/* <section className="bg-blue-950">
         <div id="pricing" className="scroll-mt-24">
           <Pricing />
         </div>
