@@ -41,7 +41,7 @@ export function DiagnosticIntro({
         label="Brand name *"
         help="We use this to personalize your results. Your score means more when it's named."
       >
-        <div className="flex h-9 w-80 items-center gap-2 rounded-md border border-neutral-950 bg-popover px-3 shadow-xs">
+        <div className="flex h-9 w-full sm:w-80 items-center gap-2 rounded-md border border-neutral-950 bg-popover px-3 shadow-xs">
           <Globe className="size-4 shrink-0 text-primary-foreground/70" />
           <Input
             value={brandName}
@@ -57,7 +57,7 @@ export function DiagnosticIntro({
         help="Creative benchmarks differ by vertical. A skincare brand and a fitness brand have very different hook standards."
       >
         <Select value={industry || undefined} onValueChange={onIndustryChange}>
-          <SelectTrigger className="h-9 w-80 rounded-md border-neutral-950 bg-popover text-primary-foreground shadow-xs data-placeholder:text-primary-foreground/60 [&_svg]:text-primary-foreground!">
+          <SelectTrigger className="h-9 w-full sm:w-80 rounded-md border-neutral-950 bg-popover text-primary-foreground shadow-xs data-placeholder:text-primary-foreground/60 [&_svg]:text-primary-foreground!">
             <SelectValue placeholder="Select..." />
           </SelectTrigger>
           <SelectContent>
@@ -80,7 +80,7 @@ export function DiagnosticIntro({
           value={monthlyAdSpend || undefined}
           onValueChange={onMonthlyAdSpendChange}
         >
-          <SelectTrigger className="h-9 w-80 rounded-md border-neutral-950 bg-popover text-primary-foreground shadow-xs data-placeholder:text-primary-foreground/60 [&_svg]:text-primary-foreground!">
+          <SelectTrigger className="h-9 w-full sm:w-80 rounded-md border-neutral-950 bg-popover text-primary-foreground shadow-xs data-placeholder:text-primary-foreground/60 [&_svg]:text-primary-foreground!">
             <DollarSign className="size-4 shrink-0" />
             <SelectValue placeholder="Select..." />
           </SelectTrigger>
@@ -96,7 +96,7 @@ export function DiagnosticIntro({
         </Select>
       </FormField>
 
-      <div className="mt-auto flex w-80 flex-col gap-3">
+      <div className="mt-auto flex w-full sm:w-80 flex-col gap-3">
         <Button
           type="submit"
           variant="default"

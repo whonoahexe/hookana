@@ -133,8 +133,8 @@ export function Diagnostic() {
 
   return (
     <div className="flex w-full justify-center">
-      <section className="relative -mt-20 min-h-232 w-full max-w-180 bg-card px-8 py-18 md:min-h-240 md:px-19">
-        <div className="absolute top-0 -right-px h-16 w-16 overflow-hidden bg-pink-300">
+      <section className="relative -mt-10 sm:-mt-20 min-h-[600px] w-full max-w-180 bg-card px-6 py-12 md:min-h-240 md:px-19 md:py-18">
+        <div className="absolute top-0 -right-px h-12 w-12 sm:h-16 sm:w-16 overflow-hidden bg-pink-300">
           <div
             className="absolute inset-0 bg-muted-foreground"
             style={{ clipPath: "polygon(0 0, 0 100%, 100% 100%)" }}
@@ -142,13 +142,13 @@ export function Diagnostic() {
         </div>
 
         <div className="mx-auto flex h-full flex-col">
-          <div className="flex justify-between gap-8">
-            <h2 className="font-sans text-[64px] leading-12 font-semibold tracking-[-1.5px] text-card-foreground uppercase">
+          <div className="flex flex-col sm:flex-row sm:justify-between gap-6 sm:gap-8">
+            <h2 className="font-sans text-4xl sm:text-5xl 2xl:text-[64px] leading-none 2xl:leading-12 font-semibold tracking-[-1.5px] text-card-foreground uppercase">
               <span className="block">{headingLines[0]}</span>
               <span className="block">{headingLines[1]}</span>
               <span className="block">{headingLines[2]}</span>
             </h2>
-            <p className="type-heading-3 text-foreground">{headingSubcopy}</p>
+            <p className="type-heading-4 sm:type-heading-3 text-foreground sm:max-w-[200px] md:max-w-[250px]">{headingSubcopy}</p>
           </div>
 
           <div className="mt-20 border-t border-dotted border-neutral-950" />

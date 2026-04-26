@@ -82,7 +82,7 @@ export function DiagnosticQuestions({
         </div>
       </div>
 
-      <div className="mt-auto flex w-80 items-center gap-3 pt-8">
+      <div className="mt-auto flex w-full sm:w-80 items-center gap-3 pt-8">
         <Button
           type="button"
           variant="outline"
