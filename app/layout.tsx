@@ -1,6 +1,25 @@
+import type { Metadata } from "next"
 import { JetBrains_Mono, Lato } from "next/font/google"
 
 import "./globals.css"
+
+export const metadata: Metadata = {
+  title: "Hookana - Creative Production for D2C Brands",
+  description:
+    "Fresh creatives, fast, on-brand, and at scale. Hookana is the creative production engine that keeps your pipeline full without blowing your budget or burning out your team.",
+  openGraph: {
+    title: "Hookana - Creative Production for D2C Brands",
+    description:
+      "Fresh creatives, fast, on-brand, and at scale. Hookana is the creative production engine that keeps your pipeline full without blowing your budget or burning out your team.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hookana - Creative Production for D2C Brands",
+    description:
+      "Fresh creatives, fast, on-brand, and at scale. Hookana keeps your creative pipeline full without blowing your budget.",
+  },
+}
 import { Navbar } from "@/components/layout/Navbar"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
@@ -28,7 +47,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("antialiased", lato.variable, fontMono.variable)}
     >
-      <body className="bg-pink-300 font-serif overflow-x-hidden">
+      <body className="overflow-x-hidden bg-pink-300 font-serif">
         <ThemeProvider>
           <Navbar />
           {children}
