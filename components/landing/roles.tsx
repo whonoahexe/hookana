@@ -96,7 +96,7 @@ function ReceiptTearEdge({
       >
         <path
           d="M0,0 L25,28 L50,0 L75,28 L100,0 L125,28 L150,0 L175,28 L200,0 L225,28 L250,0 L275,28 L300,0 L325,28 L350,0 L375,28 L400,0 L425,28 L450,0 L475,28 L500,0 L525,28 L550,0 L575,28 L600,0 L625,28 L650,0 L675,28 L696,0 Z"
-          fill={background === "solution" ? "#BFDEFF" : "#E5E7EB"}
+          fill={background === "solution" ? "#BFDEFF" : "#dbeafe"}
         />
       </svg>
     </div>
@@ -112,7 +112,7 @@ function ReceiptCard({
 }) {
   return (
     <article
-      className={`relative min-h-155 max-w-175 overflow-visible px-9 py-8 md:min-h-182 md:py-20 ${
+      className={`relative w-full overflow-visible px-6 py-8 sm:px-8 sm:py-10 md:min-h-182 md:py-20 2xl:w-auto 2xl:min-h-155 2xl:max-w-175 2xl:px-9 2xl:py-8 ${
         background === "problem" ? "bg-blue-100" : "bg-[#BFDEFF]"
       }`}
     >
@@ -128,22 +128,47 @@ export function Roles() {
   const activeRoleContent = ROLE_CONTENT[activeRole]
 
   return (
-    <section className="mt-40 flex w-full flex-col items-center justify-center pl-6">
-      <div className="flex w-full flex-col items-center justify-center gap-10">
-        <p className="font-sans text-[128px] leading-12 font-black text-foreground uppercase">
+    <section className="mt-20 2xl:mt-40 flex w-full flex-col items-center justify-center px-6 2xl:px-0 2xl:pl-6">
+      <div className="flex w-full flex-col items-center justify-center gap-4 2xl:gap-10 text-center">
+        <p className="font-sans text-5xl sm:text-7xl 2xl:text-[128px] leading-tight 2xl:leading-12 font-black text-foreground uppercase">
           We get it.
         </p>
-        <p className="type-heading-2 text-foreground">
+        <p className="type-heading-3 2xl:type-heading-2 text-foreground">
           We&apos;ve been in your shoes.
         </p>
       </div>
 
-      <div className="mt-30 w-full">
-        <div className="flex w-full justify-between">
-          <div className="flex w-full gap-6">
+      <div className="mt-16 2xl:mt-30 w-full">
+        <div className="flex w-full flex-col 2xl:flex-row justify-between gap-12 2xl:gap-0">
+          
+          {/* Mobile Downward Ribbon Selector */}
+          <div className="flex w-full gap-2 sm:gap-3 2xl:hidden pb-4">
+            {ROLE_TABS.map((role) => {
+              const isActive = role === activeRole
+
+              return (
+                <button
+                  key={role}
+                  type="button"
+                  onClick={() => setActiveRole(role)}
+                  className={cn(
+                    "flex-1 shrink px-2 py-3 sm:px-4 sm:pt-4 sm:pb-4 font-mono text-[9px] sm:text-xs text-center uppercase transition-all whitespace-normal leading-tight",
+                    isActive
+                      ? "bg-secondary text-secondary-foreground [clip-path:polygon(0_0,100%_0,100%_calc(100%-0.75rem),50%_100%,0_calc(100%-0.75rem))] pb-6 sm:pb-8 font-bold"
+                      : "bg-secondary/40 text-secondary-foreground/60 rounded-md hover:bg-secondary/60"
+                  )}
+                  aria-pressed={isActive}
+                >
+                  {role}
+                </button>
+              )
+            })}
+          </div>
+
+          <div className="flex w-full flex-col 2xl:flex-row gap-16 2xl:gap-6">
             <ReceiptCard background="problem">
-              <div className="flex h-full flex-col">
-                <h2 className="type-heading-1 text-secondary">
+              <div className="flex h-full flex-col gap-6 2xl:gap-0">
+                <h2 className="font-sans text-3xl sm:text-4xl 2xl:text-[56px] leading-tight 2xl:leading-none font-semibold tracking-tight text-secondary">
                   {activeRoleContent.problemTitle}
                 </h2>
                 <p className="type-paragraph-large mt-auto font-bold text-blue-950">
@@ -153,31 +178,31 @@ export function Roles() {
             </ReceiptCard>
 
             <ReceiptCard background="solution">
-              <div className="flex h-full flex-col gap-8">
-                <h2 className="type-heading-1 text-blue-950">
+              <div className="flex h-full flex-col gap-6 2xl:gap-8">
+                <h2 className="font-sans text-3xl sm:text-4xl 2xl:text-[56px] leading-tight 2xl:leading-none font-semibold tracking-tight text-blue-950">
                   {activeRoleContent.solutionTitle}
                 </h2>
 
                 <div className="mt-auto">
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-2 2xl:gap-3">
                     {activeRoleContent.solutionTags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-md bg-linear-to-r from-[#BFDEFF] to-blue-300 px-3 py-0 font-mono text-[16px] leading-6 text-foreground"
+                        className="rounded-md bg-linear-to-r from-[#BFDEFF] to-blue-300 px-3 py-1 2xl:py-0 font-mono text-[12px] sm:text-[14px] 2xl:text-[16px] leading-tight 2xl:leading-6 text-foreground"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <p className="type-paragraph-large mt-8 font-bold text-blue-950">
+                  <p className="type-paragraph-large mt-6 2xl:mt-8 font-bold text-blue-950">
                     {activeRoleContent.solutionDescription}
                   </p>
 
                   <Button
                     size="lg"
                     variant="secondary"
-                    className="mt-8 rounded-md px-6"
+                    className="mt-6 2xl:mt-8 rounded-md px-6 w-full 2xl:w-auto"
                   >
                     START A SPRINT
                     <ArrowUpRight className="size-4" />
@@ -187,7 +212,7 @@ export function Roles() {
             </ReceiptCard>
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="hidden 2xl:flex flex-col gap-4">
             {ROLE_TABS.map((role) => {
               const isActive = role === activeRole
 
