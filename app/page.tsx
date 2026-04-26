@@ -52,7 +52,7 @@ export default function Page() {
         <Faq />
       </section>
 
-      {/* <section className="bg-blue-50">
+      <section className="bg-blue-50">
         <Cta />
       </section>
 
@@ -62,20 +62,36 @@ export default function Page() {
             src="/svg/guy.svg"
             alt=""
             aria-hidden="true"
-            className="pointer-events-none absolute top-1/2 left-1/2 z-0 hidden w-160 max-w-none -translate-x-200 -translate-y-40 md:block"
+            className="pointer-events-none absolute top-1/2 left-1/2 z-0 hidden w-160 max-w-none -translate-x-200 -translate-y-40 2xl:block"
           />
           <img
             src="/svg/girl.svg"
             alt=""
             aria-hidden="true"
-            className="pointer-events-none absolute top-1/2 left-1/2 z-0 hidden w-108 max-w-none translate-x-78 -translate-y-44 md:block"
+            className="pointer-events-none absolute top-1/2 left-1/2 z-0 hidden w-108 max-w-none translate-x-78 -translate-y-44 2xl:block"
           />
           <div id="contact" className="relative z-10 scroll-mt-24">
             <CtaForm />
           </div>
+
+          {/* Mobile/Tablet Characters Under Form */}
+          <div className="mt-12 flex items-end justify-center gap-12 px-5 pb-20 2xl:hidden">
+            <img
+              src="/svg/guy.svg"
+              alt=""
+              aria-hidden="true"
+              className="hidden w-160 scale-50 md:block md:scale-75"
+            />
+            <img
+              src="/svg/girl.svg"
+              alt=""
+              aria-hidden="true"
+              className="hidden w-108 scale-50 md:block md:scale-75"
+            />
+          </div>
         </div>
         <Footer />
-      </section> */}
+      </section>
     </div>
   )
 }

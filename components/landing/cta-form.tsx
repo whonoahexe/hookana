@@ -28,8 +28,9 @@ export function CtaForm() {
   }
 
   return (
-    <div className="flex w-full justify-center">
-      <section className="relative -mt-20 max-w-180 bg-card px-8 py-18 md:px-19">
+    <div className="flex w-full justify-center px-5 2xl:px-0">
+      <section className="relative -mt-20 w-full max-w-180 bg-card px-6 py-12 2xl:px-19 2xl:py-18">
+        
         <div className="absolute top-0 -right-px h-16 w-16 overflow-hidden bg-blue-50">
           <div
             className="absolute inset-0 bg-muted-foreground"
@@ -38,12 +39,12 @@ export function CtaForm() {
         </div>
 
         <div className="mx-auto">
-          <div className="grid gap-8 md:grid-cols-[255px_1fr] md:gap-9">
-            <h2 className="font-sans text-[42px] leading-9 font-semibold tracking-[-1.5px] text-card-foreground md:text-[64px] md:leading-12">
+          <div className="grid gap-6 2xl:gap-9 2xl:grid-cols-[255px_1fr]">
+            <h2 className="font-sans text-4xl sm:text-[42px] leading-tight font-semibold tracking-tight sm:tracking-[-1.5px] text-card-foreground 2xl:text-[64px] 2xl:leading-12">
               Get your
               <br />
               first 2
-              <br />
+              <br className="hidden 2xl:block" />
               concepts
               <br />
               free.
@@ -54,22 +55,22 @@ export function CtaForm() {
             </p>
           </div>
 
-          <div className="mt-20 border-t border-dotted border-neutral-950" />
+          <div className="mt-12 2xl:mt-20 border-t border-dotted border-neutral-950" />
 
           {status === "success" ? (
-            <p className="mt-24 font-mono text-sm text-blue-500">
+            <p className="mt-12 2xl:mt-24 font-mono text-sm text-blue-500">
               Got it — we&apos;ll be in touch shortly.
             </p>
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="mt-24 flex flex-col gap-12"
+              className="mt-12 2xl:mt-24 flex flex-col gap-8 2xl:gap-12"
             >
               <FormField
                 label="Name *"
                 help="We use this to personalize your results. Your score means more when it's named."
               >
-                <div className="flex h-9 w-80 items-center gap-2 rounded-md border border-neutral-950 bg-popover px-3 shadow-xs">
+                <div className="flex h-9 w-full 2xl:w-80 items-center gap-2 rounded-md border border-neutral-950 bg-popover px-3 shadow-xs">
                   <User className="size-4 shrink-0 text-primary-foreground/70" />
                   <Input
                     required
@@ -85,7 +86,7 @@ export function CtaForm() {
                 label="Email *"
                 help="Creative benchmarks differ by vertical. A skincare brand and a fitness brand have very different hook standards."
               >
-                <div className="flex h-9 w-80 items-center gap-2 rounded-md border border-neutral-950 bg-popover px-3 shadow-xs">
+                <div className="flex h-9 w-full 2xl:w-80 items-center gap-2 rounded-md border border-neutral-950 bg-popover px-3 shadow-xs">
                   <User className="size-4 shrink-0 text-primary-foreground/70" />
                   <Input
                     required
@@ -102,7 +103,7 @@ export function CtaForm() {
                 label="Agency / Brand Website"
                 help={`Helps us calibrate expectations. What counts as "low volume" at $5K looks very different at $500K.`}
               >
-                <div className="flex h-9 w-80 items-center gap-2 rounded-md border border-neutral-950 bg-popover px-3 shadow-xs">
+                <div className="flex h-9 w-full 2xl:w-80 items-center gap-2 rounded-md border border-neutral-950 bg-popover px-3 shadow-xs">
                   <Globe className="size-4 shrink-0 text-primary-foreground/70" />
                   <Input
                     type="url"
@@ -125,7 +126,7 @@ export function CtaForm() {
                 disabled={status === "loading"}
                 size="lg"
                 variant="default"
-                className="w-80 rounded-md"
+                className="w-full 2xl:w-80 rounded-md"
               >
                 {status === "loading"
                   ? "SENDING..."
@@ -135,7 +136,7 @@ export function CtaForm() {
             </form>
           )}
 
-          <div className="mt-24 border-t border-dotted border-neutral-950" />
+          <div className="mt-12 2xl:mt-24 border-t border-dotted border-neutral-950" />
 
           <p className="mt-5 font-mono text-xs leading-3.5 text-blue-500">
             We&apos;ll review your brand, build 2 sample concepts, and walk you
