@@ -131,7 +131,7 @@ export function Hero() {
       {/* Full-screen video modal */}
       <div
         className={cn(
-          "fixed inset-0 z-[100] flex items-center justify-center transition-all duration-300",
+          "fixed inset-0 z-100 flex items-center justify-center transition-all duration-300",
           activeVideo !== null
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
