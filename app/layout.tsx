@@ -28,7 +28,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("antialiased", lato.variable, fontMono.variable)}
     >
-      <body className="bg-pink-300 font-serif">
+      <body className="bg-pink-300 font-serif overflow-x-hidden">
         <ThemeProvider>
           <Navbar />
           {children}

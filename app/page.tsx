@@ -18,8 +18,8 @@ export default function Page() {
   return (
     <div>
       <Hero />
-      {/* <HeroCarousel /> */}
-      {/* <Problems /> */}
+      <HeroCarousel />
+      <Problems />
 
       {/* <div className="mt-50 w-full bg-blue-950">
         <div id="free-check" className="scroll-mt-44">
