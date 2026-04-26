@@ -63,7 +63,13 @@ export function Hero() {
                   variant="destructive"
                   asChild
                 >
-                  <Link href="#contact">
+                  <Link
+                    href="#contact"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                    }}
+                  >
                     GET 2 FREE CONCEPTS
                     <ArrowUpRight className="size-4" />
                   </Link>

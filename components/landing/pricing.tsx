@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { ContactLink } from "@/components/ui/contact-link"
 import { ArrowUpRight, DollarSign } from "lucide-react"
 
 type PlanTier = {
@@ -110,10 +111,16 @@ function PlanTierCard({ tier }: { tier: PlanTier }) {
             ))}
           </div>
 
-          <Button size="lg" variant="default" className="rounded-md px-6 py-6">
-            GET 2 FREE CONCEPTS
-            <ArrowUpRight className="size-4" />
-          </Button>
+          <ContactLink>
+            <Button
+              size="lg"
+              variant="default"
+              className="rounded-md px-6 py-6"
+            >
+              GET 2 FREE CONCEPTS
+              <ArrowUpRight className="size-4" />
+            </Button>
+          </ContactLink>
         </div>
       </div>
       <PlanTierTearEdge />

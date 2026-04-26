@@ -41,88 +41,70 @@ const WHAT_WE_DO_TABS: WhatWeDoTab[] = [
   },
   {
     value: "video-production",
-    label: "Video Production",
-    title: "Video-First Creative Systems",
+    label: "UGC-Style Edits",
+    title: "UGC-Style Edits",
     description:
-      "Performance-led short-form and paid social video built to test hooks, pacing, and offers quickly.",
+      "Authentic creator-style video content that feels native to the feed.",
     deliverables: [
-      "UGC-style edits and creator content assembly",
-      "Thumb-stop hooks and first-3-second variants",
-      "Platform-native subtitles and motion captions",
-      "Multi-ratio exports (9:16, 1:1, 16:9)",
-      "Performance cutdowns for retargeting stages",
-      "Weekly refresh batches to avoid fatigue",
+      "UGC-style video edits from raw creator footage",
+      "Hook-first editing with pattern-interrupt openers",
+      "Trending audio integration and timing",
+      "Subtitle/caption overlays for silent viewing",
+      "Performance-optimized cuts for paid placement",
     ],
     stats: [
       {
-        label: "TURNAROUND",
-        text: "First round in 48 hours. Priority queues available.",
-      },
-      {
-        label: "REVISIONS",
-        text: "Unlimited iteration cycles during active testing windows.",
-      },
-      {
         label: "BEST FOR",
-        text: "Teams scaling spend on Meta and TikTok with heavy video dependence.",
+        text: "D2C brands running TikTok, Instagram Reels, and Snapchat campaigns.",
+      },
+      {
+        label: "HOW IT WORKS",
+        text: "Send us raw creator footage, product shots, or screen recordings. We handle everything.",
       },
     ],
   },
   {
     value: "strategy-layer",
     label: "Strategy Layer",
-    title: "Creative Strategy Layer",
+    title: "Creative Strategy",
     description:
-      "We turn performance inputs into clear creative direction so your team ships the right tests faster.",
+      "Hook frameworks, angle testing roadmaps, competitor creative teardowns.",
     deliverables: [
-      "Offer and angle mapping by funnel stage",
-      "Message hierarchy and hook framework planning",
-      "Competitor and category creative signal scans",
-      "Testing roadmaps by objective and budget",
-      "Creative brief templates for rapid deployment",
-      "Weekly insight summaries from live results",
+      "Competitor creative analysis and teardowns",
+      "Hook framework development for your brand",
+      "Angle testing roadmap with prioritized concepts",
+      "Creative brief templates customized to your brand",
     ],
     stats: [
       {
-        label: "TURNAROUND",
-        text: "Strategic plans delivered in 2-3 business days.",
-      },
-      {
-        label: "REVISIONS",
-        text: "Rolling updates as new platform data comes in.",
-      },
-      {
         label: "BEST FOR",
-        text: "Brands needing stronger creative direction before scaling production.",
+        text: "Teams who have production capacity but lack creative direction.",
+      },
+      {
+        label: "PAIRS WITH",
+        text: "Ad Creative Production + Creative Strategy = full-stack creative operations.",
       },
     ],
   },
   {
     value: "ai-augmented",
     label: "AI-Augmented",
-    title: "AI-Augmented Workflow",
+    title: "AI Content Generation",
     description:
-      "Automation accelerates variant generation and iteration while human creatives keep quality and brand fit high.",
+      "AI-assisted workflows that multiply output without multiplying costs.",
     deliverables: [
-      "Rapid concept expansion from winning themes",
-      "Script and hook ideation at high volume",
-      "Batch variation prompts for copy and visuals",
-      "Asset tagging and retrieval for fast reuse",
-      "Performance signal clustering for next tests",
-      "Human QA checkpoints before launch",
+      "AI-generated concept mockups before production",
+      "Rapid hook and headline variations",
+      "Human review on every output before delivery",
     ],
     stats: [
       {
-        label: "TURNAROUND",
-        text: "Concept-to-ready cycles compressed to same-day for many requests.",
+        label: "THE PRINCIPLE",
+        text: "AI accelerates. Humans decide. No automated slop ships to your inbox.",
       },
       {
-        label: "REVISIONS",
-        text: "Near-real-time refinements powered by guided automation.",
-      },
-      {
-        label: "BEST FOR",
-        text: "Teams that need speed and breadth without sacrificing creative quality.",
+        label: "RESULT",
+        text: "3x output at no additional cost.",
       },
     ],
   },

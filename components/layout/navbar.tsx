@@ -8,8 +8,10 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { cn } from "@/lib/utils"
 
 const navGroups = [
@@ -47,6 +49,7 @@ export function Navbar() {
           <Link
             href="/"
             className="font-sans text-[64px] leading-12 font-black tracking-[-1.5px] text-black"
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }) }}
           >
             HOOKANA
           </Link>
@@ -73,7 +76,13 @@ export function Navbar() {
             variant="destructive"
             asChild
           >
-            <Link href="#contact">
+            <Link
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault()
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+              }}
+            >
               GET 2 FREE CONCEPTS
               <ArrowUpRight className="size-4" />
             </Link>
@@ -94,6 +103,7 @@ export function Navbar() {
           <Link
             href="/"
             className="font-sans text-lg leading-none font-black tracking-[-1px] whitespace-nowrap text-white"
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }) }}
           >
             HOOKANA
           </Link>
@@ -112,6 +122,9 @@ export function Navbar() {
               className="w-180! border-none bg-secondary p-0"
               showCloseButton={false}
             >
+              <VisuallyHidden>
+                <SheetTitle>Navigation menu</SheetTitle>
+              </VisuallyHidden>
               <div className="flex h-full flex-col">
                 {/* Drawer header */}
                 <div className="flex items-start justify-between px-14 pt-14 pb-12">
@@ -138,6 +151,16 @@ export function Navbar() {
                       <Link
                         href={link.href}
                         className="group flex items-center justify-between border-b border-white/10 py-6 last:border-none"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          if (link.href.startsWith("#")) {
+                            document
+                              .getElementById(link.href.slice(1))
+                              ?.scrollIntoView({ behavior: "smooth" })
+                          } else {
+                            window.scrollTo({ top: 0, behavior: "smooth" })
+                          }
+                        }}
                       >
                         <span className="type-heading-3 text-white/60 transition-colors group-hover:text-white">
                           {link.label}
@@ -157,7 +180,13 @@ export function Navbar() {
                       variant="destructive"
                       asChild
                     >
-                      <Link href="#contact">
+                      <Link
+                        href="#contact"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                        }}
+                      >
                         GET 2 FREE CONCEPTS
                         <ArrowUpRight className="size-4" />
                       </Link>

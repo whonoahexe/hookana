@@ -16,31 +16,31 @@ const FAQ_ITEMS: FaqItem[] = [
     value: "delivery-speed",
     question: "How fast can you deliver?",
     answer:
-      "Starter delivers first rounds in 48 hours. Growth gets priority queues with faster turnarounds, and Enterprise includes same-day rush support.",
+      "Most projects ship within 48 hours. Rush delivery (same-day) is available on Growth and Enterprise plans.",
   },
   {
     value: "creative-types",
     question: "What types of creatives do you produce?",
     answer:
-      "Static ads, carousels, motion graphics, and short-form video built for Meta, TikTok, Snapchat, and YouTube.",
+      "Static ads, video ads, carousel ads, UGC-style edits, motion graphics, creative concepts, and ad iterations. If it runs on Meta, TikTok, Snapchat, or YouTube, we make it.",
   },
   {
     value: "revisions",
     question: "Do you offer revisions?",
     answer:
-      "Yes. Every plan includes unlimited revisions while your campaigns and testing windows are active.",
+      "Unlimited revisions on all plans. First-draft approval rate sits above 85%.",
   },
   {
     value: "concept-to-variation",
     question: 'What does "concept to variation" mean?',
     answer:
-      "We turn one core idea into multiple hooks, angles, and format variants so your team can test faster and scale winners confidently.",
+      "A concept is a fresh creative idea with its own angle, hook, and visual approach. A variation is a spin on a winning concept: different headline, different opening frame, different CTA, or different pacing. We build the original concept, test it, and when it performs, we rapidly produce 3-5 variations to extend its lifespan before fatigue sets in. That's concept to variation, and it's how the best performance teams keep ROAS stable week after week.",
   },
   {
     value: "freelancer-vs-agency",
     question: "How is Hookana different from a freelancer or agency?",
     answer:
-      "Hookana runs as a production system, not ad-hoc capacity. You get predictable throughput, platform-native output, and ongoing iteration built for performance teams.",
+      "Freelancers are unpredictable. Agencies are slow and expensive. Hookana gives you dedicated creative production at agency quality, at a fraction of the cost, and we actually hit deadlines.",
   },
 ]
 

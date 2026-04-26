@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { ContactLink } from "@/components/ui/contact-link"
 import { ArrowUpRight } from "lucide-react"
 
 function HookanaStepCard({
@@ -41,14 +42,16 @@ export function HookanaWay() {
           Faster than a team.
         </h2>
 
-        <Button
-          size="lg"
-          variant="outline"
-          className="rounded-md px-6 text-primary-foreground"
-        >
-          Get 2 Free Concepts
-          <ArrowUpRight className="size-4" />
-        </Button>
+        <ContactLink>
+          <Button
+            size="lg"
+            variant="outline"
+            className="rounded-md px-6 text-primary-foreground"
+          >
+            Get 2 Free Concepts
+            <ArrowUpRight className="size-4" />
+          </Button>
+        </ContactLink>
       </div>
 
       <div className="mx-auto mt-24 grid max-w-237.5 gap-2 md:grid-cols-3">

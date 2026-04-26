@@ -39,34 +39,33 @@ const ROLE_CONTENT: Record<
       "Hookana delivers creatives at the speed of your ad platform. Constant testing, zero bottlenecks, predictable output.",
   },
   "AGENCY FOUNDERS": {
-    problemTitle:
-      "Client demand is growing, but delivery keeps bottlenecking your team.",
+    problemTitle: "Clients keep growing. Your team doesn't scale with them.",
     problemDescription:
-      "New retainers are coming in, but production quality drifts as workload spikes. Internal teams get stretched, deadlines slip, and account leads spend too much time chasing assets instead of scaling client strategy.",
-    solutionTitle: "White-label production your clients can depend on.",
+      "\"One bad month and clients start questioning us.\" Missed deadlines, burned-out designers, inconsistent quality across accounts. Hiring more people isn't fixing the problem. It's just making it more expensive.",
+    solutionTitle: "Your creative backend that never drops the ball.",
     solutionTags: [
-      "CLIENT-READY DELIVERY",
-      "FAST FEEDBACK LOOPS",
-      "MULTI-BRAND WORKFLOWS",
-      "CONSISTENT CREATIVE QA",
+      "48HR TURNAROUND",
+      "UNLIMITED REVISIONS",
+      "AD-PLATFORM NATIVE FORMATS",
+      "CONSISTENT QUALITY AT SCALE",
     ],
     solutionDescription:
-      "Scale output across accounts without adding headcount. We plug into your process, hit deadlines, and keep quality stable across brands.",
+      "Hookana acts as an extension of your delivery team. We absorb volume spikes without quality drops. Your reputation stays intact.",
   },
   "D2C FOUNDERS": {
     problemTitle:
-      "You're ready to scale spend, but creative fatigue starts first.",
+      "You built a product people love. Now you need ads that sell it.",
     problemDescription:
-      "Winning ads burn out quickly, and your team can&apos;t refresh concepts fast enough. CAC rises, prospecting stalls, and growth targets become harder to hit without a reliable creative cadence.",
-    solutionTitle: "Always-on creative for your growth engine.",
+      "\"I'm spending $30K a month on ads and my creative is the weakest link.\" You know your product is good. Customer reviews prove it. But your ads don't capture that magic. You're stuck choosing between expensive agencies that don't understand D2C speed, or cheap freelancers who deliver inconsistent work. Meanwhile, your competitors are shipping 30 creatives a week while you're arguing over one carousel.",
+    solutionTitle: "Your creative team without the full-time cost.",
     solutionTags: [
-      "OFFER-LED HOOK TESTS",
-      "UGC + STATIC MIX",
-      "WEEKLY CREATIVE DROPS",
-      "FATIGUE-RESISTANT SYSTEM",
+      "48HR TURNAROUND",
+      "UNLIMITED REVISIONS",
+      "AD-PLATFORM NATIVE FORMATS",
+      "CONSISTENT QUALITY AT SCALE",
     ],
     solutionDescription:
-      "Launch fresh concepts every week and keep paid channels from stalling. We turn product insights into high-velocity testing cycles.",
+      "Hookana gives you agency-quality creative production at founder-friendly pricing. We learn your brand once, then deliver a constant flow of ad-ready assets. You focus on product and growth. We handle the creative engine.",
   },
 }
 
@@ -74,7 +73,7 @@ function ReceiptCorner() {
   return (
     <div className="absolute top-0 right-0 h-11 w-11 overflow-hidden bg-secondary">
       <div
-        className="absolute inset-0 bg-blue-50"
+        className="absolute -inset-1 bg-blue-50"
         style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }}
       />
     </div>
@@ -98,7 +97,6 @@ function ReceiptTearEdge({
         <path
           d="M0,0 L25,28 L50,0 L75,28 L100,0 L125,28 L150,0 L175,28 L200,0 L225,28 L250,0 L275,28 L300,0 L325,28 L350,0 L375,28 L400,0 L425,28 L450,0 L475,28 L500,0 L525,28 L550,0 L575,28 L600,0 L625,28 L650,0 L675,28 L696,0 Z"
           fill={background === "solution" ? "#BFDEFF" : "#E5E7EB"}
-          strokeWidth="1.25"
         />
       </svg>
     </div>

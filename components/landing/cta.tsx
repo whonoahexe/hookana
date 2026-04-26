@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { ContactLink } from "@/components/ui/contact-link"
 import { ArrowDown } from "lucide-react"
 
 export function Cta() {
@@ -16,10 +17,12 @@ export function Cta() {
         See how Hookana can 3x your creative output in just 48 hours.
       </p>
 
-      <Button size="lg" variant="secondary" className="rounded-md px-8 py-6">
-        GET 2 FREE CONCEPTS
-        <ArrowDown className="size-4" strokeWidth={2} />
-      </Button>
+      <ContactLink>
+        <Button size="lg" variant="secondary" className="rounded-md px-8 py-6">
+          GET 2 FREE CONCEPTS
+          <ArrowDown className="size-4" strokeWidth={2} />
+        </Button>
+      </ContactLink>
     </div>
   )
 }
