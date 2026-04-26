@@ -39,10 +39,10 @@ export default function Page() {
         <div id="who-its-for" className="scroll-mt-24">
           <Roles />
         </div>
-        {/* <div className="px-6">
+        <div className="px-6">
           <Stats />
           <Testimonial />
-        </div> */}
+        </div>
       </section>
 
       {/* <section className="bg-blue-950">
