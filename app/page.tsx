@@ -16,7 +16,7 @@ import { WhatWeDo } from "@/components/landing/what-we-do"
 
 export default function Page() {
   return (
-    <div>
+    <div className="w-full overflow-x-clip">
       <Hero />
       <HeroCarousel />
       <Problems />
