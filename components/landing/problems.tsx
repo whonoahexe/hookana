@@ -191,10 +191,9 @@ export function Problems() {
         {tabs.map((tab, idx) => (
           <div
             key={tab.value}
-            className="sticky w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] rounded-t-[2rem] border-t border-white/40 bg-lime-200 px-5 pt-8 pb-10 shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.1)] sm:rounded-t-[3rem] sm:px-8 sm:pt-14 sm:pb-16 md:px-12 md:pt-16"
+            className="sticky w-full rounded-t-[2rem] border-t border-white/40 bg-lime-200 px-5 pt-8 pb-10 shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.1)] sm:rounded-t-[3rem] sm:px-8 sm:pt-14 sm:pb-16 md:px-12 md:pt-16"
             style={{ 
-              top: `calc(80px + ${idx * 24}px)`,
-              maxHeight: `calc(100vh - 80px - ${idx * 24}px)`
+              top: `calc(80px + ${idx * 24}px)`
             }}
           >
             {/* Header/Tab Label */}
