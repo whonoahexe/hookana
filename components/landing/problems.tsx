@@ -191,7 +191,7 @@ export function Problems() {
         {tabs.map((tab, idx) => (
           <div
             key={tab.value}
-            className="sticky w-full rounded-t-[2rem] border-t border-white/40 bg-lime-200 px-5 pt-8 pb-10 shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.1)] sm:rounded-t-[3rem] sm:px-8 sm:pt-14 sm:pb-16 md:px-12 md:pt-16"
+            className="sticky w-full rounded-t-[2rem] rounded-b-[2rem] border-t border-white/40 bg-lime-200 px-5 pt-8 pb-10 shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.1)] sm:rounded-t-[3rem] sm:rounded-b-[3rem] sm:px-8 sm:pt-14 sm:pb-16 md:px-12 md:pt-16 [@media(max-height:820px)]:relative [@media(max-height:820px)]:top-auto"
             style={{ 
               top: `calc(80px + ${idx * 24}px)`
             }}

@@ -112,7 +112,7 @@ function ReceiptCard({
 }) {
   return (
     <article
-      className={`relative w-full overflow-visible px-6 py-8 sm:px-8 sm:py-10 md:min-h-182 md:py-20 2xl:w-auto 2xl:min-h-155 2xl:max-w-175 2xl:px-9 2xl:py-8 ${
+      className={`relative w-full overflow-visible px-6 py-8 sm:px-8 sm:py-10 md:min-h-182 md:py-20 2xl:min-h-155 2xl:w-auto 2xl:max-w-175 2xl:px-9 2xl:py-8 ${
         background === "problem" ? "bg-blue-100" : "bg-[#BFDEFF]"
       }`}
     >
@@ -128,9 +128,9 @@ export function Roles() {
   const activeRoleContent = ROLE_CONTENT[activeRole]
 
   return (
-    <section className="mt-20 2xl:mt-40 flex w-full flex-col items-center justify-center px-6 2xl:px-0 2xl:pl-6">
-      <div className="flex w-full flex-col items-center justify-center gap-4 2xl:gap-10 text-center">
-        <p className="font-sans text-5xl sm:text-7xl 2xl:text-[128px] leading-tight 2xl:leading-12 font-black text-foreground uppercase">
+    <section className="mt-20 flex w-full flex-col items-center justify-center px-6 2xl:mt-40 2xl:px-0 2xl:pl-6">
+      <div className="flex w-full flex-col items-center justify-center gap-4 text-center 2xl:gap-10">
+        <p className="font-sans text-5xl leading-tight font-black text-foreground uppercase sm:text-7xl 2xl:text-[128px] 2xl:leading-12">
           We get it.
         </p>
         <p className="type-heading-3 2xl:type-heading-2 text-foreground">
@@ -138,11 +138,10 @@ export function Roles() {
         </p>
       </div>
 
-      <div className="mt-16 2xl:mt-30 w-full">
-        <div className="flex w-full flex-col 2xl:flex-row justify-between gap-12 2xl:gap-0">
-          
+      <div className="mt-16 w-full 2xl:mt-30">
+        <div className="flex w-full flex-col justify-between gap-12 2xl:flex-row 2xl:gap-0">
           {/* Mobile Downward Ribbon Selector */}
-          <div className="flex w-full gap-2 sm:gap-3 2xl:hidden pb-4">
+          <div className="flex w-full gap-2 pb-4 sm:gap-3 2xl:hidden">
             {ROLE_TABS.map((role) => {
               const isActive = role === activeRole
 
@@ -152,10 +151,10 @@ export function Roles() {
                   type="button"
                   onClick={() => setActiveRole(role)}
                   className={cn(
-                    "flex-1 shrink px-2 py-3 sm:px-4 sm:pt-4 sm:pb-4 font-mono text-[9px] sm:text-xs text-center uppercase transition-all whitespace-normal leading-tight",
+                    "flex h-17 flex-1 shrink items-center justify-center px-2 text-center font-mono text-[9px] leading-tight whitespace-normal uppercase transition-all sm:h-20 sm:px-4 sm:text-xs",
                     isActive
-                      ? "bg-secondary text-secondary-foreground [clip-path:polygon(0_0,100%_0,100%_calc(100%-0.75rem),50%_100%,0_calc(100%-0.75rem))] pb-6 sm:pb-8 font-bold"
-                      : "bg-secondary/40 text-secondary-foreground/60 rounded-md hover:bg-secondary/60"
+                      ? "bg-secondary font-bold text-secondary-foreground [clip-path:polygon(0_0,100%_0,100%_calc(100%-0.75rem),50%_100%,0_calc(100%-0.75rem))]"
+                      : "rounded-md bg-secondary/40 text-secondary-foreground/60 hover:bg-secondary/60"
                   )}
                   aria-pressed={isActive}
                 >
@@ -165,10 +164,10 @@ export function Roles() {
             })}
           </div>
 
-          <div className="flex w-full flex-col 2xl:flex-row gap-16 2xl:gap-6">
+          <div className="flex w-full flex-col gap-16 2xl:flex-row 2xl:gap-6">
             <ReceiptCard background="problem">
               <div className="flex h-full flex-col gap-6 2xl:gap-0">
-                <h2 className="font-sans text-3xl sm:text-4xl 2xl:text-[56px] leading-tight 2xl:leading-none font-semibold tracking-tight text-secondary">
+                <h2 className="font-sans text-3xl leading-tight font-semibold tracking-tight text-secondary sm:text-4xl 2xl:text-[56px] 2xl:leading-none">
                   {activeRoleContent.problemTitle}
                 </h2>
                 <p className="type-paragraph-large mt-auto font-bold text-blue-950">
@@ -179,7 +178,7 @@ export function Roles() {
 
             <ReceiptCard background="solution">
               <div className="flex h-full flex-col gap-6 2xl:gap-8">
-                <h2 className="font-sans text-3xl sm:text-4xl 2xl:text-[56px] leading-tight 2xl:leading-none font-semibold tracking-tight text-blue-950">
+                <h2 className="font-sans text-3xl leading-tight font-semibold tracking-tight text-blue-950 sm:text-4xl 2xl:text-[56px] 2xl:leading-none">
                   {activeRoleContent.solutionTitle}
                 </h2>
 
@@ -188,21 +187,21 @@ export function Roles() {
                     {activeRoleContent.solutionTags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-md bg-linear-to-r from-[#BFDEFF] to-blue-300 px-3 py-1 2xl:py-0 font-mono text-[12px] sm:text-[14px] 2xl:text-[16px] leading-tight 2xl:leading-6 text-foreground"
+                        className="rounded-md bg-linear-to-r from-[#BFDEFF] to-blue-300 px-3 py-1 font-mono text-[12px] leading-tight text-foreground sm:text-[14px] 2xl:py-0 2xl:text-[16px] 2xl:leading-6"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <p className="type-paragraph-large mt-6 2xl:mt-8 font-bold text-blue-950">
+                  <p className="type-paragraph-large mt-6 font-bold text-blue-950 2xl:mt-8">
                     {activeRoleContent.solutionDescription}
                   </p>
 
                   <Button
                     size="lg"
                     variant="secondary"
-                    className="mt-6 2xl:mt-8 rounded-md px-6 w-full 2xl:w-auto"
+                    className="mt-6 w-full rounded-md px-6 2xl:mt-8 2xl:w-auto"
                   >
                     START A SPRINT
                     <ArrowUpRight className="size-4" />
@@ -212,7 +211,7 @@ export function Roles() {
             </ReceiptCard>
           </div>
 
-          <div className="hidden 2xl:flex flex-col gap-4">
+          <div className="hidden flex-col gap-4 2xl:flex">
             {ROLE_TABS.map((role) => {
               const isActive = role === activeRole
 

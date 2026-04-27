@@ -56,7 +56,7 @@ export default function Page() {
         <Cta />
       </section>
 
-      <section className="bg-secondary">
+      <section className="bg-secondary pt-8 md:pt-0">
         <div className="relative">
           <img
             src="/svg/guy.svg"
