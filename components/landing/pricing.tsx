@@ -1,52 +1,53 @@
 import { Button } from "@/components/ui/button"
 import { ContactLink } from "@/components/ui/contact-link"
 import { ArrowUpRight, DollarSign } from "lucide-react"
+import type { PlanTier, PricingContent } from "@/sanity/lib/types"
 
-type PlanTier = {
-  id: "starter" | "growth" | "enterprise"
-  name: string
-  description: string
-  features: { label: string; value: string }[]
+const FALLBACK: PricingContent = {
+  label: "Simple Pricing",
+  heading: "Plans that grow with\nyou.",
+  tiers: [
+    {
+      id: "starter",
+      name: "Starter Sprint",
+      description: "For brands testing creative production outsourcing.",
+      features: [
+        { label: "Creatives / month", value: "30" },
+        { label: "Turnaround time", value: "48Hr" },
+        { label: "Brand", value: "1" },
+        { label: "Support", value: "Slack / Email" },
+        { label: "Revisions", value: "Unlimited" },
+      ],
+      ctaText: "GET 2 FREE CONCEPTS",
+    },
+    {
+      id: "growth",
+      name: "Growth Engine",
+      description: "For teams scaling creative output aggressively.",
+      features: [
+        { label: "Creatives / month", value: "50+" },
+        { label: "Turnaround time", value: "24-48Hr" },
+        { label: "Brand", value: "Up to 3" },
+        { label: "Support", value: "Priority queue" },
+        { label: "Revisions", value: "Unlimited" },
+      ],
+      ctaText: "GET 2 FREE CONCEPTS",
+    },
+    {
+      id: "enterprise",
+      name: "Enterprise",
+      description: "For agencies & large D2C with high-volume needs.",
+      features: [
+        { label: "Creatives / month", value: "Unlimited" },
+        { label: "Turnaround time", value: "Same-day rush" },
+        { label: "Brand", value: "Unlimited" },
+        { label: "Support", value: "Dedicated team" },
+        { label: "Revisions", value: "Unlimited" },
+      ],
+      ctaText: "GET 2 FREE CONCEPTS",
+    },
+  ],
 }
-
-const PLAN_TIERS: PlanTier[] = [
-  {
-    id: "starter",
-    name: "Starter Sprint",
-    description: "For brands testing creative production outsourcing.",
-    features: [
-      { label: "Creatives / month", value: "30" },
-      { label: "Turnaround time", value: "48Hr" },
-      { label: "Brand", value: "1" },
-      { label: "Support", value: "Slack / Email" },
-      { label: "Revisions", value: "Unlimited" },
-    ],
-  },
-  {
-    id: "growth",
-    name: "Growth Engine",
-    description: "For teams scaling creative output aggressively.",
-    features: [
-      { label: "Creatives / month", value: "50+" },
-      { label: "Turnaround time", value: "24-48Hr" },
-      { label: "Brand", value: "Up to 3" },
-      { label: "Support", value: "Priority queue" },
-      { label: "Revisions", value: "Unlimited" },
-    ],
-  },
-  {
-    id: "enterprise",
-    name: "Enterprise",
-    description: "For agencies & large D2C with high-volume needs.",
-    features: [
-      { label: "Creatives / month", value: "Unlimited" },
-      { label: "Turnaround time", value: "Same-day rush" },
-      { label: "Brand", value: "Unlimited" },
-      { label: "Support", value: "Dedicated team" },
-      { label: "Revisions", value: "Unlimited" },
-    ],
-  },
-]
 
 function PlanTierTearEdge() {
   return (
@@ -119,7 +120,7 @@ function PlanTierCard({ tier }: { tier: PlanTier }) {
               variant="default"
               className="mt-4 w-full rounded-md px-6 py-6 2xl:mt-0 2xl:w-auto"
             >
-              GET 2 FREE CONCEPTS
+              {tier.ctaText ?? "GET 2 FREE CONCEPTS"}
               <ArrowUpRight className="size-4" />
             </Button>
           </ContactLink>
@@ -130,23 +131,30 @@ function PlanTierCard({ tier }: { tier: PlanTier }) {
   )
 }
 
-export function Pricing() {
+export function Pricing({ content }: { content: PricingContent | null }) {
+  const { label, heading, tiers } = content ?? FALLBACK
+  const displayTiers = tiers?.length > 0 ? tiers : FALLBACK.tiers
+  const headingLines = heading.split("\n")
+
   return (
     <div className="overflow-hidden py-20 md:py-40">
       <div className="mx-auto flex flex-col items-center gap-12 2xl:gap-20">
         <div className="flex max-w-142 flex-col items-center gap-6 px-5 text-center md:px-36">
           <p className="type-monospaced rounded-md bg-[#BFDEFF] p-3 text-foreground">
-            Simple Pricing
+            {label}
           </p>
           <h2 className="font-sans text-[42px] leading-9 font-semibold tracking-[-1.5px] text-primary-foreground md:text-[64px] md:leading-12">
-            Plans that grow with
-            <br />
-            you.
+            {headingLines.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < headingLines.length - 1 && <br />}
+              </span>
+            ))}
           </h2>
         </div>
 
         <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto px-5 pb-8 [-ms-overflow-style:none] [scrollbar-width:none] md:px-36 2xl:grid 2xl:grid-cols-3 2xl:gap-6 2xl:overflow-visible 2xl:px-36 2xl:pb-0 [&::-webkit-scrollbar]:hidden">
-          {PLAN_TIERS.map((tier) => (
+          {displayTiers.map((tier) => (
             <div
               key={tier.id}
               className="w-[85vw] max-w-[400px] shrink-0 snap-center 2xl:w-auto 2xl:max-w-none"

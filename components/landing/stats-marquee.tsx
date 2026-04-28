@@ -1,4 +1,4 @@
-const stats = [
+const FALLBACK_ITEMS = [
   "US · AU · India",
   "4.9★ client rating",
   "48-hr avg turnaround",
@@ -6,8 +6,9 @@ const stats = [
   "50+ D2C brands served",
 ]
 
-export function StatsMarquee() {
-  const repeatedStats = [...stats, ...stats, ...stats, ...stats, ...stats]
+export function StatsMarquee({ items }: { items: string[] }) {
+  const source = items.length > 0 ? items : FALLBACK_ITEMS
+  const repeatedStats = [...source, ...source, ...source, ...source, ...source]
 
   return (
     <>

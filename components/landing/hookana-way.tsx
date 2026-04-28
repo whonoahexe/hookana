@@ -1,6 +1,20 @@
 import { Button } from "@/components/ui/button"
 import { ContactLink } from "@/components/ui/contact-link"
 import { ArrowUpRight } from "lucide-react"
+import type { HowItWorksContent } from "@/sanity/lib/types"
+
+const FALLBACK: HowItWorksContent = {
+  label: "The Hookana Way",
+  heading: "Closer than an agency.\nFaster than a team.",
+  ctaText: "Get 2 Free Concepts",
+  steps: [
+    { title: "BRIEF IT.", body: "Drop your brief via Slack, Notion, email. We adapt to your tools.", caption: "Day 0" },
+    { title: "WE BUILD IT.", body: "Our creative team produces ad-ready assets in 48 hours or less.", caption: "24 - 48 hours" },
+    { title: "YOU TEST IT.", body: "Launch, measure, iterate. We keep the creative pipeline flowing.", caption: "Ongoing" },
+  ],
+}
+
+const STEP_ROTATIONS = ["md:-rotate-2", "md:rotate-1", "md:-rotate-2"]
 
 function HookanaStepCard({
   title,
@@ -28,18 +42,25 @@ function HookanaStepCard({
   )
 }
 
-export function HookanaWay() {
+export function HookanaWay({ content }: { content: HowItWorksContent | null }) {
+  const { label, heading, ctaText, steps } = content ?? FALLBACK
+  const headingLines = heading.split("\n")
+  const displaySteps = steps?.length > 0 ? steps : FALLBACK.steps
+
   return (
     <section className="mt-40 px-5 pb-20 md:pb-28">
       <div className="mx-auto flex flex-col items-center gap-6 text-center">
         <p className="rounded-md bg-primary p-3 font-mono text-base leading-6 text-primary-foreground">
-          The Hookana Way
+          {label}
         </p>
 
         <h2 className="font-sans text-[42px] leading-9 font-semibold tracking-[-1.5px] text-primary-foreground md:text-[64px] md:leading-12">
-          Closer than an agency.
-          <br />
-          Faster than a team.
+          {headingLines.map((line, i) => (
+            <span key={i}>
+              {line}
+              {i < headingLines.length - 1 && <br />}
+            </span>
+          ))}
         </h2>
 
         <ContactLink>
@@ -48,31 +69,22 @@ export function HookanaWay() {
             variant="outline"
             className="rounded-md px-6 text-primary-foreground"
           >
-            Get 2 Free Concepts
+            {ctaText}
             <ArrowUpRight className="size-4" />
           </Button>
         </ContactLink>
       </div>
 
       <div className="mx-auto mt-24 grid max-w-237.5 gap-2 md:grid-cols-3">
-        <HookanaStepCard
-          className="md:-rotate-2"
-          title="BRIEF IT."
-          body="Drop your brief via Slack, Notion, email. We adapt to your tools."
-          caption="Day 0"
-        />
-        <HookanaStepCard
-          className="md:rotate-1"
-          title="WE BUILD IT."
-          body="Our creative team produces ad-ready assets in 48 hours or less."
-          caption="24 - 48 hours"
-        />
-        <HookanaStepCard
-          className="md:-rotate-2"
-          title="YOU TEST IT."
-          body="Launch, measure, iterate. We keep the creative pipeline flowing."
-          caption="Ongoing"
-        />
+        {displaySteps.map((step, i) => (
+          <HookanaStepCard
+            key={i}
+            className={STEP_ROTATIONS[i % STEP_ROTATIONS.length]}
+            title={step.title}
+            body={step.body}
+            caption={step.caption}
+          />
+        ))}
       </div>
     </section>
   )

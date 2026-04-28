@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { JetBrains_Mono, Lato } from "next/font/google"
-
+import { cn } from "@/lib/utils"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -20,9 +20,6 @@ export const metadata: Metadata = {
       "Fresh creatives, fast, on-brand, and at scale. Hookana keeps your creative pipeline full without blowing your budget.",
   },
 }
-import { Navbar } from "@/components/layout/Navbar"
-import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils"
 
 const lato = Lato({
   subsets: ["latin"],
@@ -48,10 +45,7 @@ export default function RootLayout({
       className={cn("antialiased", lato.variable, fontMono.variable)}
     >
       <body className="overflow-x-hidden bg-pink-300 font-serif">
-        <ThemeProvider>
-          <Navbar />
-          {children}
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   )

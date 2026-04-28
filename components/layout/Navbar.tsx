@@ -13,26 +13,25 @@ import {
 } from "@/components/ui/sheet"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { cn } from "@/lib/utils"
+import type { NavbarContent } from "@/sanity/lib/types"
 
-const navGroups = [
-  [
-    { label: "Home", href: "/" },
-    { label: "How it works", href: "#how-it-works" },
-    { label: "Services", href: "#services" },
-  ],
-  [
-    { label: "Pricing", href: "#pricing" },
-    { label: "Who it's for", href: "#who-its-for" },
-  ],
-  [
-    { label: "Free check", href: "#free-check" },
-    { label: "Contact", href: "#contact" },
-  ],
+const FALLBACK_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "How it works", href: "#how-it-works" },
+  { label: "Services", href: "#services" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Who it's for", href: "#who-its-for" },
+  { label: "Free check", href: "#free-check" },
+  { label: "Contact", href: "#contact" },
 ]
 
-const allLinks = navGroups.flat()
+const FALLBACK_GROUPS = [
+  FALLBACK_LINKS.slice(0, 3),
+  FALLBACK_LINKS.slice(3, 5),
+  FALLBACK_LINKS.slice(5, 7),
+]
 
-export function Navbar() {
+export function Navbar({ content }: { content: NavbarContent | null }) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -40,6 +39,15 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const allLinks = content?.links ?? FALLBACK_LINKS
+  const logoText = content?.logoText ?? "HOOKANA"
+  const ctaText = content?.ctaText ?? "GET 2 FREE CONCEPTS"
+
+  // Group desktop links 3-2-2 (or split evenly if different count)
+  const navGroups = content?.links
+    ? [allLinks.slice(0, 3), allLinks.slice(3, 5), allLinks.slice(5)]
+    : FALLBACK_GROUPS
 
   return (
     <>
@@ -54,7 +62,7 @@ export function Navbar() {
               window.scrollTo({ top: 0, behavior: "smooth" })
             }}
           >
-            HOOKANA
+            {logoText}
           </Link>
 
           <nav className="hidden w-full max-w-108 justify-between lg:flex xl:max-w-160 2xl:max-w-210">
@@ -88,7 +96,7 @@ export function Navbar() {
                   ?.scrollIntoView({ behavior: "smooth" })
               }}
             >
-              GET 2 FREE CONCEPTS
+              {ctaText}
               <ArrowUpRight className="size-4" />
             </Link>
           </Button>
@@ -113,7 +121,7 @@ export function Navbar() {
               window.scrollTo({ top: 0, behavior: "smooth" })
             }}
           >
-            HOOKANA
+            {logoText}
           </Link>
 
           <Sheet>
@@ -140,7 +148,7 @@ export function Navbar() {
                     href="/"
                     className="font-sans text-[56px] leading-none font-black tracking-[-2px] text-white"
                   >
-                    HOOKANA
+                    {logoText}
                   </Link>
                   <SheetClose asChild>
                     <button
@@ -197,7 +205,7 @@ export function Navbar() {
                             ?.scrollIntoView({ behavior: "smooth" })
                         }}
                       >
-                        GET 2 FREE CONCEPTS
+                        {ctaText}
                         <ArrowUpRight className="size-4" />
                       </Link>
                     </Button>

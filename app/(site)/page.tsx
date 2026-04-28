@@ -1,3 +1,6 @@
+import { client } from "@/sanity/lib/client"
+import { LANDING_PAGE_QUERY, SITE_SETTINGS_QUERY } from "@/sanity/lib/queries"
+import type { LandingPageContent, SiteSettings } from "@/sanity/lib/types"
 import { Cta } from "@/components/landing/cta"
 import { CtaForm } from "@/components/landing/cta-form"
 import { DiagnosticSection } from "@/components/landing/diagnostic-section"
@@ -14,46 +17,52 @@ import { Stats } from "@/components/landing/stats"
 import { Testimonial } from "@/components/landing/testimonial"
 import { WhatWeDo } from "@/components/landing/what-we-do"
 
-export default function Page() {
+export default async function Page() {
+  const [page, settings]: [LandingPageContent | null, SiteSettings | null] =
+    await Promise.all([
+      client.fetch(LANDING_PAGE_QUERY),
+      client.fetch(SITE_SETTINGS_QUERY),
+    ])
+
   return (
     <div className="w-full overflow-x-clip">
-      <Hero />
+      <Hero content={page?.hero ?? null} />
       <HeroCarousel />
-      <Problems />
+      <Problems tabs={page?.problems?.tabs ?? []} />
 
       <div className="mt-50 w-full bg-blue-950">
         <div id="free-check" className="scroll-mt-44">
-          <DiagnosticSection />
+          <DiagnosticSection content={page?.diagnostic ?? null} />
         </div>
         <div id="how-it-works" className="scroll-mt-24">
-          <HookanaWay />
+          <HookanaWay content={page?.howItWorks ?? null} />
         </div>
       </div>
 
-      <StatsMarquee />
+      <StatsMarquee items={page?.stats?.marqueeItems ?? []} />
 
       <section className="w-full bg-blue-50 pt-30 pb-15">
         <div id="services" className="scroll-mt-24">
-          <WhatWeDo />
+          <WhatWeDo content={page?.services ?? null} />
         </div>
         <div id="who-its-for" className="scroll-mt-24">
-          <Roles />
+          <Roles content={page?.roles ?? null} />
         </div>
         <div className="px-6">
-          <Stats />
+          <Stats content={page?.stats ?? null} />
           <Testimonial />
         </div>
       </section>
 
       <section className="bg-blue-950">
         <div id="pricing" className="scroll-mt-24">
-          <Pricing />
+          <Pricing content={page?.pricing ?? null} />
         </div>
-        <Faq />
+        <Faq content={page?.faq ?? null} />
       </section>
 
       <section className="bg-blue-50">
-        <Cta />
+        <Cta content={page?.cta ?? null} />
       </section>
 
       <section className="bg-secondary pt-8 md:pt-0">
@@ -71,10 +80,9 @@ export default function Page() {
             className="pointer-events-none absolute top-1/2 left-1/2 z-0 hidden w-108 max-w-none translate-x-78 -translate-y-44 2xl:block"
           />
           <div id="contact" className="relative z-10 scroll-mt-24">
-            <CtaForm />
+            <CtaForm content={page?.contact ?? null} />
           </div>
 
-          {/* Mobile/Tablet Characters Under Form */}
           <div className="mt-12 flex items-end justify-center gap-12 px-5 pb-20 2xl:hidden">
             <img
               src="/svg/guy.svg"
@@ -90,7 +98,7 @@ export default function Page() {
             />
           </div>
         </div>
-        <Footer />
+        <Footer content={settings?.footer ?? null} />
       </section>
     </div>
   )
