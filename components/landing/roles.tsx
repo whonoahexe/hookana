@@ -6,35 +6,81 @@ import { ArrowUpRight } from "lucide-react"
 import { useState } from "react"
 import type { RoleItem, RolesContent } from "@/sanity/lib/types"
 
+function ProblemDescription({ text }: { text: string }) {
+  const closingQuotes = ["” ", '" ']
+  let splitIdx = -1
+  for (const q of closingQuotes) {
+    const idx = text.indexOf(q)
+    if (idx !== -1) { splitIdx = idx + 1; break }
+  }
+  const isLong = text.length > 300
+  if (splitIdx < 0) {
+    return <p className="type-paragraph-large mt-auto font-bold text-blue-950">{text}</p>
+  }
+  return (
+    <div className="mt-auto flex flex-col gap-3">
+      <p className={`${isLong ? "type-paragraph-regular" : "type-paragraph-large"} font-bold text-blue-950`}>
+        {text.slice(0, splitIdx)}
+      </p>
+      <p className={`${isLong ? "type-paragraph-small" : "type-paragraph-regular"} text-blue-950/80`}>
+        {text.slice(splitIdx + 1)}
+      </p>
+    </div>
+  )
+}
+
 const FALLBACK: RolesContent = {
   heading: "We get it.",
   subheading: "We've been in your shoes.",
   roles: [
     {
       tab: "PERFORMANCE MARKETERS",
-      problemTitle: "You know creative is the lever. You can't pull it fast enough.",
-      problemDescription: '"I know the lever is creative, but I can\'t pull it fast enough." Your ad accounts need fresh assets daily, not weekly. Your ROAS depends on constantly testing new hooks, formats, and angles. But your creative pipeline can\'t keep up with ad platform velocity.',
+      problemTitle:
+        "You know creative is the lever. You can't pull it fast enough.",
+      problemDescription:
+        "\"I know the lever is creative, but I can't pull it fast enough.\" Your ad accounts need fresh assets daily, not weekly. Your ROAS depends on constantly testing new hooks, formats, and angles. But your creative pipeline can't keep up with ad platform velocity.",
       solutionTitle: "Creatives that match your ad platform's speed.",
-      solutionTags: ["48HR TURNAROUND", "UNLIMITED REVISIONS", "AD-PLATFORM NATIVE FORMATS", "CONSISTENT QUALITY AT SCALE"],
-      solutionDescription: "Hookana delivers creatives at the speed of your ad platform. Constant testing, zero bottlenecks, predictable output.",
+      solutionTags: [
+        "48HR TURNAROUND",
+        "UNLIMITED REVISIONS",
+        "AD-PLATFORM NATIVE FORMATS",
+        "CONSISTENT QUALITY AT SCALE",
+      ],
+      solutionDescription:
+        "Hookana delivers creatives at the speed of your ad platform. Constant testing, zero bottlenecks, predictable output.",
       ctaText: "START A SPRINT",
     },
     {
       tab: "AGENCY FOUNDERS",
       problemTitle: "Clients keep growing. Your team doesn't scale with them.",
-      problemDescription: '"One bad month and clients start questioning us." Missed deadlines, burned-out designers, inconsistent quality across accounts. Hiring more people isn\'t fixing the problem. It\'s just making it more expensive.',
+      problemDescription:
+        "\"One bad month and clients start questioning us.\" Missed deadlines, burned-out designers, inconsistent quality across accounts. Hiring more people isn't fixing the problem. It's just making it more expensive.",
       solutionTitle: "Your creative backend that never drops the ball.",
-      solutionTags: ["48HR TURNAROUND", "UNLIMITED REVISIONS", "AD-PLATFORM NATIVE FORMATS", "CONSISTENT QUALITY AT SCALE"],
-      solutionDescription: "Hookana acts as an extension of your delivery team. We absorb volume spikes without quality drops. Your reputation stays intact.",
+      solutionTags: [
+        "48HR TURNAROUND",
+        "UNLIMITED REVISIONS",
+        "AD-PLATFORM NATIVE FORMATS",
+        "CONSISTENT QUALITY AT SCALE",
+      ],
+      solutionDescription:
+        "Hookana acts as an extension of your delivery team. We absorb volume spikes without quality drops. Your reputation stays intact.",
       ctaText: "START A SPRINT",
     },
     {
       tab: "D2C FOUNDERS",
-      problemTitle: "You built a product people love. Now you need ads that sell it.",
-      problemDescription: '"I\'m spending $30K a month on ads and my creative is the weakest link." You know your product is good. Customer reviews prove it. But your ads don\'t capture that magic. You\'re stuck choosing between expensive agencies that don\'t understand D2C speed, or cheap freelancers who deliver inconsistent work. Meanwhile, your competitors are shipping 30 creatives a week while you\'re arguing over one carousel.',
+      problemTitle:
+        "You built a product people love. Now you need ads that sell it.",
+      problemDescription:
+        "\"I'm spending $30K a month on ads and my creative is the weakest link.\" You know your product is good. Customer reviews prove it. But your ads don't capture that magic. You're stuck choosing between expensive agencies that don't understand D2C speed, or cheap freelancers who deliver inconsistent work. Meanwhile, your competitors are shipping 30 creatives a week while you're arguing over one carousel.",
       solutionTitle: "Your creative team without the full-time cost.",
-      solutionTags: ["48HR TURNAROUND", "UNLIMITED REVISIONS", "AD-PLATFORM NATIVE FORMATS", "CONSISTENT QUALITY AT SCALE"],
-      solutionDescription: "Hookana gives you agency-quality creative production at founder-friendly pricing. We learn your brand once, then deliver a constant flow of ad-ready assets. You focus on product and growth. We handle the creative engine.",
+      solutionTags: [
+        "48HR TURNAROUND",
+        "UNLIMITED REVISIONS",
+        "AD-PLATFORM NATIVE FORMATS",
+        "CONSISTENT QUALITY AT SCALE",
+      ],
+      solutionDescription:
+        "Hookana gives you agency-quality creative production at founder-friendly pricing. We learn your brand once, then deliver a constant flow of ad-ready assets. You focus on product and growth. We handle the creative engine.",
       ctaText: "START A SPRINT",
     },
   ],
@@ -51,23 +97,39 @@ function ReceiptCorner() {
   )
 }
 
-function ReceiptTearEdge({ background }: { background: "problem" | "solution" }) {
+function ReceiptTearEdge({
+  background,
+}: {
+  background: "problem" | "solution"
+}) {
   return (
     <div className="pointer-events-none absolute right-0 -bottom-7 left-0 h-7">
-      <svg width="100%" height="28" viewBox="0 0 696 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        width="100%"
+        height="28"
+        viewBox="0 0 696 28"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           d="M0,0 L25,28 L50,0 L75,28 L100,0 L125,28 L150,0 L175,28 L200,0 L225,28 L250,0 L275,28 L300,0 L325,28 L350,0 L375,28 L400,0 L425,28 L450,0 L475,28 L500,0 L525,28 L550,0 L575,28 L600,0 L625,28 L650,0 L675,28 L696,0 Z"
-          fill={background === "solution" ? "#BFDEFF" : "#dbeafe"}
+          fill={background === "solution" ? "#BFDEFF" : "#e9e9f4"}
         />
       </svg>
     </div>
   )
 }
 
-function ReceiptCard({ children, background }: { children: React.ReactNode; background: "problem" | "solution" }) {
+function ReceiptCard({
+  children,
+  background,
+}: {
+  children: React.ReactNode
+  background: "problem" | "solution"
+}) {
   return (
     <article
-      className={`relative w-full overflow-visible px-6 py-8 sm:px-8 sm:py-10 md:min-h-182 md:py-20 2xl:min-h-155 2xl:w-auto 2xl:max-w-175 2xl:px-9 2xl:py-8 ${
+      className={`relative w-full overflow-visible px-6 py-8 sm:px-8 sm:py-10 md:min-h-102 md:py-20 2xl:w-auto 2xl:max-w-175 2xl:px-9 2xl:py-8 ${
         background === "problem" ? "bg-blue-100" : "bg-[#BFDEFF]"
       }`}
     >
@@ -126,9 +188,7 @@ export function Roles({ content }: { content: RolesContent | null }) {
                 <h2 className="font-sans text-3xl leading-tight font-semibold tracking-tight text-secondary sm:text-4xl 2xl:text-[56px] 2xl:leading-none">
                   {active.problemTitle}
                 </h2>
-                <p className="type-paragraph-large mt-auto font-bold text-blue-950">
-                  {active.problemDescription}
-                </p>
+                <ProblemDescription text={active.problemDescription} />
               </div>
             </ReceiptCard>
 
@@ -143,7 +203,7 @@ export function Roles({ content }: { content: RolesContent | null }) {
                     {active.solutionTags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-md bg-linear-to-r from-[#BFDEFF] to-blue-300 px-3 py-1 font-mono text-[12px] leading-tight text-foreground sm:text-[14px] 2xl:py-0 2xl:text-[16px] 2xl:leading-6"
+                        className="rounded-md bg-linear-to-r from-[#BFDEFF] to-lime-500 px-3 py-1 font-mono text-[12px] leading-tight text-foreground sm:text-[14px] 2xl:py-0 2xl:text-[16px] 2xl:leading-6"
                       >
                         {tag}
                       </span>

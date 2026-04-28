@@ -24,14 +24,7 @@ export function Cta({ content }: { content: CtaContent | null }) {
         ))}
       </h2>
 
-      <p className="type-heading-4 text-foreground">{description}</p>
-
-      <ContactLink>
-        <Button size="lg" variant="secondary" className="rounded-md px-8 py-6">
-          {ctaText}
-          <ArrowDown className="size-4" strokeWidth={2} />
-        </Button>
-      </ContactLink>
+      <p className="type-heading-4 px-4 text-foreground">{description}</p>
     </div>
   )
 }
