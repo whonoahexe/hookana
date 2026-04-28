@@ -160,7 +160,7 @@ export function WhatWeDo({ content }: { content: ServicesContent | null }) {
   return (
     <div className="mx-auto w-full px-5 sm:px-6">
       <div className="flex flex-col gap-4 lg:px-30">
-        <p className="font-mono text-lg font-semibold tracking-tight text-pink-500 sm:text-2xl">
+        <p className="font-mono text-2xl font-semibold tracking-tight text-pink-500 sm:text-3xl 2xl:text-4xl">
           {label}
         </p>
         <h2 className="font-sans text-4xl leading-tight font-semibold tracking-[-1.5px] text-foreground sm:text-[42px] md:text-[64px] md:leading-12">

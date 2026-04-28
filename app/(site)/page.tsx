@@ -28,14 +28,20 @@ export default async function Page() {
     <div className="w-full overflow-x-clip">
       <Hero content={page?.hero ?? null} />
       <HeroCarousel />
-      <Problems tabs={page?.problems?.tabs ?? []} />
 
-      <div className="mt-50 w-full bg-blue-950">
-        <div id="free-check" className="scroll-mt-44">
-          <DiagnosticSection content={page?.diagnostic ?? null} />
-        </div>
-        <div id="how-it-works" className="scroll-mt-24">
-          <HookanaWay content={page?.howItWorks ?? null} />
+      <div className="flex flex-col">
+        <Problems
+          tabs={page?.problems?.tabs ?? []}
+          className="order-2 md:order-1"
+        />
+
+        <div className="order-1 mt-26 w-full bg-blue-950 md:order-2 md:mt-50">
+          <div id="free-check" className="scroll-mt-44">
+            <DiagnosticSection content={page?.diagnostic ?? null} />
+          </div>
+          <div id="how-it-works" className="scroll-mt-24">
+            <HookanaWay content={page?.howItWorks ?? null} />
+          </div>
         </div>
       </div>
 

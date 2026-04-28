@@ -160,11 +160,11 @@ function DiagnosticReceipt({ receipt }: { receipt: ProblemTab["receipt"] }) {
   )
 }
 
-export function Problems({ tabs }: { tabs: ProblemTab[] }) {
+export function Problems({ tabs, className }: { tabs: ProblemTab[]; className?: string }) {
   const displayTabs = tabs?.length > 0 ? tabs : FALLBACK_TABS
 
   return (
-    <div className="px-5">
+    <div className={`px-5 ${className ?? ""}`}>
       <div className="relative mt-24 mb-10 block lg:hidden">
         {displayTabs.map((tab, idx) => (
           <div
