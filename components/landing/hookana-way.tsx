@@ -8,9 +8,21 @@ const FALLBACK: HowItWorksContent = {
   heading: "Closer than an agency.\nFaster than a team.",
   ctaText: "Get 2 Free Concepts",
   steps: [
-    { title: "BRIEF IT.", body: "Drop your brief via Slack, Notion, email. We adapt to your tools.", caption: "Day 0" },
-    { title: "WE BUILD IT.", body: "Our creative team produces ad-ready assets in 48 hours or less.", caption: "24 - 48 hours" },
-    { title: "YOU TEST IT.", body: "Launch, measure, iterate. We keep the creative pipeline flowing.", caption: "Ongoing" },
+    {
+      title: "BRIEF IT.",
+      body: "Drop your brief via Slack, Notion, email. We adapt to your tools.",
+      caption: "Day 0",
+    },
+    {
+      title: "WE BUILD IT.",
+      body: "Our creative team produces ad-ready assets in 48 hours or less.",
+      caption: "24 - 48 hours",
+    },
+    {
+      title: "YOU TEST IT.",
+      body: "Launch, measure, iterate. We keep the creative pipeline flowing.",
+      caption: "Ongoing",
+    },
   ],
 }
 
@@ -50,10 +62,6 @@ export function HookanaWay({ content }: { content: HowItWorksContent | null }) {
   return (
     <section className="mt-40 px-5 pb-20 md:pb-28">
       <div className="mx-auto flex flex-col items-center gap-6 text-center">
-        <p className="rounded-md bg-primary p-3 font-mono text-base leading-6 text-primary-foreground">
-          {label}
-        </p>
-
         <h2 className="font-sans text-[42px] leading-9 font-semibold tracking-[-1.5px] text-primary-foreground md:text-[64px] md:leading-12">
           {headingLines.map((line, i) => (
             <span key={i}>

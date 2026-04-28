@@ -9,14 +9,32 @@ import { DiagnosticResult } from "./diagnostic-result"
 
 const FALLBACK_QUESTIONS: DiagnosticQuestion[] = [
   {
-    id: "q1", area: "Hook Quality", weight: 1.8,
+    id: "q1",
+    area: "Hook Quality",
+    weight: 1.8,
     text: "When you look at your last 10 ads, how many had a genuinely different opening hook?",
-    subtext: "Not just different copy on the same template. Different visual pattern, different emotional trigger, different scroll-stop mechanism.",
+    subtext:
+      "Not just different copy on the same template. Different visual pattern, different emotional trigger, different scroll-stop mechanism.",
     options: [
-      { label: "8-10 had distinctly different hooks with different scroll-stop mechanics", value: 5 },
-      { label: "4-7 had different hooks, the rest were variations of the same pattern", value: 3 },
-      { label: "2-3 were genuinely different, the rest followed the same formula", value: 2 },
-      { label: "Most used the same opening style with different text overlays", value: 1 },
+      {
+        label:
+          "8-10 had distinctly different hooks with different scroll-stop mechanics",
+        value: 5,
+      },
+      {
+        label:
+          "4-7 had different hooks, the rest were variations of the same pattern",
+        value: 3,
+      },
+      {
+        label:
+          "2-3 were genuinely different, the rest followed the same formula",
+        value: 2,
+      },
+      {
+        label: "Most used the same opening style with different text overlays",
+        value: 1,
+      },
     ],
   },
 ]
@@ -44,18 +62,25 @@ export function Diagnostic({ content }: { content: DiagnosticContent | null }) {
     stage === "questions"
       ? Math.max(8, (currentQuestionIndex / questions.length) * 100)
       : 0
-  const currentAnswer = currentQuestion ? answers[currentQuestion.id] : undefined
+  const currentAnswer = currentQuestion
+    ? answers[currentQuestion.id]
+    : undefined
 
   const headingLines =
     stage === "intro"
       ? ["Before", "We", "Begin"]
       : stage === "questions"
-        ? ["Question", String(currentQuestionIndex + 1), `of ${questions.length}`]
+        ? [
+            "Question",
+            String(currentQuestionIndex + 1),
+            `of ${questions.length}`,
+          ]
         : ["Your", "Creative", "Score"]
 
   const headingSubcopy =
     stage === "intro"
-      ? (content?.introSubcopy ?? "Tell us about your brand so we can calibrate the diagnostic.")
+      ? (content?.introSubcopy ??
+        "Tell us about your brand so we can calibrate the diagnostic.")
       : stage === "questions"
         ? currentQuestion.area
         : aiResult
@@ -69,7 +94,10 @@ export function Diagnostic({ content }: { content: DiagnosticContent | null }) {
 
   const handleStart = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (!brandName.trim() || !industry) { setShowIntroError(true); return }
+    if (!brandName.trim() || !industry) {
+      setShowIntroError(true)
+      return
+    }
     setShowIntroError(false)
     setStage("questions")
     setCurrentQuestionIndex(0)
@@ -80,11 +108,16 @@ export function Diagnostic({ content }: { content: DiagnosticContent | null }) {
     setAnswers((prev) => ({ ...prev, [currentQuestion.id]: value }))
   }
 
-  const handleQuestionSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleQuestionSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault()
     if (currentAnswer === undefined) return
 
-    if (!isLastQuestion) { setCurrentQuestionIndex((prev) => prev + 1); return }
+    if (!isLastQuestion) {
+      setCurrentQuestionIndex((prev) => prev + 1)
+      return
+    }
 
     const finalAnswers = { ...answers, [currentQuestion.id]: currentAnswer }
     setStage("result")
@@ -94,14 +127,22 @@ export function Diagnostic({ content }: { content: DiagnosticContent | null }) {
 
     try {
       const payload = {
-        brandName, industry, monthlyAdSpend,
+        brandName,
+        industry,
+        monthlyAdSpend,
         answers: questions.map((q) => ({
-          area: q.area, question: q.text,
-          selectedOption: q.options.find((o) => o.value === finalAnswers[q.id])?.label ?? "",
+          area: q.area,
+          question: q.text,
+          selectedOption:
+            q.options.find((o) => o.value === finalAnswers[q.id])?.label ?? "",
           score: finalAnswers[q.id] ?? 1,
         })),
       }
-      const response = await fetch("/api/diagnostic", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+      const response = await fetch("/api/diagnostic", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
       if (!response.ok) throw new Error("API error")
       const result: DiagnosticAIResult = await response.json()
       setAiResult(result)
@@ -113,25 +154,37 @@ export function Diagnostic({ content }: { content: DiagnosticContent | null }) {
   }
 
   const handleRestart = () => {
-    setStage("intro"); setBrandName(""); setIndustry(""); setMonthlyAdSpend("")
-    setShowIntroError(false); setCurrentQuestionIndex(0); setAnswers({}); setAiResult(null); setLoadError(false)
+    setStage("intro")
+    setBrandName("")
+    setIndustry("")
+    setMonthlyAdSpend("")
+    setShowIntroError(false)
+    setCurrentQuestionIndex(0)
+    setAnswers({})
+    setAiResult(null)
+    setLoadError(false)
   }
 
   return (
     <div className="flex w-full justify-center">
-      <section className="relative -mt-10 sm:-mt-20 min-h-[600px] w-full max-w-180 bg-card px-6 py-12 md:min-h-240 md:px-19 md:py-18">
-        <div className="absolute top-0 -right-px h-12 w-12 sm:h-16 sm:w-16 overflow-hidden bg-pink-300">
-          <div className="absolute inset-0 bg-muted-foreground" style={{ clipPath: "polygon(0 0, 0 100%, 100% 100%)" }} />
+      <section className="relative -mt-10 min-h-[600px] w-full max-w-180 bg-card px-6 py-12 md:min-h-240 md:px-19 md:py-18 2xl:-mt-20">
+        <div className="absolute top-0 -right-px h-12 w-12 overflow-hidden bg-blue-950 sm:h-16 sm:w-16 2xl:bg-pink-300">
+          <div
+            className="absolute inset-0 bg-muted-foreground"
+            style={{ clipPath: "polygon(0 0, 0 100%, 100% 100%)" }}
+          />
         </div>
 
         <div className="mx-auto flex h-full flex-col">
-          <div className="flex flex-col sm:flex-row sm:justify-between gap-6 sm:gap-8">
-            <h2 className="font-sans text-4xl sm:text-5xl 2xl:text-[64px] leading-none 2xl:leading-12 font-semibold tracking-[-1.5px] text-card-foreground uppercase">
+          <div className="flex flex-col gap-6 sm:flex-row sm:justify-between sm:gap-8">
+            <h2 className="font-sans text-4xl leading-none font-semibold tracking-[-1.5px] text-card-foreground uppercase sm:text-5xl 2xl:text-[64px] 2xl:leading-12">
               <span className="block">{headingLines[0]}</span>
               <span className="block">{headingLines[1]}</span>
               <span className="block">{headingLines[2]}</span>
             </h2>
-            <p className="type-heading-4 sm:type-heading-3 text-foreground sm:max-w-[200px] md:max-w-[250px]">{headingSubcopy}</p>
+            <p className="type-heading-4 sm:type-heading-3 text-foreground sm:max-w-[200px] md:max-w-[250px]">
+              {headingSubcopy}
+            </p>
           </div>
 
           <div className="mt-20 border-t border-dotted border-neutral-950" />
@@ -139,40 +192,69 @@ export function Diagnostic({ content }: { content: DiagnosticContent | null }) {
           <div className="mt-24 flex min-h-140 flex-col">
             {stage === "intro" && (
               <DiagnosticIntro
-                brandName={brandName} industry={industry} monthlyAdSpend={monthlyAdSpend}
-                showError={showIntroError} formContent={content?.form ?? null}
-                onBrandNameChange={setBrandName} onIndustryChange={setIndustry}
-                onMonthlyAdSpendChange={setMonthlyAdSpend} onSubmit={handleStart}
+                brandName={brandName}
+                industry={industry}
+                monthlyAdSpend={monthlyAdSpend}
+                showError={showIntroError}
+                formContent={content?.form ?? null}
+                onBrandNameChange={setBrandName}
+                onIndustryChange={setIndustry}
+                onMonthlyAdSpendChange={setMonthlyAdSpend}
+                onSubmit={handleStart}
               />
             )}
             {stage === "questions" && currentQuestion && (
               <DiagnosticQuestions
-                currentQuestion={currentQuestion} currentQuestionIndex={currentQuestionIndex}
-                currentAnswer={currentAnswer} progress={progress} isLastQuestion={isLastQuestion}
+                currentQuestion={currentQuestion}
+                currentQuestionIndex={currentQuestionIndex}
+                currentAnswer={currentAnswer}
+                progress={progress}
+                isLastQuestion={isLastQuestion}
                 totalQuestions={questions.length}
-                onSelectAnswer={handleSelectAnswer} onSubmit={handleQuestionSubmit}
-                onPrevious={() => setCurrentQuestionIndex((prev) => Math.max(0, prev - 1))}
+                onSelectAnswer={handleSelectAnswer}
+                onSubmit={handleQuestionSubmit}
+                onPrevious={() =>
+                  setCurrentQuestionIndex((prev) => Math.max(0, prev - 1))
+                }
               />
             )}
             {stage === "result" && (
               <>
                 {isLoading && (
                   <div className="flex h-full flex-col justify-center gap-3">
-                    <p className="type-monospaced text-foreground uppercase">Analyzing your creative pipeline...</p>
-                    <p className="font-mono text-xs text-foreground/60">This takes a few seconds.</p>
+                    <p className="type-monospaced text-foreground uppercase">
+                      Analyzing your creative pipeline...
+                    </p>
+                    <p className="font-mono text-xs text-foreground/60">
+                      This takes a few seconds.
+                    </p>
                   </div>
                 )}
                 {loadError && (
                   <div className="flex h-full flex-col justify-center gap-6">
-                    <p className="type-monospaced text-destructive uppercase">Something went wrong.</p>
-                    <p className="font-mono text-xs text-foreground/60">We couldn&apos;t analyze your results. Please try again.</p>
-                    <button onClick={handleRestart} className="font-mono text-xs text-primary underline">Start over</button>
+                    <p className="type-monospaced text-destructive uppercase">
+                      Something went wrong.
+                    </p>
+                    <p className="font-mono text-xs text-foreground/60">
+                      We couldn&apos;t analyze your results. Please try again.
+                    </p>
+                    <button
+                      onClick={handleRestart}
+                      className="font-mono text-xs text-primary underline"
+                    >
+                      Start over
+                    </button>
                   </div>
                 )}
                 {!isLoading && !loadError && aiResult && (
                   <DiagnosticResult
-                    result={aiResult} industry={industry} monthlyAdSpend={monthlyAdSpend}
-                    onReview={() => { setStage("questions"); setCurrentQuestionIndex(0) }}
+                    result={aiResult}
+                    industry={industry}
+                    monthlyAdSpend={monthlyAdSpend}
+                    onReview={() => {
+                      setStage("questions")
+                      setCurrentQuestionIndex(0)
+                    }}
                     onRestart={handleRestart}
                   />
                 )}
@@ -181,12 +263,23 @@ export function Diagnostic({ content }: { content: DiagnosticContent | null }) {
           </div>
 
           <div className="mt-24 border-t border-dotted border-neutral-950" />
-          <p className="mt-5 font-mono text-xs leading-3.5 text-blue-500">{footerCopy}</p>
+          <p className="mt-5 font-mono text-xs leading-3.5 text-blue-500">
+            {footerCopy}
+          </p>
         </div>
 
         <div className="absolute right-0 -bottom-6.75 left-0 h-7">
-          <svg width="100%" height="28" viewBox="0 0 696 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,0 L25,28 L50,0 L75,28 L100,0 L125,28 L150,0 L175,28 L200,0 L225,28 L250,0 L275,28 L300,0 L325,28 L350,0 L375,28 L400,0 L425,28 L450,0 L475,28 L500,0 L525,28 L550,0 L575,28 L600,0 L625,28 L650,0 L675,28 L696,0 Z" fill="#fff" />
+          <svg
+            width="100%"
+            height="28"
+            viewBox="0 0 696 28"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0,0 L25,28 L50,0 L75,28 L100,0 L125,28 L150,0 L175,28 L200,0 L225,28 L250,0 L275,28 L300,0 L325,28 L350,0 L375,28 L400,0 L425,28 L450,0 L475,28 L500,0 L525,28 L550,0 L575,28 L600,0 L625,28 L650,0 L675,28 L696,0 Z"
+              fill="#fff"
+            />
           </svg>
         </div>
       </section>

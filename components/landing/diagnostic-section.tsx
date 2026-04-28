@@ -33,8 +33,8 @@ export function DiagnosticSection({ content }: { content: DiagnosticContent | nu
   const stats = data.stats?.length > 0 ? data.stats : FALLBACK.stats
 
   return (
-    <div className="grid w-full gap-12 px-5 pt-0 pb-12 2xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] 2xl:gap-10 2xl:px-20 2xl:py-0">
-      <div className="flex max-w-93 flex-col gap-8 mt-12 2xl:mt-60 2xl:gap-15 text-center 2xl:text-left mx-auto 2xl:mx-0">
+    <div className="grid w-full gap-16 px-5 pt-8 pb-12 2xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] 2xl:gap-10 2xl:px-20 2xl:pt-0 2xl:py-0">
+      <div className="flex max-w-93 flex-col gap-8 2xl:mt-60 2xl:gap-15 text-center 2xl:text-left mx-auto 2xl:mx-0">
         <p className="font-sans text-4xl sm:text-5xl 2xl:text-[64px] leading-tight 2xl:leading-16 font-black tracking-tight text-white uppercase">
           {data.headingLine1}
         </p>
@@ -43,7 +43,7 @@ export function DiagnosticSection({ content }: { content: DiagnosticContent | nu
         </p>
       </div>
 
-      <div className="w-full justify-self-center order-first 2xl:order-none">
+      <div className="w-full justify-self-center">
         <Diagnostic content={data} />
       </div>
 
