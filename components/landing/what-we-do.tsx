@@ -181,7 +181,7 @@ export function WhatWeDo({ content }: { content: ServicesContent | null }) {
             </div>
             <div className="flex flex-col gap-6 sm:gap-10">
               <div className="flex flex-col gap-3">
-                <h3 className="type-heading-3 sm:type-heading-2 text-lime-950">
+                <h3 className="type-heading-3 sm:type-heading-2 text-primary">
                   {tab.title}
                 </h3>
                 <p className="type-heading-4 font-semibold text-accent-foreground">
