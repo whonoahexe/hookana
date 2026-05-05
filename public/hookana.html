@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hookana &mdash; Creative Production for Performance Marketers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap');
+:root{--bg:#FFF;--bg-s:#FFF5FB;--bg-m:#FFE8F4;--bdr:#F5D5E8;--bdr-d:#E8B3D4;--tx:#1E1C1E;--tx-m:#4A444A;--tx-l:#8A7A8A;--tx-xl:#B8A8B8;--pk:#F70C95;--pk-d:#D40A80;--pk-lt:#FFF0F8;--pk-md:rgba(247,12,149,.10);--gn:#B8FA60;--gn-d:#8ED040;--cr:#F2F250;--bl:#3A7BF2;--mono:'DM Mono',monospace;--disp:'Degular Display','Syne','SF Pro Display',system-ui,sans-serif;--sans:'Lato',sans-serif;--nav:68px;--mw:1100px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--pk);color:#fff}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(circle,rgba(247,12,149,.04) 1px,transparent 1px);background-size:28px 28px}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--pk)}
+img{max-width:100%;display:block}a{color:inherit}button{cursor:pointer;font-family:inherit}
+
+/* WRAPPER */
+.w{max-width:var(--mw);margin:0 auto}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav);background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);transition:box-shadow .3s}
+.nav .w{display:flex;align-items:center;justify-content:space-between;height:100%}
+.nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.nav-bn{font-family:var(--disp);font-size:22px;font-weight:800;color:var(--pk);letter-spacing:-.02em;text-transform:uppercase}
+.nav-bt{font-family:var(--mono);font-size:7.5px;letter-spacing:.36em;color:var(--tx-l);text-transform:uppercase;border-left:1px solid var(--bdr);padding-left:12px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--tx-m);text-decoration:none;transition:color .18s;cursor:pointer}
+.nav-links a:hover{color:var(--pk)}
+.nav-cta{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--tx);background:var(--gn);border:none;padding:10px 22px;text-decoration:none;display:inline-block;transition:all .18s;cursor:pointer;font-weight:700}
+.nav-cta:hover{background:var(--gn-d)}
+.nav-ham{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px}
+.nav-ham span{display:block;width:22px;height:1.5px;background:var(--tx)}
+
+/* TYPO */
+.label{font-family:var(--mono);font-size:9px;letter-spacing:.38em;text-transform:uppercase;color:var(--pk)}
+.label-g{font-family:var(--mono);font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--tx-l)}
+.display{font-family:var(--disp);font-size:clamp(36px,5vw,68px);font-weight:800;line-height:1;letter-spacing:-.03em;color:var(--tx)}
+.display em{font-style:italic;color:var(--tx-l);font-weight:400}
+.display strong{font-weight:800}
+.display .acc{color:var(--pk)}
+.heading{font-family:var(--disp);font-size:clamp(24px,3vw,42px);font-weight:700;line-height:1.08;letter-spacing:-.02em;color:var(--tx)}
+.heading strong{font-weight:800}
+.sub{font-family:var(--disp);font-size:clamp(17px,1.8vw,24px);font-weight:700;color:var(--tx);line-height:1.15}
+.body-lg{font-size:16px;color:var(--tx-m);line-height:1.72}
+.body{font-size:14px;color:var(--tx-m);line-height:1.72}
+.body-sm{font-size:13px;color:var(--tx-l);line-height:1.68}
+.mono-sm{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--tx-l)}
+
+/* BTN */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;border:none;padding:14px 30px;transition:all .18s;cursor:pointer}
+.btn-pk{background:var(--pk);color:#fff}.btn-pk:hover{opacity:.88}
+.btn-gn{background:var(--gn);color:var(--tx);font-weight:700}.btn-gn:hover{background:var(--gn-d)}
+.btn-out{background:transparent;color:var(--pk);border:1.5px solid var(--pk)}.btn-out:hover{background:var(--pk);color:#fff}
+.btn-dk{background:var(--tx);color:var(--bg)}.btn-dk:hover{opacity:.8}
+.btn-ghost{background:transparent;color:var(--tx-m);border-bottom:1px solid var(--bdr-d);padding:0 0 4px 0}.btn-ghost:hover{color:var(--pk);border-color:var(--pk)}
+.btn-wh{background:#fff;color:var(--pk);font-family:var(--mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;padding:13px 26px;border:none;cursor:pointer;font-weight:700;transition:opacity .18s;white-space:nowrap;text-decoration:none;display:inline-block}.btn-wh:hover{opacity:.9}
+.btn-lg{padding:18px 40px;font-size:10.5px}
+.btn-sm{padding:10px 20px;font-size:8.5px}
+
+/* SECTIONS */
+.sec{padding:100px 40px}
+.sec-div{border-top:1px solid var(--bdr)}
+.sec-dk{background:var(--tx);color:var(--bg)}
+.sec-pk{background:var(--pk);color:#fff}
+.sec-sub{background:var(--bg-s)}
+.sec-hdr{margin-bottom:56px}
+.sec-hdr .label{margin-bottom:18px;display:block}
+.sec-hdr .heading{max-width:560px}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.gsb{display:grid;grid-template-columns:300px 1fr;gap:64px;align-items:start}
+
+/* CARD */
+.card{background:var(--bg);border:1px solid var(--bdr);padding:40px 36px;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.card:hover{border-color:var(--pk);box-shadow:0 4px 24px rgba(247,12,149,.08)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--pk);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.card:hover::before{transform:scaleX(1)}
+.card-ac{border-top:3px solid var(--pk)}.card-ac::before{display:none}
+.card-dk{background:var(--tx);border-color:transparent}.card-dk *{color:#fff}
+.card-pk{background:var(--pk);border-color:transparent}.card-pk *{color:#fff!important}
+
+/* HERO */
+.hero{padding:100px 40px 80px;border-bottom:1px solid var(--bdr)}
+.hero .w{max-width:720px;margin:0 auto 0 0}
+.hero-stats{display:flex;gap:0;border:1px solid var(--bdr);margin-top:32px;max-width:520px}
+.hero-stat{padding:16px 22px;border-right:1px solid var(--bdr);flex:1}
+.hero-stat:last-child{border-right:none}
+.hero-stat-n{font-family:var(--disp);font-size:26px;font-weight:800;line-height:1;letter-spacing:-.02em;color:var(--pk)}
+.hero-stat-l{font-family:var(--mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--tx-l);margin-top:4px}
+.hero-desc{font-size:16px;color:var(--tx-m);line-height:1.72;max-width:540px;margin-top:24px}
+.hero-acts{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap}
+
+/* TICKER */
+.ticker-w{overflow:hidden;height:44px;display:flex;align-items:center;background:var(--gn);border-top:1px solid rgba(30,28,30,.06);border-bottom:1px solid rgba(30,28,30,.06)}
+.ticker{display:flex;white-space:nowrap;animation:tsc 28s linear infinite}
+.ticker-i{font-family:var(--mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--tx);padding:0 48px;border-right:1px solid rgba(30,28,30,.10);flex-shrink:0;font-weight:700}
+.ticker-i .ac{color:var(--pk);margin-right:10px}
+@keyframes tsc{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* STEPS */
+.step-list{display:flex;flex-direction:column}
+.step-item{padding:36px 0;border-bottom:1px solid var(--bdr);display:grid;grid-template-columns:72px 1fr;gap:28px;align-items:start}
+.step-item:first-child{padding-top:0}
+.step-item:last-child{border-bottom:none}
+.step-n{font-family:var(--disp);font-size:44px;font-weight:800;color:var(--bg-m);line-height:1;letter-spacing:-.04em;transition:color .2s}
+.step-item:hover .step-n{color:var(--pk-md)}
+.step-tag{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--tx-l);border:1px solid var(--bdr-d);padding:5px 12px}
+
+/* STAT */
+.stat-b{padding:28px 32px;border-left:2px solid var(--pk)}
+.stat-n{font-family:var(--disp);font-size:40px;font-weight:800;color:var(--tx);line-height:1;letter-spacing:-.03em;margin-bottom:4px}
+.stat-l{font-family:var(--mono);font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--tx-l)}
+
+/* PERSONA */
+.ptabs{display:flex;gap:0;border:1px solid var(--bdr);margin-bottom:40px}
+.ptab{flex:1;padding:16px 20px;background:var(--bg);border:none;border-right:1px solid var(--bdr);font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--tx-l);cursor:pointer;transition:all .2s;text-align:center}
+.ptab:last-child{border-right:none}.ptab:hover{color:var(--pk)}.ptab.on{background:var(--pk);color:#fff}
+.ppanel{display:none}.ppanel.on{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.pill{display:inline-block;background:var(--bg);color:var(--pk);padding:5px 14px;font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin:0 6px 6px 0;border:1.5px solid rgba(255,255,255,.4)}
+
+/* PRODUCT */
+.prod{border:1px solid var(--bdr);margin-bottom:3px}
+.prod-hdr{display:grid;grid-template-columns:1fr 260px;gap:36px;padding:44px 40px;align-items:start;border-bottom:1px solid var(--bdr)}
+.prod-badge{font-family:var(--mono);font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--pk);display:block;margin-bottom:12px}
+.prod-price{text-align:right}
+.prod-price-n{font-family:var(--disp);font-size:32px;font-weight:800;color:var(--pk);letter-spacing:-.02em}
+.prod-price-p{font-family:var(--mono);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--tx-l);margin-top:4px}
+.prod-body{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:40px}
+.dl{list-style:none;display:flex;flex-direction:column;gap:12px}
+.dl li{font-size:14px;color:var(--tx-m);line-height:1.6;padding-left:20px;position:relative}
+.dl li::before{content:'\2713';position:absolute;left:0;color:var(--pk);font-weight:700}
+.prod-entry{background:var(--bg-s);border-left:3px solid var(--pk);padding:14px 18px}
+.prod-entry-l{font-family:var(--mono);font-size:8px;letter-spacing:.34em;text-transform:uppercase;color:var(--pk);margin-bottom:5px}
+.prod-entry-t{font-size:13px;color:var(--tx-m);line-height:1.6}
+
+/* PRICING */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.price-card{border:1px solid var(--bdr);padding:40px 32px;display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--bg)}
+.price-card.pop{background:var(--pk);border-color:var(--pk)}.price-card.pop *{color:#fff}
+.price-card.pop .pop-tag{position:absolute;top:16px;right:-28px;background:var(--gn);color:var(--tx);font-size:11px;font-weight:900;padding:5px 40px;transform:rotate(45deg);letter-spacing:.05em}
+.price-name{font-family:var(--disp);font-size:20px;font-weight:800;margin-bottom:6px}
+.price-num{font-family:var(--disp);font-size:32px;font-weight:800;color:var(--pk);letter-spacing:-.02em;margin-bottom:6px}
+.price-card.pop .price-num{color:var(--gn)}
+.price-desc{font-size:13px;opacity:.7;line-height:1.5;margin-bottom:24px}
+.price-feat{flex:1;display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+.price-feat-i{display:flex;align-items:center;gap:10px;font-size:14px}
+.ck{font-weight:900;font-size:15px}
+.price-card:not(.pop) .ck{color:var(--pk)}.price-card.pop .ck{color:var(--gn)}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--bdr)}
+.faq-q{width:100%;background:none;border:none;text-align:left;padding:22px 0;display:flex;justify-content:space-between;align-items:center;font-family:var(--disp);font-size:17px;font-weight:600;color:var(--tx);cursor:pointer;gap:20px;transition:color .2s}
+.faq-q:hover{color:var(--pk)}
+.faq-ic{width:20px;height:20px;flex-shrink:0;border:1px solid var(--bdr-d);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--tx-l);transition:all .2s;font-style:normal}
+.faq-item.open .faq-q{color:var(--pk)}
+.faq-item.open .faq-ic{background:var(--pk);border-color:var(--pk);color:white}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;font-size:14px;color:var(--tx-m);line-height:1.75}
+.faq-item.open .faq-a{max-height:400px;padding-bottom:22px}
+
+/* GBAND */
+.gband{background:var(--pk);padding:64px 40px}
+.gband .w{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+.gband .heading{color:#fff}.gband .body-lg{color:rgba(255,255,255,.78);margin-top:10px}
+
+/* DIAG */
+.diag-sec{border-top:1px solid var(--bdr)}
+.diag-hero{display:grid;grid-template-columns:1fr 1fr;max-width:1400px;margin:0 auto}
+.diag-l{padding:72px 40px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--bdr)}
+.diag-r{background:var(--bg-s);display:flex;align-items:center;justify-content:center;padding:56px 40px;position:relative;overflow:hidden}
+.diag-r::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 55% 50%,rgba(247,12,149,.05) 0%,transparent 70%);pointer-events:none}
+.dstats{display:flex;gap:0;border:1px solid var(--bdr);margin:28px 0}
+.dstat{padding:16px 20px;border-right:1px solid var(--bdr);flex:1}.dstat:last-child{border-right:none}
+.dstat-n{font-family:var(--disp);font-size:24px;font-weight:800;line-height:1;letter-spacing:-.02em;color:var(--pk)}
+.dstat-l{font-family:var(--mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--tx-l);margin-top:4px}
+.dtool{width:100%;max-width:500px;position:relative;z-index:1}
+.dprog{height:2px;background:var(--bdr);margin-bottom:28px}.dprog-f{height:100%;background:var(--pk);transition:width .5s ease}
+.dq-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.dq-step{font-family:var(--mono);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--pk)}
+.dq-of{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;color:var(--tx-xl)}
+.dq-text{font-family:var(--disp);font-size:18px;font-weight:700;line-height:1.3;color:var(--tx);margin-bottom:6px}
+.dq-sub{font-size:13px;color:var(--tx-l);line-height:1.6;margin-bottom:20px;font-style:italic;border-left:2px solid var(--bdr);padding-left:14px}
+.dopts{display:flex;flex-direction:column;gap:5px;margin-bottom:24px}
+.dopt{padding:12px 16px;border:1px solid var(--bdr);background:var(--bg);cursor:pointer;display:flex;align-items:center;gap:12px;transition:all .16s;text-align:left;font-family:inherit;color:var(--tx)}
+.dopt:hover{border-color:var(--pk);background:var(--pk-lt)}.dopt.sel{border-color:var(--pk);background:var(--pk);color:#fff}
+.dopt.sel .dopt-l{color:#fff}.dopt.sel .dopt-k{color:rgba(255,255,255,.6)}
+.dopt-k{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--tx-xl);min-width:16px;flex-shrink:0}
+.dopt-l{font-size:13px;color:var(--tx-m);flex:1;line-height:1.4}
+.dbtn-row{display:flex;gap:12px;align-items:center}
+.danl-wrap{text-align:center;padding:28px 0}
+.dpulse{width:48px;height:48px;border-radius:50%;border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;position:relative}
+.dpulse::before{content:'';position:absolute;width:100%;height:100%;border-radius:50%;border:2px solid var(--pk);animation:dping 1.4s ease-out infinite}
+@keyframes dping{0%{transform:scale(1);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.dpulse-dot{width:10px;height:10px;background:var(--pk);border-radius:50%}
+.dlog{background:var(--bg);border:1px solid var(--bdr);padding:16px 18px;font-family:var(--mono);font-size:10px;line-height:2;color:var(--tx-l);text-align:left;min-height:140px;overflow-y:auto;margin-top:16px}
+.dlog-i{opacity:0;animation:dfu .4s ease forwards}.dlog-i.gld{color:var(--pk)}
+@keyframes dfu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.dr-hdr{text-align:center;padding:32px 24px;background:var(--bg);border:1px solid var(--bdr);margin-bottom:3px;position:relative;overflow:hidden}
+.dr-hdr::after{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.dr-hdr.strong::after{background:#16A34A}.dr-hdr.moderate::after{background:#D97706}.dr-hdr.weak::after{background:#DC2626}
+.dr-num{font-family:var(--disp);font-size:80px;font-weight:800;line-height:.88;letter-spacing:-.04em;margin-bottom:8px}
+.dr-hdr.strong .dr-num{color:#16A34A}.dr-hdr.moderate .dr-num{color:#D97706}.dr-hdr.weak .dr-num{color:#DC2626}
+.dr-pill{display:inline-block;padding:4px 12px;font-family:var(--mono);font-size:8px;letter-spacing:.32em;text-transform:uppercase;border:1.5px solid;margin-bottom:10px}
+.dr-hdr.strong .dr-pill{color:#16A34A;border-color:rgba(22,163,74,.3);background:rgba(22,163,74,.05)}
+.dr-hdr.moderate .dr-pill{color:#D97706;border-color:rgba(217,119,6,.3);background:rgba(217,119,6,.05)}
+.dr-hdr.weak .dr-pill{color:#DC2626;border-color:rgba(220,38,38,.3);background:rgba(220,38,38,.05)}
+.dr-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--tx-l);margin-bottom:6px;display:block}
+.dr-sum{font-size:13px;color:var(--tx-m);line-height:1.65;max-width:360px;margin:0 auto}
+.dsig-cards{display:flex;flex-direction:column;gap:3px;margin-bottom:3px}
+.dsig{padding:18px 20px;background:var(--bg);border:1px solid var(--bdr);position:relative;overflow:hidden}
+.dsig::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:var(--pk);transform:scaleX(0);transform-origin:left;transition:transform .38s ease}
+.dsig:hover::before{transform:scaleX(1)}
+.dsig-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:5px}
+.dsig-area{font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--tx-xl)}
+.dsig-st{font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase}
+.dsig-st.strong{color:#16A34A}.dsig-st.concern{color:#D97706}.dsig-st.critical{color:#DC2626}
+.dsig-txt{font-size:13px;color:var(--tx-m);line-height:1.65}
+.sbars{display:flex;flex-direction:column;gap:12px;margin:14px 0}
+.sbar-meta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--tx-l)}
+.sbar-meta span:last-child{color:var(--tx);font-weight:400}
+.strack{height:2px;background:var(--bg-m);position:relative;margin-top:4px}
+.sfill{position:absolute;left:0;top:0;bottom:0;background:var(--pk);width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+.dfomo-b{background:var(--pk);padding:24px;margin-bottom:3px}
+.dfomo-b .dfomo-h{font-family:var(--disp);font-size:18px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:8px}
+.dfomo-b .dfomo-p{font-size:13px;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:16px}
+.dfomo-hid{background:var(--bg-s);border:1px solid var(--bdr);border-left:3px solid var(--pk);padding:14px 18px;margin-bottom:3px}
+.dfomo-hid-l{font-family:var(--mono);font-size:8px;letter-spacing:.34em;text-transform:uppercase;color:var(--pk);margin-bottom:6px}
+.dfomo-hid-t{font-size:12px;color:var(--tx-l);line-height:1.65}
+.drest-bar{padding:16px 0;border-top:1px solid var(--bdr);margin-top:12px;display:flex;align-items:center;justify-content:space-between}
+.drest-btn{background:none;border:none;font-family:var(--mono);font-size:8px;letter-spacing:.26em;text-transform:uppercase;color:var(--tx-l);cursor:pointer;transition:color .18s}
+.drest-btn:hover{color:var(--pk)}
+.drest-dis{font-size:11px;color:var(--tx-xl);max-width:240px;text-align:right;line-height:1.5}
+.dform-g{margin-bottom:14px}
+.dform-l{font-family:var(--mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--tx-m);display:block;margin-bottom:6px}
+.dform-i,.dform-s{width:100%;padding:11px 12px;background:var(--bg);border:1px solid var(--bdr-d);color:var(--tx);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .18s}
+.dform-i:focus,.dform-s:focus{border-color:var(--pk);box-shadow:0 0 0 3px rgba(247,12,149,.07)}
+.dform-s{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A7A8A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+.callout{padding:14px 18px;border-left:3px solid var(--pk);background:var(--pk-md);margin-top:8px}
+
+/* FORM */
+.form-g{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.form-l{font-family:var(--mono);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--tx-m)}
+.form-i,.form-sel,.form-ta{width:100%;padding:12px 14px;background:var(--bg);border:1px solid var(--bdr-d);color:var(--tx);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .18s}
+.form-i:focus,.form-sel:focus,.form-ta:focus{border-color:var(--pk);box-shadow:0 0 0 3px rgba(247,12,149,.08)}
+.form-ta{resize:vertical;min-height:100px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+/* FOOTER */
+.foot{border-top:1px solid var(--bdr);padding:56px 40px 40px;background:var(--bg)}
+.foot .w{display:grid;grid-template-columns:260px 1fr 1fr 1fr;gap:40px}
+.foot-tag{font-size:13px;color:var(--tx-l);line-height:1.7;margin-bottom:20px}
+.foot-ct{font-family:var(--mono);font-size:8.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--pk);margin-bottom:16px;display:block}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.foot-col a{font-size:13px;color:var(--tx-m);text-decoration:none;transition:color .15s;cursor:pointer}
+.foot-col a:hover{color:var(--pk)}
+.foot-btm{border-top:1px solid var(--bdr);padding:18px 40px;background:var(--bg)}
+.foot-btm .w{display:flex;justify-content:space-between;align-items:center}
+.foot-copy{font-family:var(--mono);font-size:8px;letter-spacing:.24em;text-transform:uppercase;color:var(--tx-xl)}
+.foot-soc{display:flex;gap:18px}
+.foot-soc a{font-family:var(--mono);font-size:8px;letter-spacing:.24em;text-transform:uppercase;color:var(--tx-l);text-decoration:none;transition:color .15s}
+.foot-soc a:hover{color:var(--pk)}
+
+
+/* CLIENT LOGOS */
+.logo-ticker-w{overflow:hidden;height:64px;display:flex;align-items:center;background:var(--bg);border-bottom:1px solid var(--bdr)}
+.logo-ticker{display:flex;white-space:nowrap;animation:ltsc 30s linear infinite;align-items:center}
+.logo-ticker-item{font-family:var(--disp);font-size:18px;font-weight:800;color:var(--tx-xl);padding:0 44px;flex-shrink:0;letter-spacing:.02em;text-transform:uppercase;opacity:.45;transition:opacity .3s}
+.logo-ticker-item:hover{opacity:.8}
+@keyframes ltsc{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* LIVE COUNTER */
+.live-counter{display:flex;align-items:center;gap:8px;margin-top:16px}
+.live-dot{width:8px;height:8px;background:#16A34A;border-radius:50%;animation:livepulse 2s ease-in-out infinite}
+@keyframes livepulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.live-txt{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--tx-l)}
+.live-num{font-family:var(--disp);font-weight:800;color:var(--pk)}
+
+/* VIDEO PLACEHOLDER */
+.vid-placeholder{background:var(--bg-m);border:1px solid var(--bdr);padding:48px;text-align:center;margin-top:24px}
+.vid-placeholder-txt{font-family:var(--mono);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--tx-l)}
+
+/* ANIM */
+.fu{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.fu.vis{opacity:1;transform:none}
+.sc{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.sc.vis{opacity:1;transform:none}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;right:28px;z-index:9999;background:var(--tx);color:var(--bg);padding:14px 22px;display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;transform:translateY(80px);opacity:0;transition:all .3s ease}
+.toast.show{transform:none;opacity:1}
+.toast-dot{width:8px;height:8px;background:var(--gn);border-radius:50%;flex-shrink:0}
+
+/* RESPONSIVE */
+@media(max-width:1100px){.g4{grid-template-columns:repeat(2,1fr)}.foot .w{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){
+.sec{padding:56px 20px}
+.hero{padding:56px 20px 48px}
+.hero .w{max-width:100%}
+.hero-stats{flex-wrap:wrap}
+.g2,.g3,.g4,.gsb{grid-template-columns:1fr}
+.gband{padding:40px 20px}.gband .w{grid-template-columns:1fr}
+.foot{padding:40px 20px}.foot .w{grid-template-columns:1fr 1fr}
+.foot-btm{padding:16px 20px}.foot-btm .w{flex-direction:column;gap:10px;text-align:center}
+.form-grid,.prod-body,.prod-hdr,.price-grid{grid-template-columns:1fr}
+.ptabs{flex-direction:column}.ppanel.on{grid-template-columns:1fr}
+.step-item{grid-template-columns:44px 1fr;gap:16px}.step-n{font-size:28px}
+.diag-hero{grid-template-columns:1fr}.diag-l{padding:40px 20px;border-right:none;border-bottom:1px solid var(--bdr)}.diag-r{padding:36px 20px}
+.dstats{flex-wrap:wrap}
+.nav{padding:0 20px}.nav-links,.nav-bt{display:none}.nav-ham{display:flex}
+}
+
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav"><div class="w"><a class="nav-brand" href="#home"><span class="nav-bn">Hookana</span><span class="nav-bt">Creative Production Agency</span></a><ul class="nav-links"><li><a href="#home">Home</a></li><li><a href="#process">How It Works</a></li><li><a href="#services">Services</a></li><li><a href="#personas">Who It's For</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#audit">Free Check</a></li><li><a href="#contact">Contact</a></li></ul><a class="nav-cta" href="#contact">Get 2 Free Concepts</a><button class="nav-ham" onclick="document.getElementById('nav').classList.toggle('mob')"><span></span><span></span><span></span></button></div></nav>
+
+<div style="padding-top:var(--nav);position:relative;z-index:1;">
+
+<!-- HERO -->
+<section class="hero" id="home"><div class="w"><span class="label fu">Creative production &middot; Performance-obsessed &middot; Built for speed</span><h1 class="display fu" style="margin-top:18px;">Creativity at<br><strong><span class="acc">Volume.</span></strong><br><em>Without the Compromise.</em></h1><div class="hero-stats stagger"><div class="hero-stat sc"><div class="hero-stat-n">48hr</div><div class="hero-stat-l">Avg. Turnaround</div></div><div class="hero-stat sc"><div class="hero-stat-n">10K+</div><div class="hero-stat-l">Creatives Shipped</div></div><div class="hero-stat sc"><div class="hero-stat-n">3x</div><div class="hero-stat-l">Faster Than In-House</div></div></div><div class="live-counter fu"><span class="live-dot"></span><span class="live-txt"><span class="live-num" id="live-count">0</span> concepts shipped last month</span></div><p class="hero-desc fu">D2C brands and performance teams need fresh creatives, fast, on-brand, and at scale. Hookana is the creative production engine that keeps your pipeline full without blowing your budget or burning out your team.</p><div class="hero-acts fu"><a class="btn btn-pk btn-lg" href="#contact">Get Your First 2 Concepts Free</a></div></div></section>
+
+<div class="ticker-w"><div class="ticker"><span class="ticker-i"><span class="ac">&#10022;</span> 50+ D2C brands served</span><span class="ticker-i"><span class="ac">&#10022;</span> 10,000+ creatives shipped</span><span class="ticker-i"><span class="ac">&#10022;</span> 48-hr avg turnaround</span><span class="ticker-i"><span class="ac">&#10022;</span> 4.9&#9733; client rating</span><span class="ticker-i"><span class="ac">&#10022;</span> US &middot; AU &middot; India</span><span class="ticker-i"><span class="ac">&#10022;</span> 50+ D2C brands served</span><span class="ticker-i"><span class="ac">&#10022;</span> 10,000+ creatives shipped</span><span class="ticker-i"><span class="ac">&#10022;</span> 48-hr avg turnaround</span><span class="ticker-i"><span class="ac">&#10022;</span> 4.9&#9733; client rating</span><span class="ticker-i"><span class="ac">&#10022;</span> US &middot; AU &middot; India</span></div></div>
+
+<div class="logo-ticker-w"><div class="logo-ticker"><span class="logo-ticker-item">Brand A</span><span class="logo-ticker-item">Brand B</span><span class="logo-ticker-item">Brand C</span><span class="logo-ticker-item">Brand D</span><span class="logo-ticker-item">Brand E</span><span class="logo-ticker-item">Brand F</span><span class="logo-ticker-item">Brand G</span><span class="logo-ticker-item">Brand H</span><span class="logo-ticker-item">Brand A</span><span class="logo-ticker-item">Brand B</span><span class="logo-ticker-item">Brand C</span><span class="logo-ticker-item">Brand D</span><span class="logo-ticker-item">Brand E</span><span class="logo-ticker-item">Brand F</span><span class="logo-ticker-item">Brand G</span><span class="logo-ticker-item">Brand H</span></div></div>
+
+<!-- PROBLEM -->
+<section class="sec sec-div"><div class="w"><div class="sec-hdr fu"><span class="label">Sound familiar?</span><h2 class="heading" style="margin-top:14px;"><strong>Scaling ad spend is easy.</strong><br>Scaling creatives? Not so much.</h2></div><div class="g4 stagger"><div class="card card-ac sc"><span class="label" style="margin-bottom:14px;display:block;">Bottleneck</span><div class="sub" style="margin-bottom:8px;">Creative drought</div><p class="body">Your ad platforms move faster than your team can produce. Winning ads stale out before you can replace them.</p></div><div class="card card-ac sc"><span class="label" style="margin-bottom:14px;display:block;">Lag</span><div class="sub" style="margin-bottom:8px;">Agency slowdown</div><p class="body">Traditional agencies take weeks. By the time creatives arrive, the testing window has closed.</p></div><div class="card card-ac sc"><span class="label" style="margin-bottom:14px;display:block;">Burnout</span><div class="sub" style="margin-bottom:8px;">Team stretched thin</div><p class="body">In-house designers are stretched thin across revisions, resizes, and last-minute requests.</p></div><div class="card card-ac sc"><span class="label" style="margin-bottom:14px;display:block;">Risk</span><div class="sub" style="margin-bottom:8px;">Inconsistent output</div><p class="body">Freelancers and offshore teams deliver unpredictable quality. You spend more time fixing than launching.</p></div></div></div></section>
+
+<!-- CREATIVE HEALTH CHECK -->
+<section class="diag-sec" id="audit"><div class="diag-hero"><div class="diag-l"><span class="label fu" style="margin-top:16px;">Free Diagnostic &middot; 3 Minutes</span><h2 class="display fu" style="margin-top:14px;margin-bottom:16px;font-size:clamp(30px,4vw,56px);"><strong>How healthy are your ad creatives?</strong><br><em>Most brands don't know.</em></h2><p class="body-lg fu" style="margin-bottom:6px;">7 questions designed by creative strategists who've shipped 10,000+ ad creatives for D2C brands.</p><p class="body fu" style="margin-bottom:24px;">Your answers reveal the exact bottlenecks killing your ad performance.</p><div class="dstats fu"><div class="dstat"><div class="dstat-n">73%</div><div class="dstat-l">Brands have blind spots</div></div><div class="dstat"><div class="dstat-n">3 min</div><div class="dstat-l">To diagnose yours</div></div><div class="dstat"><div class="dstat-n">Free</div><div class="dstat-l">AI-powered analysis</div></div></div><div class="callout fu"><p class="body-sm"><strong style="color:var(--tx);">Built from patterns across 10,000+ ad creatives.</strong> Identifies structural gaps that cause creative fatigue, low CTR, and wasted ad spend.</p></div></div><div class="diag-r"><div class="dtool" id="dtool">
+<div id="dph-intro"><span class="label" style="margin-bottom:12px;">Before we begin</span><p class="body" style="margin-bottom:18px;">Tell us about your brand so we can calibrate the diagnostic.</p><div class="dform-g"><label class="dform-l">Brand name *</label><input class="dform-i" type="text" id="df-name" placeholder="e.g. GlowUp Skincare"></div><div class="dform-g"><label class="dform-l">Industry *</label><select class="dform-s" id="df-vert"><option value="">Select...</option><option>Beauty &amp; Skincare</option><option>Fashion &amp; Apparel</option><option>Health &amp; Wellness</option><option>Food &amp; Beverage</option><option>Home &amp; Living</option><option>Tech &amp; Gadgets</option><option>Fitness &amp; Sports</option><option>Pet Products</option><option>Other D2C</option></select></div><div class="dform-g"><label class="dform-l">Monthly ad spend</label><select class="dform-s" id="df-spend"><option value="">Select...</option><option>Under $5K</option><option>$5K - $25K</option><option>$25K - $100K</option><option>$100K - $500K</option><option>$500K+</option></select></div><button class="btn btn-pk" onclick="dStart()">Start Creative Health Check &rarr;</button></div>
+<div id="dph-q" style="display:none;"><div class="dprog"><div class="dprog-f" id="dprog"></div></div><div class="dq-meta"><span class="dq-step" id="dq-step"></span><span class="dq-of" id="dq-of"></span></div><div class="dq-text" id="dq-text"></div><div class="dq-sub" id="dq-sub"></div><div id="dq-opts"></div><div class="dbtn-row"><button class="btn btn-pk" id="dbtn-next" onclick="dNext()" disabled>Next &rarr;</button><button class="btn btn-ghost" id="dbtn-back" onclick="dPrev()">&larr; Back</button></div></div>
+<div id="dph-anl" style="display:none;"><div class="danl-wrap"><div class="dpulse"><div class="dpulse-dot"></div></div><p class="mono-sm" id="da-status">Calculating your Creative Health Score...</p><div class="dlog" id="da-log"></div></div></div>
+<div id="dph-res" style="display:none;"><div class="dr-hdr" id="dr-hdr"><div class="dr-pill" id="dr-pill"></div><div class="dr-num" id="dr-num">0</div><span class="dr-lbl">Creative Health Score</span><p class="dr-sum" id="dr-sum"></p></div><div id="dr-bars" style="padding:18px 20px;background:var(--bg);border:1px solid var(--bdr);margin-bottom:3px;"></div><div class="dsig-cards" id="dr-sigs"></div><div class="dfomo-hid" id="dr-fh"></div><div class="dfomo-b" id="dr-fomo"></div><div class="drest-bar"><button class="drest-btn" onclick="dRestart()">&larr; Run again</button><p class="drest-dis">Directional check. A full Hookana audit delivers asset-level recommendations.</p></div></div>
+</div></div></div></section>
+
+
+<!-- THE HOOKANA WAY -->
+<section class="sec sec-sub sec-div" id="process"><div class="w"><div class="gsb"><div><span class="label fu">The Hookana Way</span><h2 class="heading fu" style="margin-top:14px;"><strong>Closer than an agency.</strong><br>Faster than a team.</h2><p class="body-lg fu" style="margin-top:14px;">Turning briefs into scroll-stopping ads, on repeat. We integrate into your workflow and deliver a steady stream of creatives designed for testing and scale. From UGC and static variants to AI video, we produce the ad formats your ad platforms need to perform.</p><a class="btn btn-pk fu" href="#contact" style="margin-top:24px;display:inline-flex;">Get Your First 2 Concepts Free</a></div><div class="step-list fu"><div class="step-item"><div class="step-n">01</div><div><div class="sub">Brief it.</div><p class="body">Drop your brief via Slack, Notion, email. We adapt to your tools.</p><span class="step-tag">Day 0</span></div></div><div class="step-item"><div class="step-n">02</div><div><div class="sub">We build it.</div><p class="body">Our creative team produces ad-ready assets in 48 hours or less.</p><span class="step-tag">24 - 48 hours</span></div></div><div class="step-item"><div class="step-n">03</div><div><div class="sub">You test it.</div><p class="body">Launch, measure, iterate. We keep the creative pipeline flowing so you never run dry.</p><span class="step-tag">Ongoing</span></div></div></div></div></div></section>
+
+<!-- SERVICES -->
+<section class="sec sec-div" id="services"><div class="w"><div class="sec-hdr fu"><span class="label">What We Do</span><h2 class="heading" style="margin-top:14px;"><strong>Full-stack creative production.</strong></h2></div>
+<div class="prod fu" style="border-top:3px solid var(--pk);"><div style="padding:44px 40px;border-bottom:1px solid var(--bdr);"><span class="prod-badge">Core Service</span><h3 class="heading"><strong>Ad Creative Production</strong></h3><p class="body-lg" style="margin-top:10px;max-width:480px;">Static ads, video ads, carousels, motion graphics. Optimized for Meta, TikTok, Snapchat, and YouTube.</p><a class="btn btn-pk" href="#contact" style="margin-top:18px;display:inline-flex;">Get Your First 2 Concepts Free</a></div><div class="prod-body"><div><div class="sub" style="margin-bottom:14px;">What you receive</div><ul class="dl"><li>Hook variations and A/B test sets</li><li>Static ad designs (feed, story, square, landscape)</li><li>Short-form video cuts for Meta, TikTok, Snapchat</li><li>Carousel ad sequences</li><li>Motion graphics and animated assets</li><li>Platform-specific resizes and adaptations</li></ul></div><div style="display:flex;flex-direction:column;gap:14px;"><div class="prod-entry"><div class="prod-entry-l">Turnaround</div><div class="prod-entry-t">Standard: 48 hours. Rush (same-day) available on Growth and Enterprise plans.</div></div><div class="prod-entry" style="border-left-color:var(--gn);"><div class="prod-entry-l" style="color:var(--gn-d);">Revisions</div><div class="prod-entry-t"><strong style="color:var(--tx);">Unlimited.</strong> First-draft approval rate above 85%.</div></div><div class="prod-entry"><div class="prod-entry-l">Best For</div><div class="prod-entry-t">Performance marketers running paid acquisition who need consistent creative volume.</div></div></div></div></div>
+<div class="prod fu"><div style="padding:44px 40px;border-bottom:1px solid var(--bdr);"><span class="prod-badge">Video Production</span><h3 class="heading"><strong>UGC-Style Edits</strong></h3><p class="body-lg" style="margin-top:10px;max-width:480px;">Authentic creator-style video content that feels native to the feed.</p><a class="btn btn-pk" href="#contact" style="margin-top:18px;display:inline-flex;">Get Your First 2 Concepts Free</a></div><div class="prod-body"><div><div class="sub" style="margin-bottom:14px;">What you receive</div><ul class="dl"><li>UGC-style video edits from raw creator footage</li><li>Hook-first editing with pattern-interrupt openers</li><li>Trending audio integration and timing</li><li>Subtitle/caption overlays for silent viewing</li><li>Performance-optimized cuts for paid placement</li></ul></div><div style="display:flex;flex-direction:column;gap:14px;"><div class="prod-entry"><div class="prod-entry-l">Best For</div><div class="prod-entry-t">D2C brands running TikTok, Instagram Reels, and Snapchat campaigns.</div></div><div class="prod-entry"><div class="prod-entry-l">How It Works</div><div class="prod-entry-t">Send us raw creator footage, product shots, or screen recordings. We handle everything.</div></div></div></div></div>
+<div class="prod fu"><div style="padding:44px 40px;border-bottom:1px solid var(--bdr);"><span class="prod-badge">Strategy Layer</span><h3 class="heading"><strong>Creative Strategy</strong></h3><p class="body-lg" style="margin-top:10px;max-width:480px;">Hook frameworks, angle testing roadmaps, competitor creative teardowns.</p><a class="btn btn-pk" href="#contact" style="margin-top:18px;display:inline-flex;">Get Your First 2 Concepts Free</a></div><div class="prod-body"><div><div class="sub" style="margin-bottom:14px;">What you receive</div><ul class="dl"><li>Competitor creative analysis and teardowns</li><li>Hook framework development for your brand</li><li>Angle testing roadmap with prioritized concepts</li><li>Creative brief templates customized to your brand</li></ul></div><div style="display:flex;flex-direction:column;gap:14px;"><div class="prod-entry"><div class="prod-entry-l">Best For</div><div class="prod-entry-t">Teams who have production capacity but lack creative direction.</div></div><div class="prod-entry"><div class="prod-entry-l">Pairs With</div><div class="prod-entry-t">Ad Creative Production + Creative Strategy = full-stack creative operations.</div></div></div></div></div>
+<div class="prod fu"><div style="padding:44px 40px;border-bottom:1px solid var(--bdr);"><span class="prod-badge">AI-Augmented</span><h3 class="heading"><strong>AI Content Generation</strong></h3><p class="body-lg" style="margin-top:10px;max-width:480px;">AI-assisted workflows that multiply output without multiplying costs.</p><a class="btn btn-pk" href="#contact" style="margin-top:18px;display:inline-flex;">Get Your First 2 Concepts Free</a></div><div class="prod-body"><div><div class="sub" style="margin-bottom:14px;">How it works</div><ul class="dl"><li>AI-generated concept mockups before production</li><li>Rapid hook and headline variations</li><li>Human review on every output before delivery</li></ul></div><div style="display:flex;flex-direction:column;gap:14px;"><div class="prod-entry"><div class="prod-entry-l">The Principle</div><div class="prod-entry-t">AI accelerates. Humans decide. No automated slop ships to your inbox.</div></div><div class="prod-entry" style="border-left-color:var(--gn);"><div class="prod-entry-l" style="color:var(--gn-d);">Result</div><div class="prod-entry-t"><strong style="color:var(--tx);">3x output</strong> at no additional cost.</div></div></div></div></div>
+</div></section>
+
+<!-- PERSONAS -->
+<section class="sec sec-div" id="personas"><div class="w"><div class="sec-hdr fu"><span class="label">Built For You</span><h2 class="heading" style="margin-top:14px;"><strong>We get it.</strong> We've been in your shoes.</h2></div>
+<div class="ptabs fu"><button class="ptab on" onclick="swP(0)">Performance Marketers</button><button class="ptab" onclick="swP(1)">Agency Founders</button><button class="ptab" onclick="swP(2)">D2C Founders</button></div>
+<div class="ppanel on" id="p0"><div class="card"><span class="label-g" style="margin-bottom:12px;display:block;">The pain</span><div class="sub" style="margin-bottom:10px;">You know creative is the lever. You can't pull it fast enough.</div><p class="body">"I know the lever is creative, but I can't pull it fast enough." Your ad accounts need fresh assets daily, not weekly. Your ROAS depends on constantly testing new hooks, formats, and angles. But your creative pipeline can't keep up with ad platform velocity.</p></div><div class="card card-pk"><span class="label" style="margin-bottom:12px;display:block;color:rgba(255,255,255,.6);">How Hookana helps</span><div class="sub" style="margin-bottom:10px;">Creatives that match your ad platform's speed.</div><p class="body">Hookana delivers creatives at the speed of your ad platform. Constant testing, zero bottlenecks, predictable output.</p><div style="margin-top:16px;"><span class="pill">48hr turnaround</span><span class="pill">Unlimited revisions</span><span class="pill">Ad-platform native formats</span><span class="pill">Consistent quality at scale</span></div><a class="btn btn-gn" href="#contact" style="margin-top:16px;display:inline-flex;">Start a Sprint</a></div></div>
+<div class="ppanel" id="p1"><div class="card"><span class="label-g" style="margin-bottom:12px;display:block;">The pain</span><div class="sub" style="margin-bottom:10px;">Clients keep growing. Your team doesn't scale with them.</div><p class="body">"One bad month and clients start questioning us." Missed deadlines, burned-out designers, inconsistent quality across accounts. Hiring more people isn't fixing the problem. It's just making it more expensive.</p></div><div class="card card-pk"><span class="label" style="margin-bottom:12px;display:block;color:rgba(255,255,255,.6);">How Hookana helps</span><div class="sub" style="margin-bottom:10px;">Your creative backend that never drops the ball.</div><p class="body">Hookana acts as an extension of your delivery team. We absorb volume spikes without quality drops. Your reputation stays intact.</p><div style="margin-top:16px;"><span class="pill">48hr turnaround</span><span class="pill">Unlimited revisions</span><span class="pill">Ad-platform native formats</span><span class="pill">Consistent quality at scale</span></div><a class="btn btn-gn" href="#contact" style="margin-top:16px;display:inline-flex;">Scale Your Output</a></div></div>
+<div class="ppanel" id="p2"><div class="card"><span class="label-g" style="margin-bottom:12px;display:block;">The pain</span><div class="sub" style="margin-bottom:10px;">You built a product people love. Now you need ads that sell it.</div><p class="body">"I'm spending $30K a month on ads and my creative is the weakest link." You know your product is good. Customer reviews prove it. But your ads don't capture that magic. You're stuck choosing between expensive agencies that don't understand D2C speed, or cheap freelancers who deliver inconsistent work. Meanwhile, your competitors are shipping 30 creatives a week while you're arguing over one carousel.</p></div><div class="card card-pk"><span class="label" style="margin-bottom:12px;display:block;color:rgba(255,255,255,.6);">How Hookana helps</span><div class="sub" style="margin-bottom:10px;">Your creative team without the full-time cost.</div><p class="body">Hookana gives you agency-quality creative production at founder-friendly pricing. We learn your brand once, then deliver a constant flow of ad-ready assets. You focus on product and growth. We handle the creative engine.</p><div style="margin-top:16px;"><span class="pill">48hr turnaround</span><span class="pill">Unlimited revisions</span><span class="pill">Ad-platform native formats</span><span class="pill">Consistent quality at scale</span></div><a class="btn btn-gn" href="#contact" style="margin-top:16px;display:inline-flex;">Book a 15 Min Call</a></div></div>
+</div></section>
+
+<!-- STATS -->
+<section class="sec sec-dk sec-div"><div class="w"><div class="g4 stagger" style="gap:0;"><div class="stat-b sc" style="border-left-color:var(--gn);"><div class="stat-n" style="color:#fff;">3x</div><div class="stat-l">Faster creative output</div></div><div class="stat-b sc" style="border-left-color:var(--gn);"><div class="stat-n" style="color:#fff;">80%</div><div class="stat-l">Lower cost vs agencies</div></div><div class="stat-b sc" style="border-left-color:var(--gn);"><div class="stat-n" style="color:#fff;">48hr</div><div class="stat-l">Average turnaround</div></div><div class="stat-b sc" style="border-left-color:var(--gn);"><div class="stat-n" style="color:#fff;">10K+</div><div class="stat-l">Creatives shipped</div></div></div></div></section>
+
+<!-- TESTIMONIALS -->
+<section class="sec sec-sub sec-div"><div class="w"><div class="sec-hdr fu"><span class="label">Don't Take Our Word For It</span><h2 class="heading" style="margin-top:14px;"><strong>Trusted by brands</strong> obsessed with growth.</h2></div><div class="vid-placeholder fu" style="min-height:360px;display:flex;align-items:center;justify-content:center;"><div class="vid-placeholder-txt">&#9654; Testimonial video &mdash; replace with actual video embed</div></div></div></section>
+
+<!-- PRICING -->
+<section class="sec sec-div" id="pricing"><div class="w"><div class="sec-hdr fu" style="text-align:center;"><span class="label">Simple Pricing</span><h2 class="heading" style="margin-top:14px;max-width:100%;"><strong>Plans that grow</strong> with you.</h2></div><div class="price-grid stagger"><div class="price-card sc"><div class="price-name">Starter Sprint</div><div class="price-num">Custom</div><p class="price-desc">For brands testing creative production outsourcing.</p><div class="price-feat"><div class="price-feat-i"><span class="ck">&#10003;</span> 30 creatives / month</div><div class="price-feat-i"><span class="ck">&#10003;</span> 48hr turnaround</div><div class="price-feat-i"><span class="ck">&#10003;</span> 1 brand</div><div class="price-feat-i"><span class="ck">&#10003;</span> Slack or email support</div><div class="price-feat-i"><span class="ck">&#10003;</span> Unlimited revisions</div></div><a class="btn btn-pk" href="#contact" style="width:100%;justify-content:center;">Get Your First 2 Concepts Free</a></div><div class="price-card pop sc"><div class="pop-tag">POPULAR</div><div class="price-name">Growth Engine</div><div class="price-num">Custom</div><p class="price-desc">For teams scaling creative output aggressively.</p><div class="price-feat"><div class="price-feat-i"><span class="ck">&#10003;</span> 50+ creatives / month</div><div class="price-feat-i"><span class="ck">&#10003;</span> 24-48hr turnaround</div><div class="price-feat-i"><span class="ck">&#10003;</span> Up to 3 brands</div><div class="price-feat-i"><span class="ck">&#10003;</span> Priority queue</div></div><a class="btn btn-gn" href="#contact" style="width:100%;justify-content:center;">Get Your First 2 Concepts Free</a></div><div class="price-card sc"><div class="price-name">Enterprise</div><div class="price-num">Custom</div><p class="price-desc">For agencies and large D2C brands with high-volume needs.</p><div class="price-feat"><div class="price-feat-i"><span class="ck">&#10003;</span> Unlimited creatives</div><div class="price-feat-i"><span class="ck">&#10003;</span> Same-day rush available</div><div class="price-feat-i"><span class="ck">&#10003;</span> Unlimited brands</div><div class="price-feat-i"><span class="ck">&#10003;</span> Custom workflows</div><div class="price-feat-i"><span class="ck">&#10003;</span> Dedicated team</div></div><a class="btn btn-dk" href="#contact" style="width:100%;justify-content:center;">Get Your First 2 Concepts Free</a></div></div></div></section>
+
+<!-- FAQ -->
+<section class="sec sec-div" id="faq"><div class="w"><div class="gsb"><div><span class="label fu">FAQ</span><h2 class="heading fu" style="margin-top:14px;"><strong>Got questions?</strong><br>Good.</h2></div><div class="fu"><div class="faq-item"><button class="faq-q" onclick="tFaq(this)">How fast can you deliver?<span class="faq-ic">+</span></button><div class="faq-a">Most projects ship within 48 hours. Rush delivery (same-day) is available on Growth and Enterprise plans.</div></div><div class="faq-item"><button class="faq-q" onclick="tFaq(this)">What types of creatives do you produce?<span class="faq-ic">+</span></button><div class="faq-a">Static ads, video ads, carousel ads, UGC-style edits, motion graphics, creative concepts, and ad iterations. If it runs on Meta, TikTok, Snapchat, or YouTube, we make it.</div></div><div class="faq-item"><button class="faq-q" onclick="tFaq(this)">Do you offer revisions?<span class="faq-ic">+</span></button><div class="faq-a">Unlimited revisions on all plans. First-draft approval rate sits above 85%.</div></div><div class="faq-item"><button class="faq-q" onclick="tFaq(this)">What does "concept to variation" mean?<span class="faq-ic">+</span></button><div class="faq-a">A concept is a fresh creative idea with its own angle, hook, and visual approach. A variation is a spin on a winning concept: different headline, different opening frame, different CTA, or different pacing. We build the original concept, test it, and when it performs, we rapidly produce 3-5 variations to extend its lifespan before fatigue sets in. That's concept to variation, and it's how the best performance teams keep ROAS stable week after week.</div></div><div class="faq-item"><button class="faq-q" onclick="tFaq(this)">How is Hookana different from a freelancer or agency?<span class="faq-ic">+</span></button><div class="faq-a">Freelancers are unpredictable. Agencies are slow and expensive. Hookana gives you dedicated creative production at agency quality, at a fraction of the cost, and we actually hit deadlines.</div></div></div></div></div></section>
+
+<!-- CTA BAND -->
+<div class="gband"><div class="w"><div><h2 class="heading" style="color:#fff;"><strong>Stop letting creative</strong><br>be the bottleneck.</h2><p class="body-lg" style="color:rgba(255,255,255,.78);margin-top:10px;">See how Hookana can 3x your creative output in just 48 hours.</p></div><div style="text-align:right;flex-shrink:0;"><a class="btn btn-gn btn-lg" href="#contact">Get Your First 2 Concepts Free</a></div></div></div>
+
+<!-- CONTACT -->
+<section class="sec sec-div" id="contact"><div class="w"><div style="max-width:560px;margin:0 auto;text-align:center;"><h2 class="heading fu" style="margin-bottom:8px;"><strong>Get your first 2 concepts free.</strong></h2><p class="body-lg fu" style="margin-bottom:36px;">No strings. No credit card. Just tell us about your brand and we'll build two ad concepts on the house.</p><div class="fu" style="text-align:left;"><div class="form-g"><label class="form-l">Name *</label><input class="form-i" type="text" placeholder="Jane Smith"></div><div class="form-g"><label class="form-l">Email *</label><input class="form-i" type="email" placeholder="jane@brand.com"></div><div class="form-g"><label class="form-l">Agency / Brand Website *</label><input class="form-i" type="url" placeholder="https://yourbrand.com"></div><button class="btn btn-pk btn-lg" style="margin-top:12px;width:100%;justify-content:center;" onclick="showToast('Thanks! We will be in touch within 24 hours.')">Book a 15 Min Exploration Call</button><p class="body-sm" style="text-align:center;margin-top:14px;color:var(--tx-xl);">We'll review your brand, build 2 sample concepts, and walk you through them on a quick call.</p></div></div></div></section>
+
+<!-- FOOTER -->
+<footer class="foot"><div class="w"><div><span class="nav-bn" style="font-size:20px;display:block;margin-bottom:8px;">Hookana</span><p class="foot-tag">Creative production for performance marketers who refuse to compromise.</p><a class="btn btn-dk btn-sm" href="#contact">Get in Touch</a></div><div class="foot-col"><span class="foot-ct">Services</span><ul><li><a href="#services">Ad Creatives</a></li><li><a href="#services">UGC Edits</a></li><li><a href="#services">Creative Strategy</a></li><li><a href="#services">AI Production</a></li></ul></div><div class="foot-col"><span class="foot-ct">Company</span><ul><li><a href="#process">How It Works</a></li><li><a href="#personas">Who It's For</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul></div><div class="foot-col"><span class="foot-ct">Resources</span><ul><li><a href="#audit">Free Creative Check</a></li><li><a href="#">Newsletter</a></li><li><a href="#">Case Studies</a></li></ul></div></div></footer>
+<div class="foot-btm"><div class="w"><span class="foot-copy">&copy; 2026 Hookana &middot; All rights reserved.</span><div class="foot-soc"><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">TikTok</a></div></div></div>
+
+</div>
+
+<div class="toast" id="toast"><span class="toast-dot"></span><span id="toast-txt"></span></div>
+
+<script>
+
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;if(el.classList.contains('stagger')){Array.from(el.querySelectorAll('.sc')).forEach((c,i)=>setTimeout(()=>c.classList.add('vis'),i*100));}else el.classList.add('vis');obs.unobserve(el);});},{threshold:.1});document.querySelectorAll('.fu,.stagger').forEach(el=>obs.observe(el));
+window.addEventListener('scroll',()=>{document.getElementById('nav').style.boxShadow=window.scrollY>10?'0 1px 20px rgba(0,0,0,.06)':'none';},{passive:true});
+function swP(i){document.querySelectorAll('.ptab').forEach((t,j)=>t.classList.toggle('on',j===i));document.querySelectorAll('.ppanel').forEach((p,j)=>p.classList.toggle('on',j===i));}
+function tFaq(b){const it=b.closest('.faq-item'),w=it.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!w)it.classList.add('open');}
+function showToast(m){const t=document.getElementById('toast');document.getElementById('toast-txt').textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
+
+const QS=[{id:'q1',area:'Hook Quality',text:'When you look at your last 10 ads, how many had a genuinely different opening hook?',sub:'Not just different copy on the same template. Different visual pattern, different emotional trigger, different scroll-stop mechanism.',weight:1.8,opts:[{label:'8-10 had distinctly different hooks with different scroll-stop mechanics',val:5},{label:'4-7 had different hooks, the rest were variations of the same pattern',val:3},{label:'2-3 were genuinely different, the rest followed the same formula',val:2},{label:'Most used the same opening style with different text overlays',val:1}]},{id:'q2',area:'Creative Volume',text:'How many net-new creative concepts are you launching per week?',sub:'Not resizes. Not copy swaps. Genuinely new concepts with different angles, formats, or visual approaches.',weight:1.7,opts:[{label:'10+ new concepts per week, across multiple formats',val:5},{label:'5-9 new concepts per week, mostly in 1-2 formats',val:3.5},{label:'2-4 new concepts per week, when the team has bandwidth',val:2},{label:'Less than 2 per week, or we batch monthly',val:1}]},{id:'q3',area:'Format Diversity',text:'How many different ad formats are you actively testing right now?',sub:'Static, carousel, video (talking head), video (product demo), UGC-style, motion graphics, before/after, listicle.',weight:1.5,opts:[{label:'5+ formats actively in rotation, adapted per platform',val:5},{label:'3-4 formats, leaning heavily on 1-2',val:3},{label:'2 formats max',val:2},{label:'Primarily one format across all campaigns',val:1}]},{id:'q4',area:'Testing Velocity',text:'When a creative starts winning, how quickly do you produce variations before performance decays?',sub:'Creative fatigue is real. Winning ads have a shelf life. Can your pipeline spin variations fast enough?',weight:1.8,opts:[{label:'Within 24-48 hours we have 3-5 variations live',val:5},{label:'Within a week, we get 2-3 variations out',val:3.5},{label:'Takes 2-3 weeks, performance usually drops first',val:2},{label:'We rarely iterate on winners',val:1}]},{id:'q5',area:'Creative Strategy',text:'Before producing a new ad, is there a documented brief with a specific angle and hypothesis?',sub:'Not a vague "make it look good." A specific angle, hook type, CTA strategy, and measurable hypothesis.',weight:1.6,opts:[{label:'Every creative ships with angle, hook, hypothesis, and success metric',val:5},{label:'Most have a brief, but more directional than specific',val:3},{label:'Briefs exist sometimes, production often starts without one',val:2},{label:'We rarely brief. Designers create based on intuition',val:1}]},{id:'q6',area:'Performance Analysis',text:'When an ad underperforms, can you identify exactly which creative element failed?',sub:"Hook? Pacing? CTA? Visual style? If you can only say it didn't work, your feedback loop is broken.",weight:1.6,opts:[{label:'We break down by hook, body, CTA, and visual separately',val:5},{label:'Can usually identify the weak point informally',val:3.5},{label:'Look at CTR/CPA but rarely diagnose specific elements',val:2},{label:'Just pause underperformers and move on',val:1}]},{id:'q8',area:'Production Capacity',text:'"We need 20 new creatives by Friday." Could your pipeline deliver?',sub:"The stress test. If production can't handle surge demand, creative is your ceiling.",weight:1.7,opts:[{label:'Yes, comfortably',val:5},{label:'Could do it but quality would suffer',val:3},{label:'Could deliver 5-10 at best',val:2},{label:'No chance. 2-3 weeks minimum',val:1}]}];
+const TW=QS.reduce((s,q)=>s+q.weight,0);let DS={b:'',v:'',sp:'',ans:{},cur:0,sc:0,vd:'',sigs:[],ft:'',ht:'',ss:'',as:{}};
+function dShow(id){['dph-intro','dph-q','dph-anl','dph-res'].forEach(p=>document.getElementById(p).style.display=p===id?'block':'none');}
+function dStart(){const n=document.getElementById('df-name').value.trim(),v=document.getElementById('df-vert').value;if(!n||!v){alert('Please enter your brand name and industry.');return;}DS.b=n;DS.v=v;DS.sp=document.getElementById('df-spend').value;DS.cur=0;dShow('dph-q');rQ(0);}
+function rQ(i){const q=QS[i];document.getElementById('dprog').style.width=((i/QS.length)*100)+'%';document.getElementById('dq-step').textContent='Question '+(i+1);document.getElementById('dq-of').textContent=(i+1)+' of '+QS.length;document.getElementById('dq-text').textContent=q.text;document.getElementById('dq-sub').textContent=q.sub;document.getElementById('dbtn-back').style.display=i===0?'none':'inline-flex';document.getElementById('dbtn-next').disabled=DS.ans[q.id]===undefined;document.getElementById('dbtn-next').innerHTML=i===QS.length-1?'See My Score &rarr;':'Next &rarr;';const o=document.getElementById('dq-opts');o.innerHTML='';const d=document.createElement('div');d.className='dopts';q.opts.forEach((op,j)=>{const b=document.createElement('button');b.className='dopt'+(DS.ans[q.id]===op.val?' sel':'');b.innerHTML='<span class="dopt-k">'+String.fromCharCode(65+j)+'</span><span class="dopt-l">'+op.label+'</span>';b.onclick=()=>{DS.ans[q.id]=op.val;document.querySelectorAll('.dopt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');document.getElementById('dbtn-next').disabled=false;};d.appendChild(b);});o.appendChild(d);}
+function dNext(){if(DS.cur<QS.length-1){DS.cur++;rQ(DS.cur);}else runAnl();}
+function dPrev(){if(DS.cur>0){DS.cur--;rQ(DS.cur);}}
+function calcSc(){let w=0;QS.forEach(q=>{const v=DS.ans[q.id]||1;w+=v*q.weight;DS.as[q.area]=Math.round((v/5)*100);});DS.sc=Math.round((w/(5*TW))*100);DS.vd=DS.sc>=72?'strong':DS.sc>=45?'moderate':'weak';}
+async function runAnl(){calcSc();dShow('dph-anl');const log=document.getElementById('da-log');log.innerHTML='';const li=[{t:'> Processing 7 creative inputs...',d:0,c:1},{t:'> Analyzing hook diversity...',d:600},{t:'> Measuring creative velocity...',d:1200},{t:'> Checking format distribution...',d:1700},{t:'> Evaluating iteration speed...',d:2200,c:1},{t:'> Assessing strategy infrastructure...',d:2800},{t:'> Industry: '+DS.v,d:3300,c:1},{t:'> Score: '+DS.sc+'/100',d:3800},{t:'> Verdict: '+DS.vd.toUpperCase(),d:4200},{t:'> Generating AI analysis...',d:4600,c:1}];li.forEach(({t,d,c})=>setTimeout(()=>{const el=document.createElement('div');el.className='dlog-i'+(c?' gld':'');el.textContent=t;log.appendChild(el);log.scrollTop=log.scrollHeight;},d));setTimeout(async()=>{document.getElementById('da-status').textContent='AI is writing your analysis...';try{await callAI();}catch(e){fallback();}setTimeout(()=>{dShow('dph-res');renderRes();},600);},5200);}
+async function callAI(){const as=QS.map(q=>{const a=DS.ans[q.id];const l=q.opts.find(o=>o.val===a)?.label||'Score '+a;return q.area+': '+l+' ('+a+'/5)';}).join('\\n');const wk=QS.map(q=>({a:q.area,v:DS.ans[q.id]||1,w:q.weight})).sort((a,b)=>(a.v*a.w)-(b.v*b.w)).slice(0,3);const p=`You are a senior creative strategist at Hookana, a creative production agency for D2C brands. You ran a Creative Health Check.\\n\\nBRAND: ${DS.b}\\nINDUSTRY: ${DS.v}\\nSPEND: ${DS.sp||'Not specified'}\\nSCORE: ${DS.sc}/100\\nVERDICT: ${DS.vd.toUpperCase()}\\n\\nRESPONSES:\\n${as}\\n\\nWEAKEST: ${wk.map(w=>w.a).join(', ')}\\n\\nProvide useful creative insights specific to ${DS.v}. For STRONG: surface ceiling gaps. For MODERATE: identify 2-3 high-impact fixes. For WEAK: be direct but frame as solvable.\\n\\nRespond ONLY with valid JSON:\\n{"signals":[{"area":"name","status":"strong"|"concern"|"critical","text":"1-2 sentences"}],"hiddenText":"what a full audit reveals","fomoHeadline":"5-8 words","fomoBody":"2-3 sentences","scoreSummary":"one sentence"}\\n\\nExactly 4 signals.`;const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:p}]})});const d=await r.json();const t=d.content.map(i=>i.text||'').join('').replace(/```json|```/g,'').trim();const j=JSON.parse(t);DS.sigs=j.signals||[];DS.ht=j.hiddenText||'';DS.ft=(j.fomoHeadline||'')+'|||'+(j.fomoBody||'');DS.ss=j.scoreSummary||'';}
+function fallback(){const v=DS.vd;DS.sigs=v==='strong'?[{area:'Hook Diversity',status:'strong',text:DS.b+' shows strong variety. The gap: systematic hook testing, not just variety.'},{area:'Production Speed',status:'strong',text:'Iteration speed is above average. Question: fast enough for the 48-hour fatigue window?'},{area:'Creative Strategy',status:'concern',text:'Even top teams have informal feedback loops. Structured postmortems separate good from elite.'},{area:'Format Coverage',status:'concern',text:'Likely a format blind spot. '+DS.v+' brands testing 5+ formats outperform consistently.'}]:v==='moderate'?[{area:'Hook Quality',status:'concern',text:DS.b+' is recycling patterns. Top '+DS.v+' performers refresh hooks every 2 weeks.'},{area:'Creative Volume',status:'critical',text:'Under-producing for spend level. Need 3x volume to test effectively.'},{area:'Testing Framework',status:'concern',text:'Without structured briefs, every ad is a guess. Winners have systems, not vibes.'},{area:'Iteration Speed',status:'concern',text:DS.v+' fatigue hits at 7-14 days. Need variations within 48 hours.'}]:[{area:'Production Bottleneck',status:'critical',text:DS.b+"'s output is below platform requirements. Current volume funds competitors' cheaper impressions."},{area:'Hook Diversity',status:'critical',text:'Hook monotony problem. Same pattern stops working after 3-5 exposures.'},{area:'Creative Strategy',status:'critical',text:'Producing output, not strategy. Every ad needs a hypothesis.'},{area:'Format Gap',status:'concern',text:'Limited formats = missing audience segments.'}];DS.ht=v==='strong'?'The 3 levers separating top 5% '+DS.v+' performers only surface in a structured audit.':'This pattern maps to a recognizable failure mode in '+DS.v+'. A full audit identifies exactly what to fix first.';const h={strong:'Your score is solid. Here is what caps your ROAS.',moderate:'Your creatives are underperforming. Here is the fix.',weak:'Your creative pipeline is broken. Here is what to do.'};const b={strong:'Score of '+DS.sc+' means strong foundations with specific optimizations that push into top tier performance.',moderate:'Score of '+DS.sc+' means ambition limited by production bottlenecks. 2-3 structural fixes would dramatically improve volume and performance within 30 days.',weak:'Score of '+DS.sc+' means ad spend is being wasted on deprioritized creatives. Good news: this is a production problem, not a product problem.'};DS.ft=h[v]+'|||'+b[v];DS.ss=v==='strong'?DS.b+' has strong foundations with ceiling-breaking opportunities.':v==='moderate'?DS.b+' has potential limited by structural gaps.':DS.b+' needs to rebuild creative production before spend generates returns.';}
+function renderRes(){const hdr=document.getElementById('dr-hdr');hdr.className='dr-hdr '+DS.vd;const vl={strong:'STRONG',moderate:'NEEDS WORK',weak:'CRITICAL'};document.getElementById('dr-pill').textContent=vl[DS.vd];document.getElementById('dr-sum').textContent=DS.ss;let c=0;const tm=setInterval(()=>{c=Math.min(c+DS.sc/60,DS.sc);document.getElementById('dr-num').textContent=Math.round(c);if(c>=DS.sc)clearInterval(tm);},16);const bE=document.getElementById('dr-bars');bE.innerHTML='<div style="font-family:var(--mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--pk);margin-bottom:14px;">Performance by Dimension</div><div class="sbars" id="sbi"></div>';const bI=document.getElementById('sbi');QS.forEach(q=>{const p=DS.as[q.area]||0;const d=document.createElement('div');d.innerHTML='<div class="sbar-meta"><span>'+q.area+'</span><span>'+p+'%</span></div><div class="strack"><div class="sfill" data-w="'+p+'"></div></div>';bI.appendChild(d);});setTimeout(()=>{document.querySelectorAll('.sfill[data-w]').forEach(b=>{b.style.width=b.dataset.w+'%';const v=parseInt(b.dataset.w);b.style.background=v>=70?'#16A34A':v>=40?'#D97706':'#DC2626';});},300);const sE=document.getElementById('dr-sigs');sE.innerHTML='';(DS.sigs||[]).forEach(s=>{const d=document.createElement('div');d.className='dsig';const sl=s.status==='strong'?'&#8593; Strong':s.status==='concern'?'&#9888; Concern':'&#10005; Critical';d.innerHTML='<div class="dsig-top"><span class="dsig-area">'+s.area+'</span><span class="dsig-st '+s.status+'">'+sl+'</span></div><div class="dsig-txt">'+s.text+'</div>';sE.appendChild(d);});document.getElementById('dr-fh').innerHTML='<div class="dfomo-hid-l">What this check cannot show you</div><p class="dfomo-hid-t">'+(DS.ht||'')+'</p>';const[fh,fb]=(DS.ft||'||').split('|||');document.getElementById('dr-fomo').innerHTML='<p class="dfomo-h">'+fh+'</p><p class="dfomo-p">'+fb+'</p><a class="btn-wh" href="#contact">Get Your First 2 Concepts Free &rarr;</a>';}
+function dRestart(){DS={b:'',v:'',sp:'',ans:{},cur:0,sc:0,vd:'',sigs:[],ft:'',ht:'',ss:'',as:{}};document.getElementById('df-name').value='';document.getElementById('df-vert').value='';document.getElementById('df-spend').value='';document.getElementById('da-log').innerHTML='';dShow('dph-intro');}
+dShow('dph-intro');
+
+// Live counter animation
+(function(){
+  var el=document.getElementById('live-count');
+  if(!el)return;
+  var target=847;
+  var duration=2500;
+  var started=false;
+  var obs2=new IntersectionObserver(function(es){
+    if(es[0].isIntersecting && !started){
+      started=true;
+      var start=performance.now();
+      function tick(now){
+        var t=Math.min((now-start)/duration,1);
+        var ease=1-Math.pow(1-t,3);
+        el.textContent=Math.round(ease*target).toLocaleString();
+        if(t<1)requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      obs2.disconnect();
+    }
+  },{threshold:0.5});
+  obs2.observe(el);
+})();
+
+</script>
+</body>
+</html>

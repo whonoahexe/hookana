@@ -37,6 +37,163 @@ const FALLBACK_QUESTIONS: DiagnosticQuestion[] = [
       },
     ],
   },
+  {
+    id: "q2",
+    area: "Creative Volume",
+    weight: 1.7,
+    text: "How many net-new creative concepts are you launching per week?",
+    subtext:
+      "Not resizes. Not copy swaps. Genuinely new concepts with different angles, formats, or visual approaches.",
+    options: [
+      {
+        label: "10+ new concepts per week, across multiple formats",
+        value: 5,
+      },
+      {
+        label: "5-9 new concepts per week, mostly in 1-2 formats",
+        value: 3.5,
+      },
+      {
+        label: "2-4 new concepts per week, when the team has bandwidth",
+        value: 2,
+      },
+      {
+        label: "Less than 2 per week, or we batch monthly",
+        value: 1,
+      },
+    ],
+  },
+  {
+    id: "q3",
+    area: "Format Diversity",
+    weight: 1.5,
+    text: "How many different ad formats are you actively testing right now?",
+    subtext:
+      "Static, carousel, video (talking head), video (product demo), UGC-style, motion graphics, before/after, listicle.",
+    options: [
+      {
+        label: "5+ formats actively in rotation, adapted per platform",
+        value: 5,
+      },
+      {
+        label: "3-4 formats, leaning heavily on 1-2",
+        value: 3,
+      },
+      {
+        label: "2 formats max",
+        value: 2,
+      },
+      {
+        label: "Primarily one format across all campaigns",
+        value: 1,
+      },
+    ],
+  },
+  {
+    id: "q4",
+    area: "Testing Velocity",
+    weight: 1.8,
+    text: "When a creative starts winning, how quickly do you produce variations before performance decays?",
+    subtext:
+      "Creative fatigue is real. Winning ads have a shelf life. Can your pipeline spin variations fast enough?",
+    options: [
+      {
+        label: "Within 24-48 hours we have 3-5 variations live",
+        value: 5,
+      },
+      {
+        label: "Within a week, we get 2-3 variations out",
+        value: 3.5,
+      },
+      {
+        label: "Takes 2-3 weeks, performance usually drops first",
+        value: 2,
+      },
+      {
+        label: "We rarely iterate on winners",
+        value: 1,
+      },
+    ],
+  },
+  {
+    id: "q5",
+    area: "Creative Strategy",
+    weight: 1.6,
+    text: "Before producing a new ad, is there a documented brief with a specific angle and hypothesis?",
+    subtext:
+      'Not a vague "make it look good." A specific angle, hook type, CTA strategy, and measurable hypothesis.',
+    options: [
+      {
+        label:
+          "Every creative ships with angle, hook, hypothesis, and success metric",
+        value: 5,
+      },
+      {
+        label: "Most have a brief, but more directional than specific",
+        value: 3,
+      },
+      {
+        label: "Briefs exist sometimes, production often starts without one",
+        value: 2,
+      },
+      {
+        label: "We rarely brief. Designers create based on intuition",
+        value: 1,
+      },
+    ],
+  },
+  {
+    id: "q6",
+    area: "Performance Analysis",
+    weight: 1.6,
+    text: "When an ad underperforms, can you identify exactly which creative element failed?",
+    subtext:
+      "Hook? Pacing? CTA? Visual style? If you can only say it didn't work, your feedback loop is broken.",
+    options: [
+      {
+        label: "We break down by hook, body, CTA, and visual separately",
+        value: 5,
+      },
+      {
+        label: "Can usually identify the weak point informally",
+        value: 3.5,
+      },
+      {
+        label: "Look at CTR/CPA but rarely diagnose specific elements",
+        value: 2,
+      },
+      {
+        label: "Just pause underperformers and move on",
+        value: 1,
+      },
+    ],
+  },
+  {
+    id: "q8",
+    area: "Production Capacity",
+    weight: 1.7,
+    text: '"We need 20 new creatives by Friday." Could your pipeline deliver?',
+    subtext:
+      "The stress test. If production can't handle surge demand, creative is your ceiling.",
+    options: [
+      {
+        label: "Yes, comfortably",
+        value: 5,
+      },
+      {
+        label: "Could do it but quality would suffer",
+        value: 3,
+      },
+      {
+        label: "Could deliver 5-10 at best",
+        value: 2,
+      },
+      {
+        label: "No chance. 2-3 weeks minimum",
+        value: 1,
+      },
+    ],
+  },
 ]
 
 export function Diagnostic({ content }: { content: DiagnosticContent | null }) {
