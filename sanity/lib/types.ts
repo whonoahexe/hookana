@@ -17,7 +17,7 @@ export type SiteSettings = {
 }
 
 // Hero
-export type VideoCard = { label: string }
+export type VideoCard = { label: string; url?: string }
 export type HeroContent = {
   headline: string
   subheadline: string

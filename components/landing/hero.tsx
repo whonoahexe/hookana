@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowUpRight, CirclePlay, ArrowDown, Play, X } from "lucide-react"
+import { ArrowUpRight, ArrowDown, Play, X, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import type { HeroContent } from "@/sanity/lib/types"
@@ -15,47 +15,40 @@ const FALLBACK: HeroContent = {
   ctaText: "GET 2 FREE CONCEPTS",
   watchReelText: "WATCH THE REEL",
   videoCards: [
-    { label: "Brand Films" },
-    { label: "Ad Creatives" },
-    { label: "Social Content" },
+    { label: "Brand Films", url: "https://drive.google.com/file/d/10aquPTQHqd6A3OVgxNO1JCqn5NCn3Rhv/preview" },
+    { label: "Ad Creatives", url: "https://drive.google.com/file/d/10xV0U1qEl2zrBdPWrHkNiU2VxwdxuO3l/preview" },
+    { label: "Social Content", url: "https://drive.google.com/file/d/1ae__5LI3-eXHIcRLHXl3bo2Ghki22RbI/preview" },
+    { label: "Brand Films", url: "https://drive.google.com/file/d/1dGNxabuKcgl5x9WHNc1Bp95mQnB9mOVd/preview" },
+    { label: "Ad Creatives", url: "https://drive.google.com/file/d/1mDSMHMYYax1rzYb3XOdAYt-yEKyG5lfi/preview" },
+    { label: "Social Content", url: "https://drive.google.com/file/d/1oKBcygsi6f_5lVXQ-H-UtnSvtc1LECDq/preview" },
+    { label: "Brand Films", url: "https://drive.google.com/file/d/1sQwKVnhhuNB5l6pE9R6H6PyAghUFmpAU/preview" },
+    { label: "Ad Creatives", url: "https://drive.google.com/file/d/1vI7GohaEhkU9A5_RP2q_gA_4h2dw5jlv/preview" },
   ],
 }
 
 const CARD_STYLES = [
-  {
-    bg: "bg-neutral-400",
-    labelColor: "text-white/60",
-    mobileClasses: "z-30 translate-y-0",
-    desktopClasses:
-      "lg:relative lg:inset-auto lg:z-30 lg:w-[500px] lg:shrink-0 lg:translate-y-0 lg:scale-100 lg:opacity-100",
-  },
-  {
-    bg: "bg-neutral-500",
-    labelColor: "text-neutral-950/60",
-    mobileClasses: "z-20 translate-y-[10%] opacity-90",
-    desktopClasses:
-      "lg:relative lg:inset-auto lg:z-20 lg:w-[500px] lg:shrink-0 lg:-ml-20 lg:translate-y-0 lg:scale-100 lg:opacity-100",
-  },
-  {
-    bg: "bg-neutral-600",
-    labelColor: "text-white/60",
-    mobileClasses: "z-10 translate-y-[20%] opacity-50",
-    desktopClasses:
-      "lg:relative lg:inset-auto lg:z-10 lg:w-[500px] lg:shrink-0 lg:-ml-20 lg:translate-y-0 lg:scale-100 lg:opacity-100",
-  },
+  { bg: "bg-neutral-400", labelColor: "text-white/60" },
+  { bg: "bg-neutral-500", labelColor: "text-neutral-950/60" },
+  { bg: "bg-neutral-600", labelColor: "text-white/60" },
 ]
+
+const VISIBLE = 3
+
+function driveThumbnail(previewUrl?: string) {
+  const match = previewUrl?.match(/\/d\/([^/]+)\//)
+  return match ? `https://drive.google.com/thumbnail?id=${match[1]}&sz=w500` : null
+}
 
 export function Hero({ content }: { content: HeroContent | null }) {
   const [activeVideo, setActiveVideo] = useState<number | null>(null)
-  const {
-    headline,
-    subheadline,
-    description,
-    ctaText,
-    watchReelText,
-    videoCards,
-  } = content ?? FALLBACK
+  const [carouselStart, setCarouselStart] = useState(0)
+
+  const { headline, subheadline, description, ctaText, videoCards } =
+    content ?? FALLBACK
   const cards = videoCards?.length > 0 ? videoCards : FALLBACK.videoCards
+  const maxStart = Math.max(0, cards.length - VISIBLE)
+  const visibleCards = cards.slice(carouselStart, carouselStart + VISIBLE)
+  const activeUrl = activeVideo !== null ? cards[activeVideo]?.url : undefined
 
   return (
     <>
@@ -101,42 +94,83 @@ export function Hero({ content }: { content: HeroContent | null }) {
             </div>
           </div>
 
-          {/* Stacked video cards */}
-          <div className="relative mx-auto mt-12 w-full max-w-[300px] lg:mt-20 lg:flex lg:w-fit lg:max-w-none lg:flex-row lg:gap-0">
-            {cards.map((card, i) => {
-              const style = CARD_STYLES[i % CARD_STYLES.length]
-              return (
-                <div
-                  key={i}
-                  className={cn(
-                    "group aspect-[4/5] w-full cursor-pointer rounded-md transition-all duration-300 hover:shadow-2xl",
-                    i === 0 ? "relative" : "absolute inset-x-0 top-0",
-                    "lg:hover:-translate-y-4",
-                    style.bg,
-                    style.mobileClasses,
-                    style.desktopClasses
-                  )}
-                  onClick={() => setActiveVideo(i)}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <div className="flex size-18 items-center justify-center rounded-full bg-black/20 ring-1 ring-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
-                      <Play className="size-8 fill-white text-white" />
+          {/*
+            Outer wrapper: full width + relative so arrows can be anchored
+            to the hero edges while the card stack keeps its original layout.
+          */}
+          <div className="relative mt-12 w-full lg:mt-20">
+            {/* Left arrow — anchored to the left edge of the hero inner area */}
+            <button
+              onClick={() => setCarouselStart((s) => Math.max(0, s - 1))}
+              disabled={carouselStart === 0}
+              className="absolute left-0 top-1/2 z-40 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-neutral-950/10 transition hover:bg-neutral-950/20 disabled:pointer-events-none disabled:opacity-20"
+              aria-label="Previous"
+            >
+              <ChevronLeft className="size-5" />
+            </button>
+
+            {/*
+              Card stack: identical structure to original — mx-auto centers on
+              mobile, lg:w-fit lets desktop cards overflow to the right and get
+              clipped by the hero's overflow-hidden.
+            */}
+            <div className="relative mx-auto w-full max-w-[300px] lg:flex lg:w-fit lg:max-w-none lg:flex-row lg:gap-0">
+              {visibleCards.map((card, i) => {
+                const { bg, labelColor } = CARD_STYLES[(carouselStart + i) % CARD_STYLES.length]
+                return (
+                  <div
+                    key={carouselStart + i}
+                    className={cn(
+                      "group aspect-[4/5] w-full cursor-pointer rounded-md transition-all duration-300 hover:shadow-2xl",
+                      // Mobile: tighter stacking (4 % / 8 % vs original 10 % / 20 %)
+                      i === 0 ? "relative z-30" : "absolute inset-x-0 top-0",
+                      i === 1 && "z-20 translate-y-[4%] opacity-90",
+                      i === 2 && "z-10 translate-y-[8%] opacity-70",
+                      // Desktop: side-by-side, reset mobile offsets, heavy overlap
+                      "lg:relative lg:inset-auto lg:w-[500px] lg:shrink-0 lg:translate-y-0 lg:scale-100 lg:opacity-100 lg:hover:-translate-y-4",
+                      i === 0 ? "lg:z-30" : i === 1 ? "lg:z-20 lg:-ml-40" : "lg:z-10 lg:-ml-40",
+                      bg
+                    )}
+                    onClick={() => setActiveVideo(carouselStart + i)}
+                  >
+                    {/* Thumbnail: invisible until Drive file is public; falls back to card bg color */}
+                    {(() => {
+                      const thumb = driveThumbnail(card.url)
+                      return thumb ? (
+                        <img
+                          src={thumb}
+                          alt=""
+                          className="absolute inset-0 h-full w-full rounded-md object-cover"
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none" }}
+                        />
+                      ) : null
+                    })()}
+
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <div className="flex size-18 items-center justify-center rounded-full bg-black/20 ring-1 ring-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                        <Play className="size-8 fill-white text-white" />
+                      </div>
                     </div>
+                    <div className="absolute top-5 left-6">
+                      <p className={cn("type-monospaced text-xs tracking-widest uppercase", labelColor)}>
+                        {card.label}
+                      </p>
+                    </div>
+                    <div className="absolute top-4 right-4 size-2 rounded-full bg-white/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   </div>
-                  <div className="absolute bottom-5 left-6">
-                    <p
-                      className={cn(
-                        "type-monospaced text-xs tracking-widest uppercase",
-                        style.labelColor
-                      )}
-                    >
-                      {card.label}
-                    </p>
-                  </div>
-                  <div className="absolute top-4 right-4 size-2 rounded-full bg-white/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
+
+            {/* Right arrow — anchored to the right edge of the hero inner area */}
+            <button
+              onClick={() => setCarouselStart((s) => Math.min(maxStart, s + 1))}
+              disabled={carouselStart >= maxStart}
+              className="absolute right-0 top-1/2 z-40 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-neutral-950/10 transition hover:bg-neutral-950/20 disabled:pointer-events-none disabled:opacity-20"
+              aria-label="Next"
+            >
+              <ChevronRight className="size-5" />
+            </button>
           </div>
         </div>
 
@@ -161,30 +195,37 @@ export function Hero({ content }: { content: HeroContent | null }) {
           className="absolute inset-0 bg-black/75 backdrop-blur-xl"
           onClick={() => setActiveVideo(null)}
         />
-        <div className="relative w-full max-w-5xl px-6">
+        <div className="relative flex flex-col items-end">
           <button
-            className="absolute -top-14 right-6 flex size-11 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/20 transition-colors hover:bg-white/20"
+            className="mb-3 flex size-11 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/20 transition-colors hover:bg-white/20"
             onClick={() => setActiveVideo(null)}
             aria-label="Close video"
           >
             <X className="size-5" />
           </button>
-          <div className="aspect-video w-full overflow-hidden rounded-md bg-neutral-900">
-            <video
-              className="h-full w-full object-cover"
-              controls
-              autoPlay
-              src={undefined}
-              suppressHydrationWarning
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-              <div className="flex size-16 items-center justify-center rounded-full bg-white/10">
-                <Play className="size-7 fill-white/40 text-white/40" />
+          <div
+            className="overflow-hidden rounded-md bg-neutral-900"
+            style={{ height: "78vh", width: "calc(78vh * 9 / 16)" }}
+          >
+            {activeUrl ? (
+              <iframe
+                key={activeVideo}
+                src={activeUrl}
+                className="h-full w-full"
+                allow="autoplay"
+                allowFullScreen
+                frameBorder={0}
+              />
+            ) : (
+              <div className="flex h-full flex-col items-center justify-center gap-3">
+                <div className="flex size-16 items-center justify-center rounded-full bg-white/10">
+                  <Play className="size-7 fill-white/40 text-white/40" />
+                </div>
+                <p className="type-monospaced text-xs tracking-widest text-white/30 uppercase">
+                  Video coming soon
+                </p>
               </div>
-              <p className="type-monospaced text-xs tracking-widest text-white/30 uppercase">
-                Video coming soon
-              </p>
-            </div>
+            )}
           </div>
         </div>
       </div>

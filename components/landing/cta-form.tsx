@@ -1,30 +1,9 @@
-"use client"
-
-import { useState } from "react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Globe, User, ArrowUpRight } from "lucide-react"
-import { FormField } from "./form-field"
 import type { ContactContent } from "@/sanity/lib/types"
 
-const FALLBACK: ContactContent = {
+const FALLBACK: Pick<ContactContent, "heading" | "subtext" | "footerText"> = {
   heading: "Get your\nfirst 2\n concepts\nfree.",
   subtext:
     "No strings. No credit card. Just tell us about your brand and we'll build two ad concepts on the house.",
-  nameLabel: "Name *",
-  nameHelp:
-    "We use this to personalize your results. Your score means more when it's named.",
-  namePlaceholder: "e.g Noah",
-  emailLabel: "Email *",
-  emailHelp:
-    "Creative benchmarks differ by vertical. A skincare brand and a fitness brand have very different hook standards.",
-  emailPlaceholder: "noah@hookana.com",
-  websiteLabel: "Agency / Brand Website",
-  websiteHelp:
-    'Helps us calibrate expectations. What counts as "low volume" at $5K looks very different at $500K.',
-  websitePlaceholder: "https://www.hookana.com/",
-  ctaText: "GET 2 FREE CONCEPTS",
-  successText: "Got it - we'll be in touch shortly.",
   footerText:
     "We'll review your brand, build 2 sample concepts, and walk you through them on a quick call.",
 }
@@ -32,24 +11,6 @@ const FALLBACK: ContactContent = {
 export function CtaForm({ content }: { content: ContactContent | null }) {
   const c = content ?? FALLBACK
   const headingLines = c.heading.split("\n")
-
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [website, setWebsite] = useState("")
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle")
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setStatus("loading")
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, website }),
-    })
-    setStatus(res.ok ? "success" : "error")
-  }
 
   return (
     <div className="flex w-full justify-center px-5 2xl:px-0">
@@ -78,73 +39,17 @@ export function CtaForm({ content }: { content: ContactContent | null }) {
 
           <div className="mt-12 border-t border-dotted border-neutral-950 2xl:mt-20" />
 
-          {status === "success" ? (
-            <p className="mt-12 font-mono text-sm text-blue-500 2xl:mt-24">
-              {c.successText}
-            </p>
-          ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="mt-12 flex flex-col gap-8 2xl:mt-24 2xl:gap-12"
-            >
-              <FormField label={c.nameLabel} help={c.nameHelp}>
-                <div className="flex h-9 w-full items-center gap-2 rounded-md border border-neutral-950 bg-popover px-3 shadow-xs 2xl:w-80">
-                  <User className="size-4 shrink-0 text-primary-foreground/70" />
-                  <Input
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="h-auto flex-1 rounded-none border-none bg-transparent px-0 py-0 text-sm text-primary-foreground shadow-none placeholder:text-primary-foreground/60 focus-visible:border-none focus-visible:ring-0"
-                    placeholder={c.namePlaceholder}
-                  />
-                </div>
-              </FormField>
-
-              <FormField label={c.emailLabel} help={c.emailHelp}>
-                <div className="flex h-9 w-full items-center gap-2 rounded-md border border-neutral-950 bg-popover px-3 shadow-xs 2xl:w-80">
-                  <User className="size-4 shrink-0 text-primary-foreground/70" />
-                  <Input
-                    required
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="h-auto flex-1 rounded-none border-none bg-transparent px-0 py-0 text-sm text-primary-foreground shadow-none placeholder:text-primary-foreground/60 focus-visible:border-none focus-visible:ring-0"
-                    placeholder={c.emailPlaceholder}
-                  />
-                </div>
-              </FormField>
-
-              <FormField label={c.websiteLabel} help={c.websiteHelp}>
-                <div className="flex h-9 w-full items-center gap-2 rounded-md border border-neutral-950 bg-popover px-3 shadow-xs 2xl:w-80">
-                  <Globe className="size-4 shrink-0 text-primary-foreground/70" />
-                  <Input
-                    type="url"
-                    value={website}
-                    onChange={(e) => setWebsite(e.target.value)}
-                    className="h-auto flex-1 rounded-none border-none bg-transparent px-0 py-0 text-sm text-primary-foreground shadow-none placeholder:text-primary-foreground/60 focus-visible:border-none focus-visible:ring-0"
-                    placeholder={c.websitePlaceholder}
-                  />
-                </div>
-              </FormField>
-
-              {status === "error" && (
-                <p className="font-mono text-xs text-red-500">
-                  Something went wrong. Please try again.
-                </p>
-              )}
-
-              <Button
-                type="submit"
-                disabled={status === "loading"}
-                size="lg"
-                variant="default"
-                className="w-full rounded-md 2xl:w-80"
-              >
-                {status === "loading" ? "SENDING..." : c.ctaText}
-                <ArrowUpRight className="size-4" />
-              </Button>
-            </form>
-          )}
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSfKDKhg1sxeayXdk4fOuXMIMe81BkOzQl_MdTg4fLTarabDoQ/viewform?embedded=true"
+            width="100%"
+            height={600}
+            frameBorder={0}
+            marginHeight={0}
+            marginWidth={0}
+            className="mt-12 2xl:mt-24"
+          >
+            Loading…
+          </iframe>
 
           <div className="mt-12 border-t border-dotted border-neutral-950 2xl:mt-24" />
           <p className="mt-5 font-mono text-xs leading-3.5 text-blue-500">
