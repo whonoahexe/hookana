@@ -22,18 +22,6 @@ const FALLBACK: HeroContent = {
     { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/video/upload/v1778666347/Ishan_Nutri_2_cj01cg.mp4", type: "video" },
     { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/video/upload/v1778666347/The_Glow-Up_Formula_H03_y0f2rq.mp4", type: "video" },
     { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/video/upload/v1778666327/STOMACH_WHISPERER_H03_bc3wye.mp4", type: "video" },
-    { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778667389/out_11_mbqizo.png", type: "image" },
-    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778667388/out_7_xvwrjs.png", type: "image" },
-    { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778667387/out_9_a0sz97.png", type: "image" },
-    { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778667387/out_6_arat2h.png", type: "image" },
-    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666323/12_x1rb1v.png", type: "image" },
-    { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666319/10_parbi7.png", type: "image" },
-    { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666318/8_ksieve.png", type: "image" },
-    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666317/5_ptc95r.png", type: "image" },
-    { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666315/2_yhjbs6.png", type: "image" },
-    { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666314/1_iycztf.png", type: "image" },
-    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666312/4_mefyyz.png", type: "image" },
-    { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666312/3_ylu6cf.png", type: "image" },
   ],
 }
 
@@ -162,6 +150,7 @@ export function Hero({ content }: { content: HeroContent | null }) {
                           <video
                             key={card.url}
                             src={card.url}
+                            poster={card.url.replace(/\.mp4$/, ".jpg")}
                             className="pointer-events-none h-full w-full object-cover"
                             autoPlay
                             muted

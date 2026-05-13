@@ -3,13 +3,13 @@ import type { LogoItem } from "@/sanity/lib/types"
 const FALLBACK_LOGOS: LogoItem[] = [
   { alt: "Nutrisense", imageUrl: "/logos/Nutrisense.png" },
   { alt: "Salt Labs", imageUrl: "/logos/SaltLabs.png" },
-  { alt: "SkinnyRx", imageUrl: "/logos/SkinnyRx.png" },
+  // { alt: "SkinnyRx", imageUrl: "/logos/SkinnyRx.png" },
   { alt: "Studio Era", imageUrl: "/logos/StudioEra.png" },
   { alt: "TOB", imageUrl: "/logos/TOB.png" },
   { alt: "Veralane", imageUrl: "/logos/Veralane.png" },
   { alt: "Brainjolt", imageUrl: "/logos/brainjolt.png" },
   { alt: "Tata Fit", imageUrl: "/logos/tata-fit.png" },
-  { alt: "Jet Learn", imageUrl: "/logos/jet-learn.png" },
+  // { alt: "Jet Learn", imageUrl: "/logos/jet-learn.png" },
   { alt: "Intel", imageUrl: "/logos/intel.png" },
   { alt: "Dell", imageUrl: "/logos/dell.png" },
 ]
@@ -38,11 +38,11 @@ export function HeroCarousel({ logos }: { logos?: LogoItem[] }) {
             className="absolute inset-0 h-full w-full object-contain object-right"
           />
 
-          <div className="absolute top-16 right-2 left-8 flex h-32 items-center overflow-hidden">
+          <div className="absolute top-8 right-2 left-8 flex h-48 items-center overflow-hidden">
             <div className="animate-marquee flex w-max items-center">
               {repeated.map((item, idx) => (
                 <div key={idx} className="flex items-center">
-                  <div className="px-10 flex items-center justify-center">
+                  <div className="flex items-center justify-center px-10">
                     <img
                       src={item.imageUrl}
                       alt={item.alt}

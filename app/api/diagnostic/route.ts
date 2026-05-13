@@ -61,10 +61,49 @@ Evaluate their creative health and respond with ONLY valid JSON in this exact sh
 
 Scoring guide: 72-100 = Strong, 45-71 = Needs Work, 0-44 = Critical. Weight hook quality and testing velocity most heavily. Calibrate expectations to their industry and spend level.`
 
-  const { response } = await model.generateContent(prompt)
-  const text = response.text()
+  try {
+    const { response } = await model.generateContent(prompt)
+    const text = response.text()
+    const result: DiagnosticAnalysisResult = JSON.parse(text)
+    return NextResponse.json(result)
+  } catch {
+    return NextResponse.json(computeFallbackResult(answers))
+  }
+}
 
-  const result: DiagnosticAnalysisResult = JSON.parse(text)
+function computeFallbackResult(answers: DiagnosticAnswer[]): DiagnosticAnalysisResult {
+  const avgRaw = answers.reduce((sum, a) => sum + a.score, 0) / (answers.length || 1)
+  const score = Math.round((avgRaw / 5) * 100)
 
-  return NextResponse.json(result)
+  const areaScores = answers.reduce<Record<string, number[]>>((acc, a) => {
+    acc[a.area] = [...(acc[a.area] ?? []), a.score]
+    return acc
+  }, {})
+
+  const weakestArea = Object.entries(areaScores)
+    .map(([area, scores]) => ({
+      area,
+      avg: scores.reduce((s, v) => s + v, 0) / scores.length,
+    }))
+    .sort((a, b) => a.avg - b.avg)[0]?.area ?? "creative testing"
+
+  let verdict: DiagnosticAnalysisResult["verdict"]
+  let verdictCopy: string
+  let analysis: string
+
+  if (score >= 72) {
+    verdict = "Strong"
+    verdictCopy = "Your creative pipeline is performing well above average."
+    analysis = `Your overall score of ${score}/100 reflects solid creative operations. Focus on maintaining your testing velocity and continue iterating on winning hooks. The area of ${weakestArea} still has room for improvement — shoring it up could push results further. Keep documenting what works so the team can scale it systematically.`
+  } else if (score >= 45) {
+    verdict = "Needs Work"
+    verdictCopy = "Your creative pipeline has real gaps that are likely costing you performance."
+    analysis = `Your score of ${score}/100 suggests meaningful inefficiencies in your creative process. The weakest area is ${weakestArea}, which often has an outsized impact on overall ad performance. Prioritize building a repeatable hook-testing framework before scaling spend. Fixing the fundamentals here will compound quickly once you have reliable creative infrastructure.`
+  } else {
+    verdict = "Critical"
+    verdictCopy = "Your creative pipeline has critical gaps that need immediate attention."
+    analysis = `A score of ${score}/100 indicates foundational issues in your creative operations. ${weakestArea} is the most urgent area to address — without fixing it, additional ad spend will likely underperform. Start by auditing your top-of-funnel hooks and establishing a minimum testing cadence. Getting these basics right is a prerequisite for everything else to work.`
+  }
+
+  return { score, verdict, verdictCopy, analysis }
 }
