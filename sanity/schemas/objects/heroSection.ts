@@ -12,13 +12,36 @@ export const heroSection = defineType({
     defineField({ name: "watchReelText", title: "Watch Reel Button Text", type: "string" }),
     defineField({
       name: "videoCards",
-      title: "Video Cards",
+      title: "Carousel Cards",
       type: "array",
       of: [
         defineArrayMember({
           type: "object",
-          fields: [defineField({ name: "label", title: "Label", type: "string" })],
-          preview: { select: { title: "label" } },
+          fields: [
+            defineField({ name: "label", title: "Label", type: "string" }),
+            defineField({
+              name: "type",
+              title: "Media Type",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Video", value: "video" },
+                  { title: "Image", value: "image" },
+                ],
+                layout: "radio",
+              },
+              initialValue: "video",
+            }),
+            defineField({
+              name: "url",
+              title: "Media URL",
+              type: "url",
+              description: "Direct video/image URL (Cloudinary, etc.) or Google Drive preview link",
+            }),
+          ],
+          preview: {
+            select: { title: "label", subtitle: "type" },
+          },
         }),
       ],
     }),

@@ -17,7 +17,7 @@ export type SiteSettings = {
 }
 
 // Hero
-export type VideoCard = { label: string; url?: string }
+export type VideoCard = { label: string; url?: string; type?: "video" | "image" }
 export type HeroContent = {
   headline: string
   subheadline: string
@@ -153,6 +153,15 @@ export type FaqContent = {
   items: FaqItem[]
 }
 
+// Logo Ticker
+export type LogoItem = { alt: string; imageUrl: string }
+export type LogoTickerContent = { logos: LogoItem[] }
+
+// Testimonial
+export type TestimonialContent = {
+  videoUrl?: string
+}
+
 // CTA
 export type CtaContent = {
   heading: string
@@ -164,17 +173,6 @@ export type CtaContent = {
 export type ContactContent = {
   heading: string
   subtext: string
-  nameLabel: string
-  nameHelp: string
-  namePlaceholder: string
-  emailLabel: string
-  emailHelp: string
-  emailPlaceholder: string
-  websiteLabel: string
-  websiteHelp: string
-  websitePlaceholder: string
-  ctaText: string
-  successText: string
   footerText: string
 }
 
@@ -189,6 +187,8 @@ export type LandingPageContent = {
   roles: RolesContent
   pricing: PricingContent
   faq: FaqContent
+  testimonial: TestimonialContent
   cta: CtaContent
   contact: ContactContent
+  logoTicker: LogoTickerContent
 }

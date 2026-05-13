@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { ArrowUpRight } from "lucide-react"
@@ -218,9 +219,18 @@ export function Roles({ content }: { content: RolesContent | null }) {
                     size="lg"
                     variant="secondary"
                     className="mt-6 w-full rounded-md px-6 2xl:mt-8 2xl:w-auto"
+                    asChild
                   >
-                    {active.ctaText ?? "START A SPRINT"}
-                    <ArrowUpRight className="size-4" />
+                    <Link
+                      href="#contact"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                      }}
+                    >
+                      {active.ctaText ?? "START A SPRINT"}
+                      <ArrowUpRight className="size-4" />
+                    </Link>
                   </Button>
                 </div>
               </div>

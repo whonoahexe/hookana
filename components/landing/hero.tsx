@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ArrowUpRight, ArrowDown, Play, X, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -15,13 +15,25 @@ const FALLBACK: HeroContent = {
   ctaText: "GET 2 FREE CONCEPTS",
   watchReelText: "WATCH THE REEL",
   videoCards: [
-    { label: "Brand Films", url: "https://drive.google.com/file/d/10aquPTQHqd6A3OVgxNO1JCqn5NCn3Rhv/preview" },
-    { label: "Ad Creatives", url: "https://drive.google.com/file/d/10xV0U1qEl2zrBdPWrHkNiU2VxwdxuO3l/preview" },
-    { label: "Social Content", url: "https://drive.google.com/file/d/1ae__5LI3-eXHIcRLHXl3bo2Ghki22RbI/preview" },
-    { label: "Ad Creatives", url: "https://drive.google.com/file/d/1mDSMHMYYax1rzYb3XOdAYt-yEKyG5lfi/preview" },
-    { label: "Social Content", url: "https://drive.google.com/file/d/1oKBcygsi6f_5lVXQ-H-UtnSvtc1LECDq/preview" },
-    { label: "Brand Films", url: "https://drive.google.com/file/d/1sQwKVnhhuNB5l6pE9R6H6PyAghUFmpAU/preview" },
-    { label: "Ad Creatives", url: "https://drive.google.com/file/d/1vI7GohaEhkU9A5_RP2q_gA_4h2dw5jlv/preview" },
+    { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/video/upload/v1778667210/out_nutri-2_rk660s.mp4", type: "video" },
+    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/video/upload/v1778667201/out_nutri-3_y4swhm.mp4", type: "video" },
+    { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/video/upload/v1778667201/out_nutri-1_ltewso.mp4", type: "video" },
+    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/video/upload/v1778666353/2_e1t9tk.mp4", type: "video" },
+    { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/video/upload/v1778666347/Ishan_Nutri_2_cj01cg.mp4", type: "video" },
+    { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/video/upload/v1778666347/The_Glow-Up_Formula_H03_y0f2rq.mp4", type: "video" },
+    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/video/upload/v1778666327/STOMACH_WHISPERER_H03_bc3wye.mp4", type: "video" },
+    { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778667389/out_11_mbqizo.png", type: "image" },
+    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778667388/out_7_xvwrjs.png", type: "image" },
+    { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778667387/out_9_a0sz97.png", type: "image" },
+    { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778667387/out_6_arat2h.png", type: "image" },
+    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666323/12_x1rb1v.png", type: "image" },
+    { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666319/10_parbi7.png", type: "image" },
+    { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666318/8_ksieve.png", type: "image" },
+    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666317/5_ptc95r.png", type: "image" },
+    { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666315/2_yhjbs6.png", type: "image" },
+    { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666314/1_iycztf.png", type: "image" },
+    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666312/4_mefyyz.png", type: "image" },
+    { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666312/3_ylu6cf.png", type: "image" },
   ],
 }
 
@@ -33,10 +45,6 @@ const CARD_STYLES = [
 
 const VISIBLE = 3
 
-function driveThumbnail(previewUrl?: string) {
-  const match = previewUrl?.match(/\/d\/([^/]+)\//)
-  return match ? `https://drive.google.com/thumbnail?id=${match[1]}&sz=w500` : null
-}
 
 export function Hero({ content }: { content: HeroContent | null }) {
   const [activeVideo, setActiveVideo] = useState<number | null>(null)
@@ -47,7 +55,16 @@ export function Hero({ content }: { content: HeroContent | null }) {
   const cards = videoCards?.length > 0 ? videoCards : FALLBACK.videoCards
   const maxStart = Math.max(0, cards.length - VISIBLE)
   const visibleCards = cards.slice(carouselStart, carouselStart + VISIBLE)
-  const activeUrl = activeVideo !== null ? cards[activeVideo]?.url : undefined
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCarouselStart((s) => (s >= maxStart ? 0 : s + 1))
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [maxStart])
+  const activeCard = activeVideo !== null ? cards[activeVideo] : undefined
+  const activeUrl = activeCard?.url
+  const activeType = activeCard?.type ?? "video"
 
   return (
     <>
@@ -120,7 +137,7 @@ export function Hero({ content }: { content: HeroContent | null }) {
                   <div
                     key={carouselStart + i}
                     className={cn(
-                      "group aspect-[4/5] w-full cursor-pointer rounded-md transition-all duration-300 hover:shadow-2xl",
+                      "group aspect-[4/5] w-full cursor-pointer overflow-hidden rounded-md transition-all duration-300 hover:shadow-2xl",
                       // Mobile: tighter stacking (4 % / 8 % vs original 10 % / 20 %)
                       i === 0 ? "relative z-30" : "absolute inset-x-0 top-0",
                       i === 1 && "z-20 translate-y-[4%] opacity-90",
@@ -132,24 +149,40 @@ export function Hero({ content }: { content: HeroContent | null }) {
                     )}
                     onClick={() => setActiveVideo(carouselStart + i)}
                   >
-                    {/* Thumbnail: invisible until Drive file is public; falls back to card bg color */}
-                    {(() => {
-                      const thumb = driveThumbnail(card.url)
-                      return thumb ? (
-                        <img
-                          src={thumb}
-                          alt=""
-                          className="absolute inset-0 h-full w-full rounded-md object-cover"
-                          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none" }}
-                        />
-                      ) : null
-                    })()}
-
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      <div className="flex size-18 items-center justify-center rounded-full bg-black/20 ring-1 ring-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
-                        <Play className="size-8 fill-white text-white" />
+                    {card.url && (
+                      <div className="absolute inset-0">
+                        {card.type === "image" ? (
+                          <img
+                            src={card.url}
+                            alt=""
+                            className="h-full w-full object-cover"
+                            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none" }}
+                          />
+                        ) : (
+                          <video
+                            key={card.url}
+                            src={card.url}
+                            className="pointer-events-none h-full w-full object-cover"
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                          />
+                        )}
                       </div>
-                    </div>
+                    )}
+
+                    {/* Vignette */}
+                    <div className="pointer-events-none absolute inset-0 rounded-md bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.55)_100%)]" />
+
+                    {/* Play button — videos only */}
+                    {card.type !== "image" && (
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <div className="flex size-18 items-center justify-center rounded-full bg-black/20 ring-1 ring-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                          <Play className="size-8 fill-white text-white" />
+                        </div>
+                      </div>
+                    )}
                     <div className="absolute top-5 left-6">
                       <p className={cn("type-monospaced text-xs tracking-widest uppercase", labelColor)}>
                         {card.label}
@@ -204,16 +237,23 @@ export function Hero({ content }: { content: HeroContent | null }) {
           </button>
           <div
             className="overflow-hidden rounded-md bg-neutral-900"
-            style={{ height: "78vh", width: "calc(78vh * 9 / 16)" }}
+            style={activeType !== "image" ? { height: "78vh", width: "calc(78vh * 9 / 16)" } : undefined}
           >
-            {activeUrl ? (
-              <iframe
+            {activeUrl && activeType === "image" ? (
+              <img
                 key={activeVideo}
                 src={activeUrl}
-                className="h-full w-full"
-                allow="autoplay"
-                allowFullScreen
-                frameBorder={0}
+                alt=""
+                className="block max-h-[85vh] max-w-[90vw] object-contain"
+              />
+            ) : activeUrl ? (
+              <video
+                key={activeVideo}
+                src={activeUrl}
+                className="h-full w-full object-cover"
+                autoPlay
+                controls
+                playsInline
               />
             ) : (
               <div className="flex h-full flex-col items-center justify-center gap-3">

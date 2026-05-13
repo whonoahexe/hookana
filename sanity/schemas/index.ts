@@ -13,6 +13,8 @@ import { ctaSection } from "./objects/ctaSection"
 import { contactSection } from "./objects/contactSection"
 import { navbarSection } from "./objects/navbarSection"
 import { footerSection } from "./objects/footerSection"
+import { testimonialSection } from "./objects/testimonialSection"
+import { logoTickerSection } from "./objects/logoTickerSection"
 
 export const schemaTypes = [
   landingPage,
@@ -30,4 +32,6 @@ export const schemaTypes = [
   contactSection,
   navbarSection,
   footerSection,
+  testimonialSection,
+  logoTickerSection,
 ]

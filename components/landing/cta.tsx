@@ -1,6 +1,8 @@
+"use client"
+
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ContactLink } from "@/components/ui/contact-link"
-import { ArrowDown } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import type { CtaContent } from "@/sanity/lib/types"
 
 const FALLBACK: CtaContent = {
@@ -25,6 +27,19 @@ export function Cta({ content }: { content: CtaContent | null }) {
       </h2>
 
       <p className="type-heading-4 px-4 text-foreground">{description}</p>
+
+      <Button size="lg" className="rounded-md" asChild>
+        <Link
+          href="#contact"
+          onClick={(e) => {
+            e.preventDefault()
+            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+          }}
+        >
+          {ctaText}
+          <ArrowUpRight className="size-4" />
+        </Link>
+      </Button>
     </div>
   )
 }

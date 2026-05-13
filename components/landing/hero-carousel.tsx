@@ -1,16 +1,22 @@
-const mockLogos = [
-  "HOOKANA",
-  "HOOKANA",
-  "HOOKANA",
-  "HOOKANA",
-  "HOOKANA",
-  "HOOKANA",
-  "HOOKANA",
-  "HOOKANA",
+import type { LogoItem } from "@/sanity/lib/types"
+
+const FALLBACK_LOGOS: LogoItem[] = [
+  { alt: "Nutrisense", imageUrl: "/logos/Nutrisense.png" },
+  { alt: "Salt Labs", imageUrl: "/logos/SaltLabs.png" },
+  { alt: "SkinnyRx", imageUrl: "/logos/SkinnyRx.png" },
+  { alt: "Studio Era", imageUrl: "/logos/StudioEra.png" },
+  { alt: "TOB", imageUrl: "/logos/TOB.png" },
+  { alt: "Veralane", imageUrl: "/logos/Veralane.png" },
+  { alt: "Brainjolt", imageUrl: "/logos/brainjolt.png" },
+  { alt: "Tata Fit", imageUrl: "/logos/tata-fit.png" },
+  { alt: "Jet Learn", imageUrl: "/logos/jet-learn.png" },
+  { alt: "Intel", imageUrl: "/logos/intel.png" },
+  { alt: "Dell", imageUrl: "/logos/dell.png" },
 ]
 
-export function HeroCarousel() {
-  const repeatedLogos = [...mockLogos, ...mockLogos, ...mockLogos, ...mockLogos]
+export function HeroCarousel({ logos }: { logos?: LogoItem[] }) {
+  const items = logos && logos.length > 0 ? logos : FALLBACK_LOGOS
+  const repeated = [...items, ...items, ...items, ...items]
 
   return (
     <>
@@ -33,12 +39,16 @@ export function HeroCarousel() {
           />
 
           <div className="absolute top-16 right-2 left-8 flex h-32 items-center overflow-hidden">
-            <div className="animate-marquee flex w-max">
-              {repeatedLogos.map((logo, idx) => (
+            <div className="animate-marquee flex w-max items-center">
+              {repeated.map((item, idx) => (
                 <div key={idx} className="flex items-center">
-                  <span className="px-12 font-sans text-xl font-black tracking-widest text-white">
-                    {logo}
-                  </span>
+                  <div className="px-10 flex items-center justify-center">
+                    <img
+                      src={item.imageUrl}
+                      alt={item.alt}
+                      className="h-10 max-w-32 object-contain brightness-0 invert"
+                    />
+                  </div>
                   <div className="h-20 border-l-4 border-dotted border-white" />
                 </div>
               ))}

@@ -14,7 +14,9 @@ export const landingPage = defineType({
     defineField({ name: "roles", title: "Roles / Who It's For", type: "rolesSection" }),
     defineField({ name: "pricing", title: "Pricing", type: "pricingSection" }),
     defineField({ name: "faq", title: "FAQ", type: "faqSection" }),
+    defineField({ name: "testimonial", title: "Testimonial Section", type: "testimonialSection" }),
     defineField({ name: "cta", title: "CTA Section", type: "ctaSection" }),
     defineField({ name: "contact", title: "Contact Form", type: "contactSection" }),
+    defineField({ name: "logoTicker", title: "Logo Ticker", type: "logoTickerSection" }),
   ],
 })

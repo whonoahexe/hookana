@@ -3,10 +3,10 @@ import type { FooterContent } from "@/sanity/lib/types"
 const FALLBACK: FooterContent = {
   tagline: "CREATIVE PRODUCTION FOR PERFORMANCE MARKETERS WHO REFUSE TO COMPROMISE.",
   socials: [
-    { label: "INSTAGRAM", href: "https://instagram.com" },
-    { label: "LINKEDIN", href: "https://www.linkedin.com" },
-    { label: "TIKTOK", href: "https://www.tiktok.com" },
-    { label: "EMAIL US", href: "mailto:hello@hookana.com" },
+    { label: "INSTAGRAM", href: "https://www.instagram.com/hookana.social" },
+    { label: "LINKEDIN", href: "https://www.linkedin.com/company/hookana/" },
+    { label: "TIKTOK", href: "https://www.tiktok.com/@_hookana" },
+    { label: "EMAIL US", href: "mailto:admin@hookana.com" },
   ],
   copyright: "© 2026 HOOKANA · ALL RIGHTS RESERVED",
 }

@@ -11,8 +11,15 @@ export const LANDING_PAGE_QUERY = groq`
     roles,
     pricing,
     faq,
+    testimonial,
     cta,
-    contact
+    contact,
+    logoTicker {
+      logos[] {
+        alt,
+        "imageUrl": logo.asset->url
+      }
+    }
   }
 `
 

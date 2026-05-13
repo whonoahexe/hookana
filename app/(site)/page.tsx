@@ -27,7 +27,7 @@ export default async function Page() {
   return (
     <div className="w-full overflow-x-clip">
       <Hero content={page?.hero ?? null} />
-      <HeroCarousel />
+      <HeroCarousel logos={page?.logoTicker?.logos} />
 
       <div className="flex flex-col">
         <Problems
@@ -56,7 +56,7 @@ export default async function Page() {
         </div>
         <div className="px-6">
           <Stats content={page?.stats ?? null} />
-          <Testimonial />
+          <Testimonial content={page?.testimonial ?? null} />
         </div>
       </section>
 

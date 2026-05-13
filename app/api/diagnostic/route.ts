@@ -1,7 +1,7 @@
-import Anthropic from "@anthropic-ai/sdk"
+import { GoogleGenerativeAI } from "@google/generative-ai"
 import { NextResponse } from "next/server"
 
-const client = new Anthropic()
+const client = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
 
 type DiagnosticAnswer = {
   area: string
@@ -35,13 +35,15 @@ export async function POST(request: Request) {
     )
     .join("\n\n")
 
-  const message = await client.messages.create({
-    model: "claude-haiku-4-5-20251001",
-    max_tokens: 600,
-    messages: [
-      {
-        role: "user",
-        content: `You are a D2C creative performance expert evaluating a brand's creative pipeline health.
+  const model = client.getGenerativeModel({
+    model: "gemini-2.0-flash",
+    generationConfig: {
+      responseMimeType: "application/json",
+      maxOutputTokens: 600,
+    },
+  })
+
+  const prompt = `You are a D2C creative performance expert evaluating a brand's creative pipeline health.
 
 Brand: ${brandName}
 Industry: ${industry}${monthlyAdSpend ? `\nMonthly Ad Spend: ${monthlyAdSpend}` : ""}
@@ -57,13 +59,10 @@ Evaluate their creative health and respond with ONLY valid JSON in this exact sh
   "analysis": <3-4 sentences — name the 1-2 biggest gaps, explain why they matter for their industry and spend level, give one concrete next step. Be direct and specific, not generic.>
 }
 
-Scoring guide: 72-100 = Strong, 45-71 = Needs Work, 0-44 = Critical. Weight hook quality and testing velocity most heavily. Calibrate expectations to their industry and spend level.`,
-      },
-    ],
-  })
+Scoring guide: 72-100 = Strong, 45-71 = Needs Work, 0-44 = Critical. Weight hook quality and testing velocity most heavily. Calibrate expectations to their industry and spend level.`
 
-  const text =
-    message.content[0].type === "text" ? message.content[0].text : "{}"
+  const { response } = await model.generateContent(prompt)
+  const text = response.text()
 
   const result: DiagnosticAnalysisResult = JSON.parse(text)
 
