@@ -6,8 +6,8 @@ import { ArrowUpRight, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
-  SheetClose,
   SheetContent,
+  SheetClose,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
@@ -33,6 +33,18 @@ const FALLBACK_GROUPS = [
 
 export function Navbar({ content }: { content: NavbarContent | null }) {
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  function closeAndScroll(href: string) {
+    setMenuOpen(false)
+    setTimeout(() => {
+      if (href.startsWith("#")) {
+        document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth" })
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      }
+    }, 300)
+  }
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80)
@@ -124,7 +136,7 @@ export function Navbar({ content }: { content: NavbarContent | null }) {
             {logoText}
           </Link>
 
-          <Sheet>
+          <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger asChild>
               <button
                 className="flex size-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
@@ -163,53 +175,42 @@ export function Navbar({ content }: { content: NavbarContent | null }) {
                 {/* Nav links */}
                 <nav className="flex flex-1 flex-col border-t border-white/10 px-6 pt-2 sm:px-14">
                   {allLinks.map((link) => (
-                    <SheetClose asChild key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="group flex items-center justify-between border-b border-white/10 py-6 last:border-none"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          if (link.href.startsWith("#")) {
-                            document
-                              .getElementById(link.href.slice(1))
-                              ?.scrollIntoView({ behavior: "smooth" })
-                          } else {
-                            window.scrollTo({ top: 0, behavior: "smooth" })
-                          }
-                        }}
-                      >
-                        <span className="type-heading-3 text-white/60 transition-colors group-hover:text-white">
-                          {link.label}
-                        </span>
-                        <ArrowUpRight className="size-5 text-white/20 transition-colors group-hover:text-white/60" />
-                      </Link>
-                    </SheetClose>
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="group flex items-center justify-between border-b border-white/10 py-6 last:border-none"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        closeAndScroll(link.href)
+                      }}
+                    >
+                      <span className="type-heading-3 text-white/60 transition-colors group-hover:text-white">
+                        {link.label}
+                      </span>
+                      <ArrowUpRight className="size-5 text-white/20 transition-colors group-hover:text-white/60" />
+                    </Link>
                   ))}
                 </nav>
 
                 {/* CTA */}
                 <div className="px-6 py-8 sm:px-14 sm:py-12">
-                  <SheetClose asChild>
-                    <Button
-                      size="lg"
-                      className="w-full rounded-md"
-                      variant="destructive"
-                      asChild
+                  <Button
+                    size="lg"
+                    className="w-full rounded-md"
+                    variant="destructive"
+                    asChild
+                  >
+                    <Link
+                      href="#contact"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        closeAndScroll("#contact")
+                      }}
                     >
-                      <Link
-                        href="#contact"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          document
-                            .getElementById("contact")
-                            ?.scrollIntoView({ behavior: "smooth" })
-                        }}
-                      >
-                        {ctaText}
-                        <ArrowUpRight className="size-4" />
-                      </Link>
-                    </Button>
-                  </SheetClose>
+                      {ctaText}
+                      <ArrowUpRight className="size-4" />
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </SheetContent>
