@@ -39,17 +39,18 @@ export function CtaForm({ content }: { content: ContactContent | null }) {
 
           <div className="mt-12 border-t border-dotted border-neutral-950 2xl:mt-20" />
 
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSfKDKhg1sxeayXdk4fOuXMIMe81BkOzQl_MdTg4fLTarabDoQ/viewform?embedded=true"
-            width="100%"
-            height={600}
-            frameBorder={0}
-            marginHeight={0}
-            marginWidth={0}
-            className="mt-12 2xl:mt-24"
-          >
-            Loading…
-          </iframe>
+          <div className="mt-12 rounded-sm border border-neutral-200 shadow-xl 2xl:mt-24">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSfKDKhg1sxeayXdk4fOuXMIMe81BkOzQl_MdTg4fLTarabDoQ/viewform?embedded=true"
+              width="100%"
+              frameBorder={0}
+              marginHeight={0}
+              marginWidth={0}
+              className="h-[2500px] 2xl:h-[600px]"
+            >
+              Loading…
+            </iframe>
+          </div>
 
           <div className="mt-12 border-t border-dotted border-neutral-950 2xl:mt-24" />
           <p className="mt-5 font-mono text-xs leading-3.5 text-blue-500">

@@ -22,6 +22,18 @@ const FALLBACK: HeroContent = {
     { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/video/upload/v1778666347/Ishan_Nutri_2_cj01cg.mp4", type: "video" },
     { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/video/upload/v1778666347/The_Glow-Up_Formula_H03_y0f2rq.mp4", type: "video" },
     { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/video/upload/v1778666327/STOMACH_WHISPERER_H03_bc3wye.mp4", type: "video" },
+    { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778667389/out_11_mbqizo.png", type: "image" },
+    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778667388/out_7_xvwrjs.png", type: "image" },
+    { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778667387/out_9_a0sz97.png", type: "image" },
+    { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778667387/out_6_arat2h.png", type: "image" },
+    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666323/12_x1rb1v.png", type: "image" },
+    { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666319/10_parbi7.png", type: "image" },
+    { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666318/8_ksieve.png", type: "image" },
+    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666317/5_ptc95r.png", type: "image" },
+    { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666315/2_yhjbs6.png", type: "image" },
+    { label: "Brand Films", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666314/1_iycztf.png", type: "image" },
+    { label: "Ad Creatives", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666312/4_mefyyz.png", type: "image" },
+    { label: "Social Content", url: "https://res.cloudinary.com/ddbynpktj/image/upload/v1778666312/3_ylu6cf.png", type: "image" },
   ],
 }
 
@@ -33,6 +45,9 @@ const CARD_STYLES = [
 
 const VISIBLE = 3
 
+function ytId(url: string) {
+  return url.split("/shorts/")[1]?.split("?")[0] ?? ""
+}
 
 export function Hero({ content }: { content: HeroContent | null }) {
   const [activeVideo, setActiveVideo] = useState<number | null>(null)
@@ -98,12 +113,7 @@ export function Hero({ content }: { content: HeroContent | null }) {
             </div>
           </div>
 
-          {/*
-            Outer wrapper: full width + relative so arrows can be anchored
-            to the hero edges while the card stack keeps its original layout.
-          */}
           <div className="relative mt-12 w-full lg:mt-20">
-            {/* Left arrow — anchored to the left edge of the hero inner area */}
             <button
               onClick={() => setCarouselStart((s) => Math.max(0, s - 1))}
               disabled={carouselStart === 0}
@@ -113,26 +123,16 @@ export function Hero({ content }: { content: HeroContent | null }) {
               <ChevronLeft className="size-5" />
             </button>
 
-            {/*
-              Card stack: identical structure to original — mx-auto centers on
-              mobile, lg:w-fit lets desktop cards overflow to the right and get
-              clipped by the hero's overflow-hidden.
-            */}
-            <div className="relative mx-auto w-full max-w-[300px] lg:flex lg:w-fit lg:max-w-none lg:flex-row lg:gap-0">
+            <div className="mx-auto w-full max-w-[300px] lg:flex lg:max-w-none lg:flex-row lg:gap-4 lg:px-14">
               {visibleCards.map((card, i) => {
                 const { bg, labelColor } = CARD_STYLES[(carouselStart + i) % CARD_STYLES.length]
                 return (
                   <div
                     key={carouselStart + i}
                     className={cn(
-                      "group aspect-[4/5] w-full cursor-pointer overflow-hidden rounded-md transition-all duration-300 hover:shadow-2xl",
-                      // Mobile: tighter stacking (4 % / 8 % vs original 10 % / 20 %)
-                      i === 0 ? "relative z-30" : "absolute inset-x-0 top-0",
-                      i === 1 && "z-20 translate-y-[4%] opacity-90",
-                      i === 2 && "z-10 translate-y-[8%] opacity-70",
-                      // Desktop: side-by-side, reset mobile offsets, heavy overlap
-                      "lg:relative lg:inset-auto lg:w-[500px] lg:shrink-0 lg:translate-y-0 lg:scale-100 lg:opacity-100 lg:hover:-translate-y-4",
-                      i === 0 ? "lg:z-30" : i === 1 ? "lg:z-20 lg:-ml-40" : "lg:z-10 lg:-ml-40",
+                      "group aspect-[4/5] cursor-pointer overflow-hidden rounded-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-2",
+                      i === 0 ? "relative w-full" : "hidden",
+                      "lg:relative lg:block lg:flex-1",
                       bg
                     )}
                     onClick={() => setActiveVideo(carouselStart + i)}
@@ -145,6 +145,13 @@ export function Hero({ content }: { content: HeroContent | null }) {
                             alt=""
                             className="h-full w-full object-cover"
                             onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none" }}
+                          />
+                        ) : card.type === "youtube" ? (
+                          <iframe
+                            src={`https://www.youtube.com/embed/${ytId(card.url)}?autoplay=1&mute=1&loop=1&playlist=${ytId(card.url)}&controls=0&rel=0&playsinline=1`}
+                            className="pointer-events-none absolute top-1/2 left-0 w-full -translate-y-1/2"
+                            style={{ aspectRatio: "9/16" }}
+                            allow="autoplay; encrypted-media"
                           />
                         ) : (
                           <video
@@ -234,6 +241,14 @@ export function Hero({ content }: { content: HeroContent | null }) {
                 src={activeUrl}
                 alt=""
                 className="block max-h-[85vh] max-w-[90vw] object-contain"
+              />
+            ) : activeUrl && activeType === "youtube" ? (
+              <iframe
+                key={activeVideo}
+                src={`https://www.youtube.com/embed/${ytId(activeUrl)}?autoplay=1&rel=0`}
+                className="h-full w-full"
+                allow="autoplay; encrypted-media; fullscreen"
+                allowFullScreen
               />
             ) : activeUrl ? (
               <video
