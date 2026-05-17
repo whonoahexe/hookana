@@ -33,7 +33,7 @@ export function CtaForm({ content }: { content: ContactContent | null }) {
                 </span>
               ))}
             </h2>
-            <p className="type-heading-3 max-w-70.25 text-foreground">
+            <p className="type-heading-3 max-w-none text-foreground 2xl:max-w-70.25">
               {c.subtext}
             </p>
           </div>

@@ -29,8 +29,25 @@ export function HeroCarousel({ logos }: { logos?: LogoItem[] }) {
           animation: scrollMarquee 40s linear infinite;
         }
       `}</style>
-      <div className="pointer-events-none relative -z-30 h-0 w-full overflow-x-clip overflow-y-visible">
-        <div className="pointer-events-auto absolute -top-20 left-1/2 h-66 w-234 origin-center -translate-x-1/2 scale-[0.45] transition-all duration-300 sm:-top-14 sm:scale-[0.55] md:scale-75 lg:-top-7 lg:right-5 lg:left-auto lg:origin-right lg:translate-x-0 lg:scale-90 xl:scale-100">
+
+      {/* Mobile/Tablet: clean logo strip */}
+      <div className="relative mt-6 w-full overflow-hidden bg-neutral-950 py-6 lg:hidden">
+        <div className="animate-marquee flex w-max items-center">
+          {repeated.map((item, idx) => (
+            <div key={idx} className="flex shrink-0 items-center px-8">
+              <img
+                src={item.imageUrl}
+                alt={item.alt}
+                className="h-7 max-w-24 object-contain brightness-0 invert"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop: decorative film roll */}
+      <div className="pointer-events-none relative -z-30 hidden h-0 w-full overflow-x-clip overflow-y-visible lg:block">
+        <div className="pointer-events-auto absolute -top-7 right-5 h-66 w-234 origin-right scale-90 transition-all duration-300 xl:scale-100">
           <img
             src="/svg/the-roll.svg"
             alt=""

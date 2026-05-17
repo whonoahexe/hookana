@@ -170,7 +170,7 @@ export function Roles({ content }: { content: RolesContent | null }) {
                   type="button"
                   onClick={() => setActiveIndex(i)}
                   className={cn(
-                    "flex h-17 flex-1 shrink items-center justify-center px-2 text-center font-mono text-[9px] leading-tight whitespace-normal uppercase transition-all sm:h-20 sm:px-4 sm:text-xs",
+                    "flex min-h-17 flex-1 shrink items-center justify-center px-2 py-2 text-center font-mono text-[11px] leading-tight whitespace-normal uppercase transition-all sm:min-h-20 sm:px-4 sm:text-xs",
                     isActive
                       ? "bg-secondary font-bold text-secondary-foreground [clip-path:polygon(0_0,100%_0,100%_calc(100%-0.75rem),50%_100%,0_calc(100%-0.75rem))]"
                       : "rounded-md bg-secondary/40 text-secondary-foreground/60 hover:bg-secondary/60"
