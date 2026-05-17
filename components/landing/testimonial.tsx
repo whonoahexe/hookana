@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { cldVideo, cldPoster } from "@/lib/cloudinary"
 import type { TestimonialContent } from "@/sanity/lib/types"
 
 const FALLBACK_URL = "https://res.cloudinary.com/ddbynpktj/video/upload/v1778666335/Testimonials_Deeanimators_qkytj7.mp4"
@@ -34,13 +35,15 @@ export function Testimonial({ content }: { content: TestimonialContent | null })
     >
       {visible && (
         <video
-          src={url}
+          src={cldVideo(url, 1080)}
+          poster={cldPoster(url, 1080)}
           className="h-full w-full rounded-sm object-cover"
           autoPlay
           muted
           loop
           playsInline
           controls
+          preload="metadata"
         />
       )}
     </section>

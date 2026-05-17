@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ArrowUpRight, ArrowDown, Play, X, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { cldImage, cldVideo, cldPoster } from "@/lib/cloudinary"
 import type { HeroContent } from "@/sanity/lib/types"
 
 const FALLBACK: HeroContent = {
@@ -130,7 +131,7 @@ export function Hero({ content }: { content: HeroContent | null }) {
                   <div
                     key={carouselStart + i}
                     className={cn(
-                      "group aspect-[4/5] cursor-pointer overflow-hidden rounded-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-2",
+                      "group aspect-[9/16] cursor-pointer overflow-hidden rounded-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-2",
                       i === 0 ? "relative w-full" : "hidden",
                       "lg:relative lg:block lg:flex-1",
                       bg
@@ -141,8 +142,10 @@ export function Hero({ content }: { content: HeroContent | null }) {
                       <div className="absolute inset-0">
                         {card.type === "image" ? (
                           <img
-                            src={card.url}
+                            src={cldImage(card.url, 720)}
                             alt=""
+                            loading="lazy"
+                            decoding="async"
                             className="h-full w-full object-cover"
                             onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none" }}
                           />
@@ -152,17 +155,19 @@ export function Hero({ content }: { content: HeroContent | null }) {
                             className="pointer-events-none absolute top-1/2 left-0 w-full -translate-y-1/2"
                             style={{ aspectRatio: "9/16" }}
                             allow="autoplay; encrypted-media"
+                            loading="lazy"
                           />
                         ) : (
                           <video
                             key={card.url}
-                            src={card.url}
-                            poster={card.url.replace(/\.mp4$/, ".jpg")}
+                            src={cldVideo(card.url, 720)}
+                            poster={cldPoster(card.url, 720)}
                             className="pointer-events-none h-full w-full object-cover"
                             autoPlay
                             muted
                             loop
                             playsInline
+                            preload="metadata"
                           />
                         )}
                       </div>
@@ -238,7 +243,7 @@ export function Hero({ content }: { content: HeroContent | null }) {
             {activeUrl && activeType === "image" ? (
               <img
                 key={activeVideo}
-                src={activeUrl}
+                src={cldImage(activeUrl, 1400)}
                 alt=""
                 className="block max-h-[85vh] max-w-[90vw] object-contain"
               />
@@ -253,7 +258,7 @@ export function Hero({ content }: { content: HeroContent | null }) {
             ) : activeUrl ? (
               <video
                 key={activeVideo}
-                src={activeUrl}
+                src={cldVideo(activeUrl, 1080)}
                 className="h-full w-full object-cover"
                 autoPlay
                 controls
