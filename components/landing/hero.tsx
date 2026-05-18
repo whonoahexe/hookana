@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ArrowUpRight, ArrowDown, Play, X, ChevronLeft, ChevronRight } from "lucide-react"
+import { ArrowUpRight, ArrowDown, Play, X, ChevronLeft, ChevronRight, Tag } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { cldImage, cldVideo, cldPoster } from "@/lib/cloudinary"
@@ -39,9 +39,9 @@ const FALLBACK: HeroContent = {
 }
 
 const CARD_STYLES = [
-  { bg: "bg-neutral-400", labelColor: "text-white/60" },
-  { bg: "bg-neutral-500", labelColor: "text-neutral-950/60" },
-  { bg: "bg-neutral-600", labelColor: "text-white/60" },
+  { bg: "bg-neutral-100", labelColor: "text-neutral-950/60" },
+  { bg: "bg-neutral-100", labelColor: "text-neutral-950/60" },
+  { bg: "bg-neutral-100", labelColor: "text-neutral-950/60" },
 ]
 
 const VISIBLE = 3
@@ -53,6 +53,14 @@ function ytId(url: string) {
 export function Hero({ content }: { content: HeroContent | null }) {
   const [activeVideo, setActiveVideo] = useState<number | null>(null)
   const [carouselStart, setCarouselStart] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.matchMedia("(max-width: 1023px)").matches)
+    check()
+    window.addEventListener("resize", check)
+    return () => window.removeEventListener("resize", check)
+  }, [])
 
   const { headline, subheadline, description, ctaText, videoCards } =
     content ?? FALLBACK
@@ -124,72 +132,83 @@ export function Hero({ content }: { content: HeroContent | null }) {
               <ChevronLeft className="size-5" />
             </button>
 
-            <div className="mx-auto w-full max-w-[260px] sm:max-w-[300px] lg:flex lg:max-w-none lg:flex-row lg:gap-4 lg:px-14">
+            <div className="mx-auto w-full max-w-[260px] sm:max-w-[300px] lg:flex lg:max-w-none lg:flex-row lg:justify-center lg:gap-4 lg:px-14">
               {visibleCards.map((card, i) => {
                 const { bg, labelColor } = CARD_STYLES[(carouselStart + i) % CARD_STYLES.length]
+                if (isMobile && i !== 0) return null
+                const mediaWidth = isMobile ? 480 : 720
+                const aspectClass = card.type === "image" ? "aspect-[4/5]" : "aspect-[9/16]"
                 return (
                   <div
                     key={carouselStart + i}
                     className={cn(
-                      "group aspect-[9/16] cursor-pointer overflow-hidden rounded-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-2",
-                      i === 0 ? "relative w-full" : "hidden",
-                      "lg:relative lg:block lg:flex-1",
-                      bg
+                      "group cursor-pointer transition-transform duration-300 hover:-translate-y-2",
+                      "animate-in fade-in-0 slide-in-from-right-8 duration-500 ease-out fill-mode-both",
+                      i === 0 ? "block w-full" : "hidden",
+                      "lg:block lg:w-auto"
                     )}
+                    style={{ animationDelay: `${i * 80}ms` }}
                     onClick={() => setActiveVideo(carouselStart + i)}
                   >
-                    {card.url && (
-                      <div className="absolute inset-0">
-                        {card.type === "image" ? (
-                          <img
-                            src={cldImage(card.url, 720)}
-                            alt=""
-                            loading="lazy"
-                            decoding="async"
-                            className="h-full w-full object-cover"
-                            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none" }}
-                          />
-                        ) : card.type === "youtube" ? (
-                          <iframe
-                            src={`https://www.youtube.com/embed/${ytId(card.url)}?autoplay=1&mute=1&loop=1&playlist=${ytId(card.url)}&controls=0&rel=0&playsinline=1`}
-                            className="pointer-events-none absolute top-1/2 left-0 w-full -translate-y-1/2"
-                            style={{ aspectRatio: "9/16" }}
-                            allow="autoplay; encrypted-media"
-                            loading="lazy"
-                          />
-                        ) : (
-                          <video
-                            key={card.url}
-                            src={cldVideo(card.url, 720)}
-                            poster={cldPoster(card.url, 720)}
-                            className="pointer-events-none h-full w-full object-cover"
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            preload="metadata"
-                          />
-                        )}
-                      </div>
-                    )}
-
-                    {/* Vignette */}
-                    <div className="pointer-events-none absolute inset-0 rounded-md bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.55)_100%)]" />
-
-                    {/* Play button — videos only */}
-                    {card.type !== "image" && (
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <div className="flex size-18 items-center justify-center rounded-full bg-black/20 ring-1 ring-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
-                          <Play className="size-8 fill-white text-white" />
-                        </div>
-                      </div>
-                    )}
-                    <div className="absolute top-5 left-6">
-                      <p className={cn("type-monospaced text-xs tracking-widest uppercase", labelColor)}>
+                    <div className="mb-3 flex">
+                      <span className="type-monospaced inline-flex items-center gap-1 rounded-full border border-neutral-950/15 bg-pink-200 px-1.5 py-px text-[7px] font-bold tracking-[0.1em] text-neutral-950 uppercase shadow-sm leading-tight">
+                        <Tag className="size-2.5" strokeWidth={2.5} />
                         {card.label}
-                      </p>
+                      </span>
                     </div>
-                    <div className="absolute top-4 right-4 size-2 rounded-full bg-white/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div
+                      className={cn(
+                        "relative overflow-hidden rounded-md transition-shadow duration-300 group-hover:shadow-2xl",
+                        aspectClass,
+                        "lg:h-[460px] lg:w-auto",
+                        bg
+                      )}
+                    >
+                      {card.url && (
+                        <div className="absolute inset-0">
+                          {card.type === "image" ? (
+                            <img
+                              src={cldImage(card.url, mediaWidth)}
+                              alt=""
+                              loading="lazy"
+                              decoding="async"
+                              className="h-full w-full object-contain"
+                              onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none" }}
+                            />
+                          ) : card.type === "youtube" ? (
+                            <iframe
+                              src={`https://www.youtube.com/embed/${ytId(card.url)}?autoplay=1&mute=1&loop=1&playlist=${ytId(card.url)}&controls=0&rel=0&playsinline=1`}
+                              className="pointer-events-none absolute top-1/2 left-0 w-full -translate-y-1/2"
+                              style={{ aspectRatio: "9/16" }}
+                              allow="autoplay; encrypted-media"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <video
+                              key={card.url}
+                              src={cldVideo(card.url, mediaWidth)}
+                              poster={cldPoster(card.url, mediaWidth)}
+                              className="pointer-events-none h-full w-full object-contain"
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                              preload="metadata"
+                            />
+                          )}
+                        </div>
+                      )}
+
+                      {/* Play button — videos only */}
+                      {card.type !== "image" && (
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                          <div className="flex size-18 items-center justify-center rounded-full bg-black/20 ring-1 ring-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                            <Play className="size-8 fill-white text-white" />
+                          </div>
+                        </div>
+                      )}
+                      <div className="absolute top-4 right-4 size-2 rounded-full bg-white/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    </div>
                   </div>
                 )
               })}
@@ -262,11 +281,13 @@ export function Hero({ content }: { content: HeroContent | null }) {
             ) : activeUrl ? (
               <video
                 key={activeVideo}
-                src={cldVideo(activeUrl, 1080)}
-                className="h-full w-full object-cover"
+                src={cldVideo(activeUrl, isMobile ? 720 : 1080)}
+                poster={cldPoster(activeUrl, isMobile ? 720 : 1080)}
+                className="h-full w-full object-contain"
                 autoPlay
                 controls
                 playsInline
+                preload="metadata"
               />
             ) : (
               <div className="flex h-full flex-col items-center justify-center gap-3">
