@@ -126,13 +126,13 @@ export function Hero({ content }: { content: HeroContent | null }) {
             <button
               onClick={() => setCarouselStart((s) => Math.max(0, s - 1))}
               disabled={carouselStart === 0}
-              className="absolute -left-2 top-1/2 z-40 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-neutral-950/10 transition hover:bg-neutral-950/20 disabled:pointer-events-none disabled:opacity-20 lg:left-0"
+              className="absolute right-9 top-0 z-40 flex size-7 items-center justify-center rounded-full bg-neutral-950/10 transition hover:bg-neutral-950/20 disabled:pointer-events-none disabled:opacity-20 lg:right-auto lg:left-0 lg:top-1/2 lg:size-10 lg:-translate-y-1/2"
               aria-label="Previous"
             >
-              <ChevronLeft className="size-5" />
+              <ChevronLeft className="size-4 lg:size-5" />
             </button>
 
-            <div className="mx-auto w-full max-w-[260px] sm:max-w-[300px] lg:flex lg:max-w-none lg:flex-row lg:justify-center lg:gap-4 lg:px-14">
+            <div className="mx-auto w-full lg:flex lg:max-w-none lg:flex-row lg:justify-center lg:gap-4 lg:px-14">
               {visibleCards.map((card, i) => {
                 const { bg, labelColor } = CARD_STYLES[(carouselStart + i) % CARD_STYLES.length]
                 if (isMobile && i !== 0) return null
@@ -218,10 +218,10 @@ export function Hero({ content }: { content: HeroContent | null }) {
             <button
               onClick={() => setCarouselStart((s) => Math.min(maxStart, s + 1))}
               disabled={carouselStart >= maxStart}
-              className="absolute -right-2 top-1/2 z-40 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-neutral-950/10 transition hover:bg-neutral-950/20 disabled:pointer-events-none disabled:opacity-20 lg:right-0"
+              className="absolute right-0 top-0 z-40 flex size-7 items-center justify-center rounded-full bg-neutral-950/10 transition hover:bg-neutral-950/20 disabled:pointer-events-none disabled:opacity-20 lg:top-1/2 lg:size-10 lg:-translate-y-1/2"
               aria-label="Next"
             >
-              <ChevronRight className="size-5" />
+              <ChevronRight className="size-4 lg:size-5" />
             </button>
           </div>
         </div>
