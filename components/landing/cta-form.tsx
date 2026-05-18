@@ -1,3 +1,6 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
 import type { ContactContent } from "@/sanity/lib/types"
 
 const FALLBACK: Pick<ContactContent, "heading" | "subtext" | "footerText"> = {
@@ -11,6 +14,24 @@ const FALLBACK: Pick<ContactContent, "heading" | "subtext" | "footerText"> = {
 export function CtaForm({ content }: { content: ContactContent | null }) {
   const c = content ?? FALLBACK
   const headingLines = c.heading.split("\n")
+  const formRef = useRef<HTMLDivElement>(null)
+  const [showForm, setShowForm] = useState(false)
+
+  useEffect(() => {
+    const el = formRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowForm(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: "400px 0px" }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div className="flex w-full justify-center px-5 2xl:px-0">
@@ -39,17 +60,24 @@ export function CtaForm({ content }: { content: ContactContent | null }) {
 
           <div className="mt-12 border-t border-dotted border-neutral-950 2xl:mt-20" />
 
-          <div className="mt-12 rounded-sm border border-neutral-200 shadow-xl 2xl:mt-24">
-            <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSfKDKhg1sxeayXdk4fOuXMIMe81BkOzQl_MdTg4fLTarabDoQ/viewform?embedded=true"
-              width="100%"
-              frameBorder={0}
-              marginHeight={0}
-              marginWidth={0}
-              className="h-[2500px] 2xl:h-[600px]"
-            >
-              Loading…
-            </iframe>
+          <div ref={formRef} className="mt-12 rounded-sm border border-neutral-200 shadow-xl 2xl:mt-24">
+            {showForm ? (
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSfKDKhg1sxeayXdk4fOuXMIMe81BkOzQl_MdTg4fLTarabDoQ/viewform?embedded=true"
+                width="100%"
+                frameBorder={0}
+                marginHeight={0}
+                marginWidth={0}
+                loading="lazy"
+                className="h-[2500px] 2xl:h-[600px]"
+              >
+                Loading…
+              </iframe>
+            ) : (
+              <div className="flex h-[2500px] items-center justify-center 2xl:h-[600px]">
+                <p className="font-mono text-xs text-neutral-400">Loading…</p>
+              </div>
+            )}
           </div>
 
           <div className="mt-12 border-t border-dotted border-neutral-950 2xl:mt-24" />
