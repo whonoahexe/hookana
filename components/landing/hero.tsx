@@ -191,7 +191,7 @@ export function Hero({ content }: { content: HeroContent | null }) {
                               className="pointer-events-none h-full w-full object-contain"
                               autoPlay
                               muted
-                              loop
+                              loop={!isMobile}
                               playsInline
                               preload="metadata"
                             />
