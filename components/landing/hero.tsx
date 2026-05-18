@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { ArrowUpRight, ArrowDown, Play, X, ChevronLeft, ChevronRight, Tag } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -53,7 +53,12 @@ function ytId(url: string) {
 export function Hero({ content }: { content: HeroContent | null }) {
   const [activeVideo, setActiveVideo] = useState<number | null>(null)
   const [carouselStart, setCarouselStart] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") return true
+    return window.matchMedia("(max-width: 1023px)").matches
+  })
+  const [mobileVideoInView, setMobileVideoInView] = useState(false)
+  const carouselRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const check = () => setIsMobile(window.matchMedia("(max-width: 1023px)").matches)
@@ -62,6 +67,47 @@ export function Hero({ content }: { content: HeroContent | null }) {
     return () => window.removeEventListener("resize", check)
   }, [])
 
+  useEffect(() => {
+    if (!isMobile || mobileVideoInView) return
+    const el = carouselRef.current
+    if (!el) return
+
+    let hasScrolled = false
+    let observer: IntersectionObserver | null = null
+
+    const arm = () => {
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (!hasScrolled) return
+          if (entries.some((e) => e.isIntersecting)) {
+            setMobileVideoInView(true)
+            observer?.disconnect()
+          }
+        },
+        { threshold: 0.25 }
+      )
+      observer.observe(el)
+    }
+
+    const onScroll = () => {
+      hasScrolled = true
+      const rect = el.getBoundingClientRect()
+      const vh = window.innerHeight || document.documentElement.clientHeight
+      if (rect.top < vh * 0.75 && rect.bottom > 0) {
+        setMobileVideoInView(true)
+        observer?.disconnect()
+        window.removeEventListener("scroll", onScroll)
+      }
+    }
+
+    arm()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => {
+      observer?.disconnect()
+      window.removeEventListener("scroll", onScroll)
+    }
+  }, [isMobile, mobileVideoInView])
+
   const { headline, subheadline, description, ctaText, videoCards } =
     content ?? FALLBACK
   const cards = videoCards?.length > 0 ? videoCards : FALLBACK.videoCards
@@ -69,11 +115,12 @@ export function Hero({ content }: { content: HeroContent | null }) {
   const visibleCards = cards.slice(carouselStart, carouselStart + VISIBLE)
 
   useEffect(() => {
+    if (isMobile && !mobileVideoInView) return
     const timer = setInterval(() => {
       setCarouselStart((s) => (s >= maxStart ? 0 : s + 1))
     }, 3000)
     return () => clearInterval(timer)
-  }, [maxStart])
+  }, [maxStart, isMobile, mobileVideoInView])
   const activeCard = activeVideo !== null ? cards[activeVideo] : undefined
   const activeUrl = activeCard?.url
   const activeType = activeCard?.type ?? "video"
@@ -122,7 +169,7 @@ export function Hero({ content }: { content: HeroContent | null }) {
             </div>
           </div>
 
-          <div className="relative mt-12 w-full lg:mt-20">
+          <div ref={carouselRef} className="relative mt-12 w-full lg:mt-20">
             <button
               onClick={() => setCarouselStart((s) => Math.max(0, s - 1))}
               disabled={carouselStart === 0}
@@ -182,6 +229,14 @@ export function Hero({ content }: { content: HeroContent | null }) {
                               style={{ aspectRatio: "9/16" }}
                               allow="autoplay; encrypted-media"
                               loading="lazy"
+                            />
+                          ) : isMobile && !mobileVideoInView ? (
+                            <img
+                              src={cldPoster(card.url, mediaWidth)}
+                              alt=""
+                              loading="lazy"
+                              decoding="async"
+                              className="pointer-events-none h-full w-full object-contain"
                             />
                           ) : (
                             <video
