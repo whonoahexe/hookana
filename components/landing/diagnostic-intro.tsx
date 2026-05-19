@@ -43,7 +43,7 @@ export function DiagnosticIntro({
   const spendOptions = f.spendOptions?.length > 0 ? f.spendOptions : FALLBACK.spendOptions
 
   return (
-    <form onSubmit={onSubmit} className="flex h-full flex-col gap-5">
+    <form onSubmit={onSubmit} className="flex h-full flex-col gap-4 sm:gap-5">
       <FormField label={f.brandNameLabel} help={f.brandNameHelp}>
         <div className="flex h-10 w-full sm:w-80 items-center gap-2 rounded-md border border-neutral-300 bg-white px-3 shadow-xs">
           <Globe className="size-4 shrink-0 text-neutral-500" />
