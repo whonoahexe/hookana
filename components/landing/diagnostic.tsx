@@ -324,7 +324,7 @@ export function Diagnostic({ content }: { content: DiagnosticContent | null }) {
 
   return (
     <div className="flex w-full justify-center">
-      <section className="relative -mt-10 min-h-[600px] w-full max-w-180 bg-card px-6 py-12 md:min-h-240 md:px-19 md:py-18 2xl:-mt-20">
+      <section className="relative -mt-10 w-full max-w-180 bg-card px-6 py-10 md:px-19 md:py-12 2xl:-mt-20">
         <div className="absolute top-0 -right-px h-12 w-12 overflow-hidden bg-blue-950 sm:h-16 sm:w-16 2xl:bg-pink-300">
           <div
             className="absolute inset-0 bg-muted-foreground"
@@ -344,9 +344,9 @@ export function Diagnostic({ content }: { content: DiagnosticContent | null }) {
             </p>
           </div>
 
-          <div className="mt-20 border-t border-dotted border-neutral-950" />
+          <div className="mt-10 border-t border-dotted border-neutral-950" />
 
-          <div className="mt-24 flex min-h-140 flex-col">
+          <div className="mt-8 flex min-h-100 flex-col">
             {stage === "intro" && (
               <DiagnosticIntro
                 brandName={brandName}
@@ -419,7 +419,7 @@ export function Diagnostic({ content }: { content: DiagnosticContent | null }) {
             )}
           </div>
 
-          <div className="mt-24 border-t border-dotted border-neutral-950" />
+          <div className="mt-10 border-t border-dotted border-neutral-950" />
           <p className="mt-5 font-mono text-xs leading-3.5 text-blue-500">
             {footerCopy}
           </p>
