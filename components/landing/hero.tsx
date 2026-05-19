@@ -184,7 +184,8 @@ export function Hero({ content }: { content: HeroContent | null }) {
                 const { bg, labelColor } = CARD_STYLES[(carouselStart + i) % CARD_STYLES.length]
                 if (isMobile && i !== 0) return null
                 const mediaWidth = isMobile ? 480 : 720
-                const aspectClass = card.type === "image" ? "aspect-[4/5]" : "aspect-[9/16]"
+                const aspectClass = "aspect-[4/5]"
+                const mediaFitClass = card.type === "image" ? "object-contain" : "object-cover"
                 return (
                   <div
                     key={carouselStart + i}
@@ -219,14 +220,13 @@ export function Hero({ content }: { content: HeroContent | null }) {
                               alt=""
                               loading="lazy"
                               decoding="async"
-                              className="h-full w-full object-contain"
+                              className={cn("h-full w-full", mediaFitClass)}
                               onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none" }}
                             />
                           ) : card.type === "youtube" ? (
                             <iframe
                               src={`https://www.youtube.com/embed/${ytId(card.url)}?autoplay=1&mute=1&loop=1&playlist=${ytId(card.url)}&controls=0&rel=0&playsinline=1`}
-                              className="pointer-events-none absolute top-1/2 left-0 w-full -translate-y-1/2"
-                              style={{ aspectRatio: "9/16" }}
+                              className="pointer-events-none absolute top-1/2 left-0 h-[177.78%] w-full -translate-y-1/2"
                               allow="autoplay; encrypted-media"
                               loading="lazy"
                             />
@@ -236,14 +236,14 @@ export function Hero({ content }: { content: HeroContent | null }) {
                               alt=""
                               loading="lazy"
                               decoding="async"
-                              className="pointer-events-none h-full w-full object-contain"
+                              className={cn("pointer-events-none h-full w-full", mediaFitClass)}
                             />
                           ) : (
                             <video
                               key={card.url}
                               src={cldVideo(card.url, mediaWidth)}
                               poster={cldPoster(card.url, mediaWidth)}
-                              className="pointer-events-none h-full w-full object-contain"
+                              className={cn("pointer-events-none h-full w-full", mediaFitClass)}
                               autoPlay
                               muted
                               loop={!isMobile}
